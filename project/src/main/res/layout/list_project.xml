@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainProject"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="40dp">
+
+        <TextView
+            android:id="@+id/nameProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/mainProject"
+            app:layout_constraintLeft_toLeftOf="@+id/mainProject"
+            android:text="Project Main"/>
+
+        <TextView
+            android:id="@+id/dataProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/nameProject"
+            app:layout_constraintLeft_toLeftOf="@+id/mainProject"
+            android:text="17.01.2023"/>
+
+        <ImageView
+            android:id="@+id/movingProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/mainProject"
+            app:layout_constraintRight_toRightOf="@+id/mainProject"
+            app:layout_constraintBottom_toBottomOf="@+id/mainProject"
+            android:src="@drawable/moving"/>
+
+        <ImageView
+            android:id="@+id/dividerProject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/mainProject"
+            android:src="@drawable/divider"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
