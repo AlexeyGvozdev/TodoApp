@@ -15,7 +15,8 @@ class ProjectListAdapter(private val projectListModels: ArrayList<ProjectListMod
         fun bind(projectListModel: ProjectListModel) {
             binding.nameProject.text = projectListModel.nameProject
             binding.dataProject.text = projectListModel.dataProject
-            binding.movingProject.setImageResource(R.drawable.moving)
+            binding.movingProject.setImageResource(com.sinx.core.R.drawable.moving)
+            binding.dividerProject.setImageResource(com.sinx.core.R.drawable.divider)
         }
     }
 

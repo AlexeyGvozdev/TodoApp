@@ -3,32 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainProject"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="40dp">
+    android:layout_height="54dp"
+    android:layout_marginLeft="32dp"
+    android:layout_marginRight="32dp">
 
         <TextView
             android:id="@+id/nameProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@+id/mainProject"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/project_name"
+            android:text="Project Main"
+            android:textSize="16sp"
+            android:lineHeight="20dp"
+            android:textColor="@color/project_name"
             app:layout_constraintLeft_toLeftOf="@+id/mainProject"
-            android:text="Project Main"/>
+            app:layout_constraintTop_toTopOf="@+id/mainProject" />
 
         <TextView
             android:id="@+id/dataProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/nameProject"
+            android:fontFamily="@font/project_data"
+            android:text="17.01.2023"
+            android:textSize="8sp"
+            android:lineHeight="10dp"
+            android:textColor="@color/project_data"
             app:layout_constraintLeft_toLeftOf="@+id/mainProject"
-            android:text="17.01.2023"/>
+            app:layout_constraintTop_toBottomOf="@+id/nameProject" />
 
         <ImageView
             android:id="@+id/movingProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="@+id/mainProject"
             app:layout_constraintRight_toRightOf="@+id/mainProject"
-            app:layout_constraintBottom_toBottomOf="@+id/mainProject"
             android:src="@drawable/moving"/>
 
         <ImageView

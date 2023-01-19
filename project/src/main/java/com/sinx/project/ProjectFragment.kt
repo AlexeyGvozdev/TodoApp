@@ -31,8 +31,10 @@ class ProjectFragment : Fragment(R.layout.project_layout) {
 
     private fun dataListProject(): ArrayList<ProjectListModel> {
         val projectListModels = ArrayList<ProjectListModel>()
-        for (i in 0..100 )
-            projectListModels.add(ProjectListModel("Project Main", "01.02.2023"))
+        var count = 1
+        for (i in 0..100) {
+            projectListModels.add(ProjectListModel("Project Main ${count++}", "01.02.2023"))
+        }
         return projectListModels
     }
 }
