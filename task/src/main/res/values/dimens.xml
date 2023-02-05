@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    // margin
+    <dimen name="task_list_layout_add_task_end">32dp</dimen>
+    <dimen name="task_list_layout_add_task_bottom">41dp</dimen>
+    <dimen name="add_task_layout_constraint_top">25dp</dimen>
+    <dimen name="add_task_layout_constraint_horizontal">32dp</dimen>
+    <dimen name="add_task_layout_title_start">20dp</dimen>
+    <dimen name="add_task_layout_name_top">33dp</dimen>
+    <dimen name="add_task_layout_input_name_top">12dp</dimen>
+    <dimen name="add_task_layout_input_name_vertical">12dp</dimen>
+    <dimen name="add_task_layout_input_name_horizontal">20dp</dimen>
+    <dimen name="add_task_layout_project_top">24dp</dimen>
+    <dimen name="add_task_layout_priority_top">26dp</dimen>
+    <dimen name="add_task_layout_selected_priority_top">24dp</dimen>
+    <dimen name="add_task_layout_repeat_top">27dp</dimen>
+    <dimen name="add_task_layout_add_task_top">40dp</dimen>
+    <dimen name="add_task_layout_add_task_bottom">28dp</dimen>
+
+    // size
+    <dimen name="add_task_layout_selected_priority_size">24dp</dimen>
+    <dimen name="add_task_layout_back_size">16dp</dimen>
+</resources>

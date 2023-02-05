@@ -36,15 +36,16 @@
         android:id="@+id/addTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginEnd="@dimen/task_list_layout_add_task_end"
+        android:layout_marginBottom="@dimen/task_list_layout_add_task_bottom"
         app:backgroundTint="@color/black"
+        app:rippleColor="@color/ripple_black"
+        app:srcCompat="@drawable/add"
+        app:maxImageSize="16dp"
+        app:tint="@color/white"
         app:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/ripple_black"
-        app:srcCompat="@drawable/add"
-        app:tint="@color/white"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
