@@ -1,6 +1,7 @@
 plugins {
     id(Config.Plugins.androidApplication)
     id(Config.Plugins.androidKotlin)
+    id(Config.Plugins.kotlinKapt)
 
     id(Config.Plugins.conventionAppConfig)
     id(Config.Plugins.conventionBuildTypes)
@@ -26,8 +27,13 @@ dependencies {
     implementation(Dependency.Ui.constraintLayout)
 
     implementation(project(Config.Modules.core))
+    implementation(project(Config.Modules.coreDb))
     implementation(project(Config.Modules.project))
     implementation(project(Config.Modules.task))
+
+    implementation(Dependency.Room.runtime)
+    kapt(Dependency.Room.compiler)
+    implementation(Dependency.Room.ktx)
 
     testImplementation(Dependency.Testing.junit)
     androidTestImplementation(Dependency.Testing.junitExt)

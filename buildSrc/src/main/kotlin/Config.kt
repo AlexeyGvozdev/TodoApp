@@ -1,6 +1,7 @@
 object Config {
     object Modules {
         const val core = ":core"
+        const val coreDb = ":core-db"
         const val project = ":project"
         const val task = ":task"
     }
@@ -15,6 +16,7 @@ object Config {
         const val androidApplication = "com.android.application"
         const val androidLibrary = "com.android.library"
         const val androidKotlin = "org.jetbrains.kotlin.android"
+        const val kotlinKapt = "kotlin-kapt"
         const val detektPlugin = "io.gitlab.arturbosch.detekt"
 
         /**

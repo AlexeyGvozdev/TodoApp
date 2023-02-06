@@ -28,6 +28,14 @@ object Dependency {
         const val recyclerView = "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     }
 
+    object Room {
+        private const val roomVersion = "2.4.3"
+
+        const val runtime = "androidx.room:room-runtime:$roomVersion"
+        const val compiler = "androidx.room:room-compiler:$roomVersion"
+        const val ktx = "androidx.room:room-ktx:$roomVersion"
+    }
+
     object Testing {
         private const val junitVersion = "4.13.2"
         private const val junitExtVersion = "1.1.5"
