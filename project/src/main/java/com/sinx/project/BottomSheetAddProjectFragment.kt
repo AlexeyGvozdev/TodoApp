@@ -1,12 +1,12 @@
 package com.sinx.project
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.sinx.project.R
 import com.sinx.project.databinding.BottomSheetAddNewProjectBinding
 import com.sinx.core.R as core_R
 
@@ -23,27 +23,20 @@ class BottomSheetAddProjectFragment :
         savedInstanceState: Bundle?
     ): View {
         _binding = BottomSheetAddNewProjectBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addProject()
+        binding.buttonAddProject.setOnClickListener {
+            val nameProject = binding.editTextInput.text.toString()
+            setFragmentResult(Constans.REQUEST_KEY, bundleOf(Constans.BUNDLE_KEY to nameProject))
+            dismiss()
+        }
     }
 
     override fun getTheme(): Int {
         return core_R.style.BottomSheetDialogTheme
     }
-
-    private fun addProject() {
-        binding.buttonAddProject.setOnClickListener(View.OnClickListener {
-            val nameNewProject = binding.editTextInput.editableText.toString()
-            Log.d("test", nameNewProject)
-        })
-    }
-
-//    fun getNameProject(): String {
-//        return binding.editTextInput.editableText.toString()
-//
-//    }
 }
