@@ -22,11 +22,20 @@ import com.sinx.core.R as core_R
 class TaskListFragment : Fragment(R.layout.task_list_layout) {
 
     private lateinit var taskListAdapter: TaskListAdapter
-    private lateinit var viewModal: TaskViewModel
+    private val viewModal by lazy {
+        ViewModelProvider(this, TaskViewModelFactory())[TaskViewModel::class.java]
+    }
 
     private var _binding: TaskListLayoutBinding? = null
     private val binding: TaskListLayoutBinding
         get() = checkNotNull(_binding)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            viewModal.initialize()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +56,6 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
             }
         })
         binding.rvTaskList.adapter = taskListAdapter
-        viewModal = ViewModelProvider(this, TaskViewModelFactory())[TaskViewModel::class.java]
         binding.rvTaskList.addItemDecoration(
             DividerItemDecorationTask(
                 ContextCompat.getDrawable(requireContext(), core_R.drawable.divider)
