@@ -27,18 +27,30 @@ class ProjectFragment : Fragment(R.layout.project_layout) {
     lateinit var binding: ProjectLayoutBinding
     lateinit var addButtonBinding: AddButtonBinding
 
-    lateinit var viewModel: ProjectViewModel
+    private val viewModel by lazy {
+        ViewModelProvider(this, ProjectViewModelFactory())[ProjectViewModel::class.java]
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            viewModel.initialize()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this, ProjectViewModelFactory())[ProjectViewModel::class.java]
-
         binding = ProjectLayoutBinding.inflate(layoutInflater, container, false)
         addButtonBinding = AddButtonBinding.bind(binding.root)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.rvProjectList.layoutManager = LinearLayoutManager(context)
 
         lifecycleScope.launchWhenStarted {
@@ -65,6 +77,5 @@ class ProjectFragment : Fragment(R.layout.project_layout) {
             val newProject = ProjectListModel(result.toString(), "12.03.2023")
             viewModel.addNewProject(newProject)
         }
-        return binding.root
     }
 }

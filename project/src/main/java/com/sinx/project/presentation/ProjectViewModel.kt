@@ -22,7 +22,7 @@ class ProjectViewModel(
     )
     val projectList: SharedFlow<List<ProjectListModel>> = _projectList
 
-    init {
+    fun initialize() {
         viewModelScope.launch {
             _projectList.emitAll(getNewProjectUseCase())
         }
