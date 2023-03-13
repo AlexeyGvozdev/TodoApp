@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
 
 class TaskViewModel(
-    getTaskListUseCase: GetTaskListUseCase,
+    private val getTaskListUseCase: GetTaskListUseCase,
     private val taskReadyUseCase: TaskReadyUseCase
 ) : ViewModel() {
 
@@ -20,7 +20,7 @@ class TaskViewModel(
         MutableSharedFlow<List<TaskItem>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
     val taskList: SharedFlow<List<TaskItem>> = _taskList
 
-    init {
+    fun initialize() {
         viewModelScope.launch {
             _taskList.emitAll(getTaskListUseCase())
         }
