@@ -4,10 +4,13 @@ import com.sinx.taskList.TaskItem
 import com.sinx.taskList.model.GetTaskListUseCaseImpl
 import com.sinx.taskList.model.TaskReadyUseCaseImpl
 import com.sinx.taskList.model.TaskRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -28,7 +31,7 @@ class TaskViewModelTest {
 //        begin
         val repo = object : TaskRepository {
             override fun taskReady(item: TaskItem) {
-//                детект ругаеться
+//                детект ругаеться, на пустое тело
             }
 
             override suspend fun listTasksFlow(): Flow<List<TaskItem>> {
@@ -51,37 +54,39 @@ class TaskViewModelTest {
     @Test
     fun checkTaskIsDone() {
 //        begin
+        val taskFlow = MutableSharedFlow<List<TaskItem>>(replay = 1)
+        val scope = CoroutineScope(Dispatchers.Unconfined)
         var actualItem: TaskItem? = null
-        var actualList: List<TaskItem>? = null
         val repo = object : TaskRepository {
             override fun taskReady(item: TaskItem) {
-                actualItem = item
-            }
-
-            override suspend fun listTasksFlow(): Flow<List<TaskItem>> {
-                return flow {
-                    if (actualList != null) {
-                        emit(listItems)
-                    }
-                    emit(
+                scope.launch {
+                    taskFlow.emit(
                         listOf(
                             TaskItem("Task Manager 1", "\"07 Jan 23 / Project\"", true, 1),
                             TaskItem("Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
                         )
                     )
                 }
+                actualItem = item
+            }
+
+            override suspend fun listTasksFlow(): Flow<List<TaskItem>> {
+                scope.launch {
+                    taskFlow.emit(
+                        listItems
+                    )
+                }
+                return taskFlow
             }
         }
         val getTaskListUseCase = GetTaskListUseCaseImpl(repo)
         val taskReadyUseCase = TaskReadyUseCaseImpl(repo)
         val viewModel = TaskViewModel(getTaskListUseCase, taskReadyUseCase)
 //        when
-
         viewModel.initialize()
         viewModel.taskIsDone(listItems.first(), true)
-        viewModel.initialize()
 
-        actualList = viewModel.taskList.replayCache.first()
+        val actualList = viewModel.taskList.replayCache.first()
         val expectedList = listOf(
             TaskItem("Task Manager 1", "\"07 Jan 23 / Project\"", true, 1),
             TaskItem("Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
