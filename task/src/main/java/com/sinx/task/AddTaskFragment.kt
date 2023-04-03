@@ -50,7 +50,6 @@ class AddTaskFragment : Fragment() {
             back.setOnClickListener {
                 activity?.supportFragmentManager?.popBackStack()
             }
-
         }
     }
 

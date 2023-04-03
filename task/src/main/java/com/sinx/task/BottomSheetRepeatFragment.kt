@@ -28,11 +28,14 @@ class BottomSheetRepeatFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
-            selectdays.setOnClickListener{
+            selectdays.setOnClickListener {
                 if (selectdays.isChecked) {
                     linearLayout.visibility = View.VISIBLE
                 }
-                else linearLayout.visibility = View.INVISIBLE
+
+                else {
+                    linearLayout.visibility = View.INVISIBLE
+                }
             }
         }
     }
