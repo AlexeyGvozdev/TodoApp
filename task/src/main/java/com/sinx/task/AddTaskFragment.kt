@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.fragment.findNavController
 import com.sinx.task.databinding.AddTaskLayoutBinding
 
 class AddTaskFragment : Fragment() {
@@ -26,6 +29,20 @@ class AddTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         initMockValues()
+        with(binding) {
+            repeat.setOnClickListener {
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("app://task/BottomSheetRepeatFragment".toUri())
+                    .build()
+                findNavController().navigate(request)
+            }
+            selectedRepeat.setOnClickListener {
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri("app://task/BottomSheetRepeatFragment".toUri())
+                    .build()
+                findNavController().navigate(request)
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -33,6 +50,7 @@ class AddTaskFragment : Fragment() {
             back.setOnClickListener {
                 activity?.supportFragmentManager?.popBackStack()
             }
+
         }
     }
 

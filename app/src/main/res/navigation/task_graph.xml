@@ -14,6 +14,15 @@
         android:name="com.sinx.task.AddTaskFragment"
         android:label="AddTaskFragment">
         <deepLink app:uri="app://task/addTaskFragment"/>
+
     </fragment>
+
+    <dialog
+        android:id="@+id/repeatFragment"
+        android:name="com.sinx.task.BottomSheetRepeatFragment"
+        android:label="TaskListFragment">
+        <deepLink app:uri="app://task/BottomSheetRepeatFragment"/>
+
+    </dialog>
 
 </navigation>
