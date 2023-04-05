@@ -31,9 +31,7 @@ class BottomSheetRepeatFragment :
             selectdays.setOnClickListener {
                 if (selectdays.isChecked) {
                     linearLayout.visibility = View.VISIBLE
-                }
-
-                else {
+                } else {
                     linearLayout.visibility = View.INVISIBLE
                 }
             }
