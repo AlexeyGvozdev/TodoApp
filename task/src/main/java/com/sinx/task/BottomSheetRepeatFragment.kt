@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isInvisible
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sinx.task.databinding.BottomSheetRepeatBinding
 import com.sinx.core.R as core_R
@@ -21,7 +22,7 @@ class BottomSheetRepeatFragment :
         savedInstanceState: Bundle?
     ): View {
         _binding = BottomSheetRepeatBinding.inflate(inflater, container, false)
-        binding.linearLayout.visibility = View.INVISIBLE
+        binding.linearLayout.isInvisible = true
         return binding.root
     }
 
@@ -29,11 +30,7 @@ class BottomSheetRepeatFragment :
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             selectdays.setOnClickListener {
-                if (selectdays.isChecked) {
-                    linearLayout.visibility = View.VISIBLE
-                } else {
-                    linearLayout.visibility = View.INVISIBLE
-                }
+                linearLayout.isInvisible = !selectdays.isChecked
             }
         }
     }

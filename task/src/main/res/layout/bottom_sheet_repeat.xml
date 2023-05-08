@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@drawable/bottom_sheet_background"
     tools:theme="@style/Theme.Todo">
 
     <ImageView
@@ -18,237 +18,124 @@
         app:srcCompat="@drawable/drag_handle"/>
 
     <TextView
+        style="@style/Headline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
         android:layout_marginTop="24dp"
         android:text="@string/repeat"
-        android:textColor="@color/black"
-        style="@style/Headline2"/>
+        android:textColor="@color/black"/>
 
     <com.google.android.material.chip.ChipGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
         android:layout_marginStart="33dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="33dp"
         app:chipSpacingHorizontal="12dp"
-        app:singleSelection="true"
-        android:layout_marginEnd="33dp">
+        app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
-            android:checkable="true"
-            app:checkedIconVisible="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:textStartPadding="20dp"
-            app:textEndPadding="20dp"
-            app:chipBackgroundColor="@color/enable_bottom_sheet_chips_background_color"
-            app:chipStrokeColor="@color/black"
-            app:chipStrokeWidth="1dp"
-            android:textColor="@color/enable_bottom_sheet_text_color"
+            style="@style/Chips"
             android:text="@string/no"/>
 
         <com.google.android.material.chip.Chip
-            android:checkable="true"
-            app:checkedIconVisible="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:textStartPadding="20dp"
-            app:textEndPadding="20dp"
-            app:chipBackgroundColor="@color/enable_bottom_sheet_chips_background_color"
-            app:chipStrokeColor="@color/black"
-            app:chipStrokeWidth="1dp"
-            android:textColor="@color/enable_bottom_sheet_text_color"
+            style="@style/Chips"
             android:text="@string/every_day"/>
 
         <com.google.android.material.chip.Chip
-            android:checkable="true"
-            app:checkedIconVisible="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:textStartPadding="20dp"
-            app:textEndPadding="20dp"
-            app:chipBackgroundColor="@color/enable_bottom_sheet_chips_background_color"
-            app:chipStrokeColor="@color/black"
-            app:chipStrokeWidth="1dp"
-            android:textColor="@color/enable_bottom_sheet_text_color"
+            style="@style/Chips"
             android:text="@string/once"/>
 
         <com.google.android.material.chip.Chip
-            android:checkable="true"
-            app:checkedIconVisible="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:textStartPadding="20dp"
-            app:textEndPadding="20dp"
-            app:chipBackgroundColor="@color/enable_bottom_sheet_chips_background_color"
-            app:chipStrokeColor="@color/black"
-            android:textColor="@color/enable_bottom_sheet_text_color"
-            app:chipStrokeWidth="1dp"
+            style="@style/Chips"
             android:text="@string/on_weekdays"/>
 
         <com.google.android.material.chip.Chip
-            android:checkable="true"
-            app:checkedIconVisible="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:textStartPadding="20dp"
-            app:textEndPadding="20dp"
-            app:chipBackgroundColor="@color/enable_bottom_sheet_chips_background_color"
-            app:chipStrokeColor="@color/black"
-            app:chipStrokeWidth="1dp"
-            android:textColor="@color/enable_bottom_sheet_text_color"
+            style="@style/Chips"
             android:text="@string/on_weekends"/>
 
         <com.google.android.material.chip.Chip
             android:id="@+id/selectdays"
-            android:checkable="true"
-            app:checkedIconVisible="false"
+            style="@style/Chips"
             android:layout_marginTop="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:textStartPadding="20dp"
-            app:chipBackgroundColor="@color/enable_bottom_sheet_chips_background_color"
-            app:chipStrokeColor="@color/black"
-            app:chipStrokeWidth="1dp"
             android:text="@string/select_days"
-            android:textColor="@color/enable_bottom_sheet_text_color"
             app:closeIcon="@drawable/icon_changing"
-            app:closeIconTint="@color/enable_bottom_sheet_text_color"
-            app:closeIconSize="6dp"
             app:closeIconEndPadding="12dp"
-            app:closeIconVisible="true"/>
+            app:closeIconSize="6dp"
+            app:closeIconTint="@color/enable_bottom_sheet_text_color"
+            app:closeIconVisible="true"
+            app:textEndPadding="5dp"/>
 
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_height="15dp"
         android:layout_marginStart="33dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="33dp"
+        android:layout_marginBottom="42dp"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/monday"
-            android:layout_weight="1"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@null"
+            style="@style/CheckBox"
             android:text="@string/mon"
             app:layout_constraintEnd_toStartOf="@+id/tuesday"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/tuesday"
-            android:layout_weight="1"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@null"
+            style="@style/CheckBox"
             android:text="@string/tue"
             app:layout_constraintEnd_toStartOf="@+id/wednesday"
-            app:layout_constraintStart_toEndOf="@id/monday"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintStart_toEndOf="@id/monday"/>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/wednesday"
-            android:layout_weight="1"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@null"
+            style="@style/CheckBox"
             android:text="@string/wed"
             app:layout_constraintEnd_toStartOf="@+id/thursday"
-            app:layout_constraintStart_toEndOf="@+id/tuesday"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintStart_toEndOf="@+id/tuesday"/>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/thursday"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:button="@null"
+            style="@style/CheckBox"
             android:text="@string/thu"
             app:layout_constraintEnd_toStartOf="@+id/friday"
-            app:layout_constraintStart_toEndOf="@+id/wednesday"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintStart_toEndOf="@+id/wednesday"/>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/friday"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:layout_height="wrap_content"
-            android:button="@null"
+            style="@style/CheckBox"
             android:text="@string/fri"
             android:textColor="@color/grey"
             app:layout_constraintEnd_toStartOf="@+id/saturday"
-            app:layout_constraintStart_toEndOf="@+id/thursday"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintStart_toEndOf="@+id/thursday"/>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/saturday"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:button="@null"
+            style="@style/CheckBox"
             android:text="@string/sat"
             android:textColor="@color/grey"
             app:layout_constraintEnd_toStartOf="@+id/sunday"
-            app:layout_constraintStart_toEndOf="@+id/friday"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintStart_toEndOf="@+id/friday"/>
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/sunday"
-            android:layout_width="wrap_content"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:button="@null"
+            style="@style/CheckBox"
             android:text="@string/sun"
             android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/saturday"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"/>
+            app:layout_constraintStart_toEndOf="@+id/saturday"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bottom_sheet_repeat_ok_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="258dp"
-        android:textSize="@dimen/b1_text_size"
-        android:textColor="@color/white"
-        android:text="@string/ok"
-        android:textAllCaps="false"
-        android:letterSpacing="0"
-        app:backgroundTint="@color/black"
-        app:rippleColor="@color/ripple_black"
-        style="@style/Body1"
-        app:cornerRadius="20dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="42dp"/>
+        style="@style/Okbtn"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
