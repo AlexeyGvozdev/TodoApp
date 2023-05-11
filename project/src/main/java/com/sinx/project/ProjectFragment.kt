@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sinx.core.databinding.AddButtonBinding
+import com.sinx.coredbinterface.DbProvider
 import com.sinx.project.adapter.ProjectListAdapter
 import com.sinx.project.data.ProjectListModel
 import com.sinx.project.databinding.ProjectLayoutBinding
@@ -27,7 +28,7 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
     private lateinit var projectListAdapter: ProjectListAdapter
 
     private val viewModel: ProjectViewModel by viewModels {
-        ProjectViewModelFactory()
+        ProjectViewModelFactory((requireContext().applicationContext as DbProvider).getProjectDao())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

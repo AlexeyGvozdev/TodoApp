@@ -43,7 +43,6 @@ internal class ProjectViewModel(
         viewModelScope.launch {
             addNewProjectUseCaseImpl(newProject)
         }
-
     }
 
     fun onClickListenerBottomSheet() {
