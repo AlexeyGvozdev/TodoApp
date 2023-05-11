@@ -31,12 +31,19 @@ internal class ProjectViewModel(
 
     fun initialize() {
         viewModelScope.launch {
-            _projectList.emitAll(getNewProjectUseCase())
+            try {
+                _projectList.emitAll(getNewProjectUseCase())
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
         }
     }
 
     fun addNewProject(newProject: ProjectListModel) {
-        addNewProjectUseCaseImpl(newProject)
+        viewModelScope.launch {
+            addNewProjectUseCaseImpl(newProject)
+        }
+
     }
 
     fun onClickListenerBottomSheet() {
