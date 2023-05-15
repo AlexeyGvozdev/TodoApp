@@ -1,16 +1,22 @@
 package com.sinx.todo
 
 import android.app.Application
-import com.sinx.coreDB.di.DbModule
-import com.sinx.coredbinterface.DbProvider
-import com.sinx.coredbinterface.dao.TaskDAO
+import com.sinx.core.di.ComponentProvider
+import com.sinx.task.di.TaskDeps
 
-class App : Application(), DbProvider {
+class App : Application(), ComponentProvider<TaskDeps> {
 
-    private val dbModule = DbModule()
-    private val appDB by lazy { dbModule.provideToDoAppDatabase(this) }
-
-    override fun getTaskDAO(): TaskDAO {
-        return dbModule.provideTaskDao(appDB)
+    private val appComponent: AppComponent by lazy {
+        DaggerAppComponent.builder()
+            .context(context = this)
+            .build()
     }
+
+    override fun onCreate() {
+        super.onCreate()
+        appComponent
+    }
+
+    override val component: TaskDeps
+        get() = appComponent
 }

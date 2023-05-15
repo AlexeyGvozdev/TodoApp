@@ -16,4 +16,7 @@ dependencies {
     implementation(Dependency.Room.runtime)
     kapt(Dependency.Room.compiler)
     implementation(Dependency.Room.ktx)
+
+    implementation(Dependency.DaggerDI.dagger)
+    kapt(Dependency.DaggerDI.daggerCompiler)
 }

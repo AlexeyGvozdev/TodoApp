@@ -12,10 +12,13 @@ dependencies {
 
     implementation(Dependency.Android.core)
     implementation(Dependency.Compat.appCompat)
-
+    implementation(project(Config.Modules.core))
     implementation(project(Config.Modules.coreDbApi))
 
     implementation(Dependency.Room.runtime)
     kapt(Dependency.Room.compiler)
     implementation(Dependency.Room.ktx)
+
+    implementation(Dependency.Dagger.dagger)
+    kapt(Dependency.Dagger.daggerCompiler)
 }

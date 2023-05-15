@@ -1,6 +1,7 @@
 plugins {
     id(Config.Plugins.androidApplication)
     id(Config.Plugins.androidKotlin)
+    id(Config.Plugins.kotlinKapt)
 
     id(Config.Plugins.conventionAppConfig)
     id(Config.Plugins.conventionBuildTypes)
@@ -14,7 +15,6 @@ android {
         versionName = BuildVersions.versionName
     }
 }
-
 dependencies {
     implementation(Dependency.Android.core)
     implementation(Dependency.Compat.appCompat)
@@ -26,7 +26,6 @@ dependencies {
     implementation(Dependency.Ui.material)
     implementation(Dependency.Ui.constraintLayout)
 
-    implementation(project(Config.Modules.core))
     implementation(project(Config.Modules.project))
     implementation(project(Config.Modules.task))
     implementation(project(Config.Modules.coreDB))
@@ -35,4 +34,7 @@ dependencies {
     testImplementation(Dependency.Testing.junit)
     androidTestImplementation(Dependency.Testing.junitExt)
     androidTestImplementation(Dependency.Testing.espressoCore)
+
+    implementation(Dependency.DaggerDI.dagger)
+    kapt(Dependency.DaggerDI.daggerCompiler)
 }
