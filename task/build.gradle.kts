@@ -12,6 +12,7 @@ dependencies {
     implementation(Dependency.Android.core)
     implementation(Dependency.Compat.appCompat)
 
+    implementation(project(Config.Modules.coreDB))
     implementation(project(Config.Modules.taskList))
     implementation(project(Config.Modules.core))
     implementation(project(Config.Modules.coreDbApi))
@@ -20,6 +21,9 @@ dependencies {
     implementation(Dependency.Navigation.ui)
 
     implementation(Dependency.Ui.material)
+    implementation(project(mapOf("path" to ":task")))
+    implementation(project(mapOf("path" to ":task")))
+    //implementation(project(mapOf("path" to ":coreDB")))
 
     testImplementation(Dependency.Testing.junit)
     androidTestImplementation(Dependency.Testing.junitExt)
