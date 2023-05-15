@@ -47,4 +47,11 @@ object Dependency {
         const val espressoCore = "androidx.test.espresso:espresso-core:$espressoCoreVersion"
         const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     }
+
+    object Dagger {
+        private const val daggerVersion = "2.46"
+
+        const val dagger = "com.google.dagger:dagger:$daggerVersion"
+        const val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    }
 }
