@@ -25,6 +25,13 @@ object Dependency {
         const val ktx = "androidx.room:room-ktx:$room_version"
     }
 
+    object Dagger {
+        private const val daggerVersion = "2.45"
+
+        const val dagger = "com.google.dagger:dagger:$daggerVersion"
+        const val compiler = "com.google.dagger:dagger-compiler:$daggerVersion"
+    }
+
     object Ui {
         private const val materialVersion = "1.7.0"
         private const val constraintLayoutVersion = "2.1.4"
