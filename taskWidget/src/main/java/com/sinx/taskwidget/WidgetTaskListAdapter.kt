@@ -1,7 +1,7 @@
 package com.sinx.taskwidget
 
 import android.content.Context
-import android.view.View
+import android.content.Intent
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.sinx.taskList.TaskItem
@@ -9,22 +9,29 @@ import com.sinx.widgetTask.R
 
 class WidgetTaskListAdapter(private val context: Context) : RemoteViewsService.RemoteViewsFactory {
 
-    private var taskList = listOf<TaskItem>()
+    companion object {
+        var taskList = mutableListOf<TaskItem>()
+    }
 
+    // Инициализация необходимых переменных и загрузка данных.
     override fun onCreate() {
-        // todo
+        taskList = getTaskList() as MutableList<TaskItem>
     }
 
     override fun getLoadingView(): RemoteViews? {
-        return null
+        return RemoteViews(context.packageName, R.layout.item_task_list)
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
+    /* Метод вызывается, когда данные изменились, и RemoteViewsFactory должен обновить свой список
+       элементов пользовательского интерфейса.
+       Это может произойти, например, если были добавлены или удалены элементы.
+       В этом методе обычно происходит обновление данных. */
 
     override fun onDataSetChanged() {
-        taskList = getTaskList()
+        // todo
     }
 
     override fun onDestroy() {
@@ -37,8 +44,20 @@ class WidgetTaskListAdapter(private val context: Context) : RemoteViewsService.R
 
         remoteViews.setTextViewText(R.id.task_name, task.name)
         remoteViews.setTextViewText(R.id.task_date, task.date)
-        remoteViews.setViewVisibility(R.id.task_checkbox, View.VISIBLE)
+        remoteViews.setImageViewResource(
+            R.id.task_imageview,
+            if (task.enabled) {
+                R.drawable.check_box_checked
+            } else {
+                R.drawable.check_box_unchecked
+            }
+        )
 
+        val intent = Intent(context, WidgetTaskList::class.java)
+        intent.action = Constants.ACTION_CLICKED
+        intent.putExtra(Constants.ACTION_ITEM, position)
+
+        remoteViews.setOnClickFillInIntent(R.id.task_imageview, intent)
         return remoteViews
     }
 
@@ -56,6 +75,6 @@ class WidgetTaskListAdapter(private val context: Context) : RemoteViewsService.R
 
     @Suppress("MagicNumber")
     private fun getTaskList() = (0..20).map { i ->
-        TaskItem("Task Manager ${i + 1}", "01 Jan 23", true, 1)
+        TaskItem("Task Manager ${i + 1}", "01 Jan 23", false, 1)
     }
 }

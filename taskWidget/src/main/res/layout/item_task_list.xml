@@ -24,9 +24,13 @@
         style="@style/Subtitle3"
         tools:text="01 Jan 23" />
 
-    <CheckBox
-        android:id="@+id/task_checkbox"
+    <ImageView
+        android:id="@+id/task_imageview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/check_box_unchecked"/>
 
 </RelativeLayout>
