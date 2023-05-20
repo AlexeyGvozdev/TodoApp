@@ -3,14 +3,21 @@ package com.sinx.coreDB.di
 import android.content.Context
 import com.sinx.coreDB.ToDoAppDatabase
 import com.sinx.coredbinterface.dao.TaskDAO
+import dagger.Module
+import dagger.Provides
 
+@Module
 class DbModule {
 
-    fun provideToDoAppDatabase(context: Context): ToDoAppDatabase {
-        return ToDoAppDatabase.getInstance(context)
+    @Provides
+    fun provideToDoAppDatabase(context: Context) = ToDoAppDatabase.getInstance(context)
+
+    @Provides
+    fun provideTaskDao(appDatabase: ToDoAppDatabase): TaskDAO{
+        val appDB by lazy { provideToDoAppDatabase(this) }
+
+        appDatabase.taskDao(appDB)
     }
 
-    fun provideTaskDao(appDatabase: ToDoAppDatabase): TaskDAO {
-        return appDatabase.taskDao()
-    }
+
 }
