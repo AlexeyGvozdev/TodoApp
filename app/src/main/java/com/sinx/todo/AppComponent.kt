@@ -2,7 +2,6 @@ package com.sinx.todo
 
 import android.content.Context
 import com.sinx.coreDB.di.DbModule
-import com.sinx.task.TaskListFragment
 import com.sinx.task.presentation.TaskDeps
 import dagger.BindsInstance
 import dagger.Component
@@ -20,8 +19,6 @@ interface AppComponent: TaskDeps {
 
         fun build(  ): AppComponent
     }
-
-
 }
 
 @Scope
