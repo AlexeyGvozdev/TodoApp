@@ -19,6 +19,6 @@ dependencies {
     kapt(Dependency.Room.compiler)
     implementation(Dependency.Room.ktx)
 
-    implementation(Dependency.Dagger.dagger)
-    kapt(Dependency.Dagger.daggerCompiler)
+    implementation(Dependency.DaggerDI.dagger)
+    kapt(Dependency.DaggerDI.daggerCompiler)
 }

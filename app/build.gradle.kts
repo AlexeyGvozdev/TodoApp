@@ -36,6 +36,6 @@ dependencies {
     androidTestImplementation(Dependency.Testing.junitExt)
     androidTestImplementation(Dependency.Testing.espressoCore)
 
-    implementation(Dependency.Dagger.dagger)
-    kapt(Dependency.Dagger.daggerCompiler)
+    implementation(Dependency.DaggerDI.dagger)
+    kapt(Dependency.DaggerDI.daggerCompiler)
 }

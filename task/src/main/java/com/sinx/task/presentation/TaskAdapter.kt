@@ -8,7 +8,8 @@ import dagger.Component
 import javax.inject.Scope
 import kotlin.properties.Delegates.notNull
 
-@[Feature Component(dependencies = [TaskDeps::class])]
+@Feature
+@Component(dependencies = [TaskDeps::class])
 interface TaskComponent {
 
     fun inject(fragment: TaskListFragment)

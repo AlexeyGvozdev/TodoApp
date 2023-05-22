@@ -49,7 +49,7 @@ object Dependency {
             "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     }
 
-    object Dagger {
+    object DaggerDI {
         private const val daggerVersion = "2.45"
 
         const val dagger = "com.google.dagger:dagger:$daggerVersion"

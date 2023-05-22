@@ -16,7 +16,6 @@ class App : Application(), DbProvider {
     override fun onCreate() {
         super.onCreate()
         TaskDepsStore.deps = appComponent
-
     }
 
     override fun getTaskDAO(): TaskDAO = appComponent.taskDAO

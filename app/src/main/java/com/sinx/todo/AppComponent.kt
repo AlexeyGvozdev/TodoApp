@@ -8,7 +8,8 @@ import dagger.Component
 import dagger.Component.Builder
 import javax.inject.Scope
 
-@[AppScope Component(modules = [DbModule::class])]
+@AppScope
+@Component(modules = [DbModule::class])
 interface AppComponent : TaskDeps {
     fun inject(activity: MainActivity)
 
@@ -17,10 +18,9 @@ interface AppComponent : TaskDeps {
         @BindsInstance
         fun context(context: Context): Builder
 
-        fun build( ): AppComponent
+        fun build(): AppComponent
     }
 }
 
 @Scope
 annotation class AppScope
-
