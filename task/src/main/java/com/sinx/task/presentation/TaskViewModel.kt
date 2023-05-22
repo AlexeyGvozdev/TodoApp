@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Provider
 
-class TaskViewModel(private val taskDAO: TaskDAO) : ViewModel() {
+class TaskViewModel(taskDAO: TaskDAO) : ViewModel() {
 
     private val repository = TaskRepositoryImpl(taskDAO)
 
@@ -41,6 +41,7 @@ class TaskViewModel(private val taskDAO: TaskDAO) : ViewModel() {
         taskReadyUseCase(item)
     }
 
+    @Suppress("UNCHECKED_CAST")
     class Factory @Inject constructor(
         private val taskDAO: Provider<TaskDAO>
     ) : ViewModelProvider.Factory {
