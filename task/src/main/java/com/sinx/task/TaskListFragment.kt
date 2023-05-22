@@ -51,7 +51,6 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-
             viewModel.initialize()
         }
     }

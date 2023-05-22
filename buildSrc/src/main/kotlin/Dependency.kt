@@ -45,7 +45,8 @@ object Dependency {
         const val junit = "junit:junit:$junitVersion"
         const val junitExt = "androidx.test.ext:junit:$junitExtVersion"
         const val espressoCore = "androidx.test.espresso:espresso-core:$espressoCoreVersion"
-        const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+        const val coroutinesTest =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     }
 
     object Dagger {

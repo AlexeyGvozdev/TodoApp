@@ -9,15 +9,15 @@ import dagger.Component.Builder
 import javax.inject.Scope
 
 @[AppScope Component(modules = [DbModule::class])]
-interface AppComponent: TaskDeps {
+interface AppComponent : TaskDeps {
     fun inject(activity: MainActivity)
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
         @BindsInstance
         fun context(context: Context): Builder
 
-        fun build(  ): AppComponent
+        fun build( ): AppComponent
     }
 }
 

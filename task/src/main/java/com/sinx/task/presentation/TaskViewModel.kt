@@ -43,7 +43,7 @@ class TaskViewModel(private val taskDAO: TaskDAO) : ViewModel() {
 
     class Factory @Inject constructor(
         private val taskDAO: Provider<TaskDAO>
-        ): ViewModelProvider.Factory{
+    ) : ViewModelProvider.Factory {
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             require(modelClass == TaskViewModel::class.java)

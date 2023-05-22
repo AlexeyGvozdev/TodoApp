@@ -13,7 +13,7 @@ class DbModule {
     fun provideToDoAppDatabase(context: Context) = ToDoAppDatabase.getInstance(context)
 
     @Provides
-    fun provideTaskDao(context: Context): TaskDAO{
+    fun provideTaskDao(context: Context): TaskDAO {
         return provideToDoAppDatabase(context).taskDao()
     }
 }

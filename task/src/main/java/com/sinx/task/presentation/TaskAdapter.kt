@@ -14,29 +14,30 @@ interface TaskComponent {
     fun inject(fragment: TaskListFragment)
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
 
-        fun deps(taskDeps: TaskDeps):Builder
+        fun deps(taskDeps: TaskDeps): Builder
 
         fun build(): TaskComponent
     }
 }
 
-interface TaskDeps{
+interface TaskDeps {
     val taskDAO: TaskDAO
 }
-interface TaskDepsProvider{
-    @get:RestrictTo(RestrictTo.Scope.LIBRARY)
-    val deps:TaskDeps
 
-    companion object: TaskDepsProvider by TaskDepsStore
+interface TaskDepsProvider {
+    @get:RestrictTo(RestrictTo.Scope.LIBRARY)
+    val deps: TaskDeps
+
+    companion object : TaskDepsProvider by TaskDepsStore
 }
 
-object TaskDepsStore: TaskDepsProvider{
+object TaskDepsStore : TaskDepsProvider {
     override var deps: TaskDeps by notNull()
 }
 
- class TaskComponentViewModel: ViewModel(){
+class TaskComponentViewModel : ViewModel() {
     val newDetailComponent =
         DaggerTaskComponent.builder().deps(TaskDepsProvider.deps).build()
 }
