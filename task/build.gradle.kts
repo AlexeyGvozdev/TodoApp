@@ -27,5 +27,5 @@ dependencies {
     testImplementation(Dependency.Testing.coroutinesTest)
 
     implementation(Dependency.Dagger.dagger)
-    kapt(Dependency.Dagger.compiler)
+    kapt(Dependency.Dagger.daggerCompiler)
 }

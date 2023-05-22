@@ -1,5 +1,6 @@
 package com.sinx.task
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +9,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import com.sinx.coredbinterface.DbProvider
 import com.sinx.task.databinding.TaskListLayoutBinding
+import com.sinx.task.presentation.TaskComponentViewModel
 import com.sinx.task.presentation.TaskViewModel
 import com.sinx.task.presentation.TaskViewModelFactory
 import com.sinx.taskList.TaskItem
@@ -34,6 +37,12 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private var _binding: TaskListLayoutBinding? = null
     private val binding: TaskListLayoutBinding
         get() = checkNotNull(_binding)
+
+    override fun onAttach(context: Context) {
+        ViewModelProvider(this).get<TaskComponentViewModel>()
+            .newDetailComponent.inject(this)
+        super.onAttach(context)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

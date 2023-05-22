@@ -10,10 +10,10 @@ class ProjectViewModelFactory : ViewModelProvider.Factory {
 
     private val repository = ProjectRepositoryImpl()
 
-    private val addNewProjectUseCaseImpl = AddNewProjectUseCaseImpl(repository)
+    private val addNewProjectUseCase = AddNewProjectUseCaseImpl(repository)
     private val getNewProjectUseCase = GetNewProjectUseCaseImpl(repository)
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return ProjectViewModel(addNewProjectUseCaseImpl, getNewProjectUseCase) as T
+        return ProjectViewModel(addNewProjectUseCase, getNewProjectUseCase) as T
     }
 }

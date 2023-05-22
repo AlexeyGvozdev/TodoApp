@@ -15,7 +15,6 @@ android {
         versionName = BuildVersions.versionName
     }
 }
-
 dependencies {
     implementation(Dependency.Android.core)
     implementation(Dependency.Compat.appCompat)
@@ -38,5 +37,5 @@ dependencies {
     androidTestImplementation(Dependency.Testing.espressoCore)
 
     implementation(Dependency.Dagger.dagger)
-    kapt(Dependency.Dagger.compiler)
+    kapt(Dependency.Dagger.daggerCompiler)
 }

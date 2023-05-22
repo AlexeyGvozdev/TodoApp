@@ -13,11 +13,7 @@ class DbModule {
     fun provideToDoAppDatabase(context: Context) = ToDoAppDatabase.getInstance(context)
 
     @Provides
-    fun provideTaskDao(appDatabase: ToDoAppDatabase): TaskDAO{
-        val appDB by lazy { provideToDoAppDatabase(this) }
-
-        appDatabase.taskDao(appDB)
+    fun provideTaskDao(context: Context): TaskDAO{
+        return provideToDoAppDatabase(context).taskDao()
     }
-
-
 }
