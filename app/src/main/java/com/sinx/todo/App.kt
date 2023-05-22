@@ -9,14 +9,13 @@ import com.sinx.coredbinterface.dao.TaskDAO
 import com.sinx.task.presentation.TaskDepsStore
 import javax.inject.Scope
 
-class App : Application()/*, DbProvider*/ {
+class App : Application(), DbProvider {
 
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder()
             .context(context = this)
             .build()
     }
-    //private set
 
     override fun onCreate() {
         super.onCreate()
@@ -24,19 +23,5 @@ class App : Application()/*, DbProvider*/ {
 
     }
 
-/*    override fun getTaskDAO(): TaskDAO {
-        TODO("Not yet implemented")
-    }*/
+    override fun getTaskDAO(): TaskDAO = appComponent.taskDAO
 }
-
-/*
-val Context.appComponent: AppComponent
-    get() = when (this) {
-        is App -> appComponent
-        else -> applicationContext.appComponent
-    }
-
-val Fragment.appComponent: AppComponent
-    get() = requireContext().applicationContext.appComponent
-
-*/
