@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -25,12 +26,30 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import com.sinx.core.R as core_R
 
-class TaskListFragment : Fragment(R.layout.task_list_layout) {
+class TaskListFragment @Inject constructor(taskViewModelFactory: Lazy<TaskViewModel.Factory> by ) : Fragment(R.layout.task_list_layout) {
 
     private lateinit var taskListAdapter: TaskListAdapter
 
-    @Inject
-    internal lateinit var taskViewModelFactory: Lazy<TaskViewModel.Factory>
+    /*@Inject
+    internal lateinit var taskViewModelFactory: Lazy<TaskViewModel.Factory>*/
+
+    /*используется для отложенной инициализации taskViewModelFactory.
+
+Lazy - это интерфейс, который позволяет отложить вычисление значения до момента его первого доступа.
+При первом доступе, Lazy выполняет вычисление и запоминает результат,
+а затем возвращает его для последующих запросов.
+
+Когда происходит доступ к taskViewModelFactory, он будет инициализирован с использованием
+соответствующего Factory класса для TaskViewModel.
+
+Использование Lazy позволяет оптимизировать ресурсы и избежать
+ненужной инициализации taskViewModelFactory, если он не используется в коде.
+Вычисление значения происходит только при фактическом обращении к taskViewModelFactory,
+а не при создании объекта, в котором он объявлен.
+Resolv`ит компоненты и сохраняет их внутри. Отложенная.
+Другой вариант  Provider<> позволяет каждый раз при обращении к нему получать снова и снова.
+Полезно если хотим получать каждый раз новый инстанс. Полезно в фабриках
+*/
 
     private val viewModel: TaskViewModel by viewModels {
         taskViewModelFactory.get()

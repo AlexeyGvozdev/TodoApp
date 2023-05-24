@@ -1,14 +1,15 @@
 package com.sinx.todo
 
+//import AppScope
+
 import android.content.Context
 import com.sinx.coreDB.di.DbModule
 import com.sinx.task.presentation.TaskDeps
 import dagger.BindsInstance
 import dagger.Component
 import dagger.Component.Builder
-import javax.inject.Scope
 
-@AppScope
+//@AppScope
 @Component(modules = [DbModule::class])
 interface AppComponent : TaskDeps {
     fun inject(activity: MainActivity)
@@ -21,6 +22,3 @@ interface AppComponent : TaskDeps {
         fun build(): AppComponent
     }
 }
-
-@Scope
-annotation class AppScope

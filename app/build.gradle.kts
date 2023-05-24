@@ -26,7 +26,6 @@ dependencies {
     implementation(Dependency.Ui.material)
     implementation(Dependency.Ui.constraintLayout)
 
-    implementation(project(Config.Modules.core))
     implementation(project(Config.Modules.project))
     implementation(project(Config.Modules.task))
     implementation(project(Config.Modules.coreDB))
