@@ -1,11 +1,11 @@
 package com.sinx.task.presentation
 
+import Feature
 import androidx.annotation.RestrictTo
 import androidx.lifecycle.ViewModel
 import com.sinx.coredbinterface.dao.TaskDAO
 import com.sinx.task.TaskListFragment
 import dagger.Component
-import javax.inject.Scope
 import kotlin.properties.Delegates.notNull
 
 @Feature
@@ -42,7 +42,3 @@ class TaskComponentViewModel : ViewModel() {
     val newDetailComponent =
         DaggerTaskComponent.builder().deps(TaskDepsProvider.deps).build()
 }
-
-@Scope
-@Retention(AnnotationRetention.RUNTIME)
-annotation class Feature
