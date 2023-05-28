@@ -1,12 +1,11 @@
 package com.sinx.todo
 
-import AppScope
 import android.content.Context
+import com.sinx.core.AppScope
 import com.sinx.coreDB.di.DbModule
-import com.sinx.task.presentation.TaskDeps
+import com.sinx.task.di.TaskDeps
 import dagger.BindsInstance
 import dagger.Component
-import dagger.Component.Builder
 
 @AppScope
 @Component(modules = [DbModule::class])

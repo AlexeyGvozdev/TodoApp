@@ -15,7 +15,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import com.sinx.task.databinding.TaskListLayoutBinding
-import com.sinx.task.presentation.TaskComponentViewModel
+import com.sinx.task.di.TaskComponentViewModel
 import com.sinx.task.presentation.TaskViewModel
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.adapter.TaskListAdapter

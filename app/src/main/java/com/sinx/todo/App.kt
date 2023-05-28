@@ -1,7 +1,7 @@
 package com.sinx.todo
 
 import android.app.Application
-import com.sinx.task.presentation.TaskDepsStore
+import com.sinx.task.di.TaskDepsStore
 
 class App : Application() {
 
