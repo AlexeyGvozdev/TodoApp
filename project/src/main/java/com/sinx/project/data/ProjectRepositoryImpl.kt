@@ -9,17 +9,11 @@ internal class ProjectRepositoryImpl(
     private var projectDao: ProjectDAO
 ) : ProjectRepository {
 
-    private val mapper = Mapper()
-
-    override suspend fun addNewProject(newProject: ProjectListModel) {
-        projectDao.addTask(mapper.mapProjectItemToProjectDb(newProject))
+    override suspend fun addNewProject(projectDB: ProjectDbModel) {
+        projectDao.addTask((projectDB))
     }
 
-    override suspend fun listTasksFlow(): Flow<List<ProjectListModel>> {
-        return projectDao.getTaskList().map {
-            it.map {
-                mapper.mapProjectDbToProjectItem(it)
-            }
-        }
+    override suspend fun listTasksFlow(): Flow<List<ProjectDbModel>> {
+        return projectDao.getTaskList()
     }
 }
