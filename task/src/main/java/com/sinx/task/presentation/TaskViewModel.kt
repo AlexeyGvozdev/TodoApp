@@ -20,12 +20,17 @@ class TaskViewModel(
         MutableSharedFlow<List<TaskItem>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
     val taskList: SharedFlow<List<TaskItem>> = _taskList
 
+    private var _error =
+        MutableSharedFlow<String>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+    val error: SharedFlow<String> = _error
+
     fun initialize() {
         viewModelScope.launch {
             try {
                 _taskList.emitAll(getTaskListUseCase())
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
+                _error.emit("Ошибка при загрузке")
             }
         }
     }

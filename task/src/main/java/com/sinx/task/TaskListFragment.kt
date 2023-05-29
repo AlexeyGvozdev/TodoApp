@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
@@ -85,6 +86,9 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                 } else {
                     taskListAdapter.submitList(item)
                 }
+            }
+            viewModal.error.collect {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
     }
