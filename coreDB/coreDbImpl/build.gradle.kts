@@ -14,6 +14,7 @@ dependencies {
     implementation(Dependency.Compat.appCompat)
 
     implementation(Dependency.Room.runtime)
+    implementation(project(mapOf("path" to ":coreDB:coreDbApi")))
     kapt(Dependency.Room.compiler)
     implementation(Dependency.Room.ktx)
 }
