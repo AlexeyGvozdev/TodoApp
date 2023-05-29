@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.coredbinterface.DbProvider
 import com.sinx.project.adapter.ProjectListAdapter
-import com.sinx.project.data.ProjectListModel
 import com.sinx.project.databinding.ProjectLayoutBinding
 import com.sinx.project.decoration.DividerItemDecoration
+import com.sinx.project.domain.ProjectListModel
 import com.sinx.project.presentation.ProjectViewModel
 import com.sinx.project.presentation.ProjectViewModelFactory
 import com.sinx.core.R as core_R
