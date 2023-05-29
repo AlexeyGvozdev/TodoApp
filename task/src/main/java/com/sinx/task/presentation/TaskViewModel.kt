@@ -43,10 +43,10 @@ class TaskViewModel(
 
     @Suppress("UNCHECKED_CAST")
     class Factory @Inject constructor(
-        taskDAO: Provider<TaskDAO>
+        taskDAO: TaskDAO
     ) : ViewModelProvider.Factory {
 
-        private val repository = TaskRepositoryImpl(taskDAO.get())
+        private val repository = TaskRepositoryImpl(taskDAO)
 
         private val getTaskListUseCase = GetTaskListUseCaseImpl(repository)
         private val taskReadyUseCase = TaskReadyUseCaseImpl(repository)

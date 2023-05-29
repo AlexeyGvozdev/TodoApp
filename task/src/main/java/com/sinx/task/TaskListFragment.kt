@@ -14,8 +14,9 @@ import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
+import com.sinx.core.di.findComponentDependencies
 import com.sinx.task.databinding.TaskListLayoutBinding
-import com.sinx.task.di.TaskComponentViewModel
+import com.sinx.task.di.DaggerTaskComponent
 import com.sinx.task.presentation.TaskViewModel
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.adapter.TaskListAdapter
@@ -41,15 +42,14 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         get() = checkNotNull(_binding)
 
     override fun onAttach(context: Context) {
-        ViewModelProvider(this)
-            .get<TaskComponentViewModel>()
-            .newDetailComponent
-            .inject(this)
         super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DaggerTaskComponent.builder().deps(findComponentDependencies())
+            .build()
+            .inject(this)
         if (savedInstanceState == null) {
             viewModel.initialize()
         }
