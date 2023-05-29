@@ -11,4 +11,8 @@
     <string name="today">Today</string>
     <string name="task_manager_example">Task Manager</string>
     <string name="_07_jan_23_project_example">07 Jan 23 / Project</string>
+    <string name="priority_sheet_name">Priority</string>
+    <string name="priority_red">Red</string>
+    <string name="priority_green">Green</string>
+    <string name="withot_priority">Withot priority</string>
 </resources>

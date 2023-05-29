@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:paddingBottom="37dp"
+    tools:theme="@style/Theme.Todo">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/drag_handle" />
+
+    <TextView
+        android:id="@+id/priority_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/priority_sheet_name"
+        android:textColor="@color/black"
+        style="@style/Headline2"/>
+
+    <TextView
+        android:id="@+id/priority_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/priority_red"
+        android:textColor="@color/black"
+        style="@style/TextAppearance.AppCompat"/>
+
+    <TextView
+        android:id="@+id/priority_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/priority_green"
+        android:textColor="@color/black"
+        style="@style/TextAppearance.AppCompat"/>
+
+    <TextView
+        android:id="@+id/priority_withot_priority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/withot_priority"
+        android:textColor="@color/black"
+        style="@style/TextAppearance.AppCompat"/>
+
+<!--    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonAddProject"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/bottom_background"
+        android:text="@string/add_project"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        style="@style/Body1"/>-->
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
