@@ -1,8 +1,9 @@
-package com.sinx.coreDB.di
+package com.sinx.coreDbImpl.di
 
 import android.content.Context
 import com.sinx.core.AppScope
 import com.sinx.coreDB.ToDoAppDatabase
+import com.sinx.coreDbImpl.ToDoAppDatabase
 import com.sinx.coredbinterface.dao.TaskDAO
 import dagger.Module
 import dagger.Provides
