@@ -18,7 +18,6 @@ android {
 dependencies {
     implementation(Dependency.Android.core)
     implementation(Dependency.Compat.appCompat)
-    implementation(project(Config.Modules.core))
 
     implementation(Dependency.Navigation.fragment)
     implementation(Dependency.Navigation.ui)
@@ -29,6 +28,7 @@ dependencies {
     implementation(project(Config.Modules.core))
     implementation(project(Config.Modules.project))
     implementation(project(Config.Modules.task))
+    implementation(project(Config.Modules.taskWidget))
     implementation(project(Config.Modules.coreDB))
     implementation(project(mapOf("path" to ":coreDB:coreDbApi")))
 

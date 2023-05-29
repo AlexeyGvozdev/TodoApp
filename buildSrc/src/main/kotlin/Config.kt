@@ -4,6 +4,7 @@ object Config {
         const val project = ":project"
         const val task = ":task"
         const val taskList = ":taskList"
+        const val taskWidget = ":taskWidget"
         const val coreDB = ":coreDB"
         const val coreDbApi = ":coreDB:coreDbApi"
     }

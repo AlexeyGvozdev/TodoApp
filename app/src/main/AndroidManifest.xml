@@ -27,6 +27,23 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-    </application>
 
+        <receiver
+            android:name="com.sinx.taskwidget.WidgetTaskList"
+            android:exported="false"
+            android:label="Task List">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_task_list_info" />
+        </receiver>
+
+        <service
+            android:name="com.sinx.taskwidget.WidgetTaskListRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"></service>
+
+    </application>
 </manifest>

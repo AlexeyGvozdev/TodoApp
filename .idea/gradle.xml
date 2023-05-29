@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/project" />
             <option value="$PROJECT_DIR$/task" />
             <option value="$PROJECT_DIR$/taskList" />
+            <option value="$PROJECT_DIR$/taskWidget" />
           </set>
         </option>
       </GradleProjectSettings>
