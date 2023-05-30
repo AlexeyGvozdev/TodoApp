@@ -19,14 +19,38 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/Headline1"/>
 
+    <TextView
+        android:id="@+id/tvNoTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/no_tasks"
+        android:visibility="gone"
+        android:textColor="@color/grey"
+        app:layout_constraintStart_toStartOf="@id/textView"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        style="@style/Body2"/>
+
+    <ImageView
+        android:id="@+id/ivNoTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:srcCompat="@drawable/bg"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTaskList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        app:layout_constraintTop_toBottomOf="@id/textView"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addTask"
@@ -41,6 +65,6 @@
         app:rippleColor="@color/ripple_black"
         app:srcCompat="@drawable/add"
         app:tint="@color/white"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
