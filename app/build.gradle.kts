@@ -32,7 +32,6 @@ dependencies {
     implementation(project(mapOf("path" to ":coreDB:coreDbApi")))
     implementation(project(mapOf("path" to ":coreDB:coreDbImpl")))
 
-
     testImplementation(Dependency.Testing.junit)
     androidTestImplementation(Dependency.Testing.junitExt)
     androidTestImplementation(Dependency.Testing.espressoCore)
