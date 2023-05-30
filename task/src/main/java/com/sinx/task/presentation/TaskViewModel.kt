@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import javax.inject.Provider
 
 class TaskViewModel(
     private val getTaskListUseCase: GetTaskListUseCase,

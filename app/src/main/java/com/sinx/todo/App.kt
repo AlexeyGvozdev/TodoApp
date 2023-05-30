@@ -3,7 +3,6 @@ package com.sinx.todo
 import android.app.Application
 import com.sinx.core.di.ComponentProvider
 import com.sinx.task.di.TaskDeps
-//import com.sinx.task.di.TaskDepsStore
 
 class App : Application(), ComponentProvider<TaskDeps> {
 
