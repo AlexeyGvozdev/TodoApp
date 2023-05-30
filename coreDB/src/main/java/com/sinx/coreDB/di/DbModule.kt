@@ -12,7 +12,7 @@ class DbModule {
 
     @Provides
     @AppScope
-    fun provideToDoAppDatabase(context: Context) = ToDoAppDatabase.getInstance(context)
+    fun provideToDoAppDatabase(context: Context): ToDoAppDatabase = ToDoAppDatabase.getInstance(context)
 
     @Provides
     @AppScope

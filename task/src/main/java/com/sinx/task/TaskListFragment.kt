@@ -1,6 +1,5 @@
 package com.sinx.task
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,10 +37,6 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private var _binding: TaskListLayoutBinding? = null
     private val binding: TaskListLayoutBinding
         get() = checkNotNull(_binding)
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
