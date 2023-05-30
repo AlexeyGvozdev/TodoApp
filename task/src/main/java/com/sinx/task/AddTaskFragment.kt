@@ -6,12 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import com.sinx.core.databinding.PriorityButtonBinding
 import com.sinx.task.databinding.AddTaskLayoutBinding
+import com.sinx.task.presentation.TaskViewModel
+import com.sinx.task.presentation.TaskViewModelFactory
 
-class AddTaskFragment : Fragment() {
+class AddTaskFragment : Fragment(R.layout.add_task_layout) {
     private var _binding: AddTaskLayoutBinding? = null
     private val binding: AddTaskLayoutBinding
         get() = checkNotNull(_binding)
+
+    private var _priorityBinding: PriorityButtonBinding? = null
+    private val priorityBinding: PriorityButtonBinding
+    get() = checkNotNull(_priorityBinding)
+
+    private val viewModel: TaskViewModel by viewModels {
+        TaskViewModelFactory()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -19,6 +32,8 @@ class AddTaskFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = AddTaskLayoutBinding.inflate(inflater, container, false)
+        _priorityBinding = PriorityButtonBinding.bind(binding.root)
+
         return binding.root
     }
 
@@ -26,6 +41,8 @@ class AddTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         initMockValues()
+
+        val navContorller = Navigation.findNavController(requireActivity(), )
     }
 
     private fun setupListeners() {
@@ -49,5 +66,6 @@ class AddTaskFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        _priorityBinding = null
     }
 }

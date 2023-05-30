@@ -1,7 +1,9 @@
 package com.sinx.task.presentation
 
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDeepLinkRequest
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.model.GetTaskListUseCase
 import com.sinx.taskList.model.TaskReadyUseCase
@@ -17,8 +19,14 @@ class TaskViewModel(
 ) : ViewModel() {
 
     private var _taskList =
-        MutableSharedFlow<List<TaskItem>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+        MutableSharedFlow<List<TaskItem>>(
+            replay = 1,
+            onBufferOverflow = BufferOverflow.DROP_LATEST
+        )
     val taskList: SharedFlow<List<TaskItem>> = _taskList
+
+    private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
+    val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
 
     fun initialize() {
         viewModelScope.launch {
@@ -27,6 +35,15 @@ class TaskViewModel(
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
             }
+        }
+    }
+
+    fun onClickListenerBottomSheet(){
+        val reuestBottomSheetAddTaskFragment = NavDeepLinkRequest.Builder
+            .fromUri("app://task.BottomSheetAddTaskFragment".toUri())
+            .build()
+        viewModelScope.launch {
+            _navDeepLinkRequest.emit(reuestBottomSheetAddTaskFragment)
         }
     }
 
