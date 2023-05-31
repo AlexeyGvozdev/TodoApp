@@ -15,4 +15,5 @@
     <string name="priority_red">Red</string>
     <string name="priority_green">Green</string>
     <string name="withot_priority">Withot priority</string>
+    <string name="no_tasks">You have no tasks today</string>
 </resources>
