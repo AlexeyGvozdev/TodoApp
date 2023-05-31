@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -70,21 +71,11 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         )
         lifecycleScope.launchWhenStarted {
             viewModal.taskList.collect { item ->
-                if (item.isEmpty()) {
-                    val taskList = mutableListOf<TaskItem>()
-                    for (i in 0..number) {
-                        val item = TaskItem(
-                            name = "Task Manager $i",
-                            date = "\"07 Jan 23 / Project\"",
-                            enabled = true,
-                            priority = 1
-                        )
-                        taskList.add(item)
-                        taskListAdapter.submitList(taskList)
-                    }
-                } else {
-                    taskListAdapter.submitList(item)
-                }
+                val empty = item.isEmpty()
+                binding.rvTaskList.isGone = empty
+                binding.ivNoTasks.isVisible = empty
+                binding.tvNoTasks.isVisible = empty
+                taskListAdapter.submitList(item)
             }
         }
     }
