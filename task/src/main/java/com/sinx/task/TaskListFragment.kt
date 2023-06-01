@@ -9,28 +9,31 @@ import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
-import com.sinx.coredbinterface.DbProvider
+import com.sinx.core.di.findComponentDependencies
 import com.sinx.task.databinding.TaskListLayoutBinding
+import com.sinx.task.di.DaggerTaskComponent
 import com.sinx.task.presentation.TaskViewModel
-import com.sinx.task.presentation.TaskViewModelFactory
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.adapter.TaskListAdapter
 import com.sinx.taskList.decoration.DividerItemDecorationTask
+import dagger.Lazy
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import com.sinx.core.R as core_R
 
 class TaskListFragment : Fragment(R.layout.task_list_layout) {
 
     private lateinit var taskListAdapter: TaskListAdapter
-    private val viewModal by lazy {
-        ViewModelProvider(
-            this,
-            TaskViewModelFactory((requireContext().applicationContext as DbProvider).getTaskDAO())
-        )[TaskViewModel::class.java]
+
+    @Inject
+    internal lateinit var taskViewModelFactory: Lazy<TaskViewModel.Factory>
+
+    private val viewModel: TaskViewModel by viewModels {
+        taskViewModelFactory.get()
     }
 
     private var _binding: TaskListLayoutBinding? = null
@@ -39,8 +42,11 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DaggerTaskComponent.builder().deps(findComponentDependencies())
+            .build()
+            .inject(this)
         if (savedInstanceState == null) {
-            viewModal.initialize()
+            viewModel.initialize()
         }
     }
 
@@ -60,7 +66,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
 
             override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
                 lifecycleScope.launch {
-                    viewModal.taskIsDone(item)
+                    viewModel.taskIsDone(item)
                 }
             }
         })
@@ -71,7 +77,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
             )
         )
         lifecycleScope.launchWhenStarted {
-            viewModal.taskList.collect { item ->
+            viewModel.taskList.collect { item ->
                 val empty = item.isEmpty()
                 binding.rvTaskList.isGone = empty
                 binding.ivNoTasks.isVisible = empty
