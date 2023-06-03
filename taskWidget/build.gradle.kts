@@ -21,8 +21,3 @@ dependencies {
     androidTestImplementation(Dependency.Testing.junitExt)
     androidTestImplementation(Dependency.Testing.espressoCore)
 }
-android {
-    buildFeatures {
-        viewBinding = true
-    }
-}

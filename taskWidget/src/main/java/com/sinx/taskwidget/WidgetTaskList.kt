@@ -29,45 +29,30 @@ class WidgetTaskList : AppWidgetProvider() {
     ) {
         val views = RemoteViews(context.packageName, R.layout.widget_task_list)
 
-        val serviceIntent = Intent(context, WidgetTaskListRemoteViewsService::class.java)
-        views.setRemoteAdapter(R.id.task_list, serviceIntent)
-
-        clickItem(views, context)
+        setList(views, context)
+        setPaddingIntent(views, context)
 
         appWidgetManager.updateAppWidget(appWidgetId, views)
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.task_list)
     }
 
-    override fun onReceive(context: Context?, intent: Intent?) {
+    override fun onReceive(context: Context, intent: Intent) {
         super.onReceive(context, intent)
-        if (intent?.action == Constants.ACTION_CLICKED) {
+        if (intent.action == Constants.ACTION_CLICKED) {
             val position = intent.getIntExtra(Constants.ACTION_ITEM, -1)
-            if (position >= 0 && position < taskList.size) {
-                taskList[position].enabled = !taskList[position].enabled
-
-                val views = RemoteViews(context!!.packageName, R.layout.item_task_list)
-                views.setImageViewResource(
-                    R.id.task_imageview,
-                    if (taskList[position].enabled) {
-                        R.drawable.check_box_checked
-                    } else {
-                        R.drawable.check_box_unchecked
-                    }
-                )
+            if (position in taskList.indices) {
+                taskList[position] = taskList[position].copy(enabled = !taskList[position].enabled)
 
                 val appWidgetManager = AppWidgetManager.getInstance(context)
                 val componentName = ComponentName(context, WidgetTaskList::class.java)
                 val appWidgetIds = appWidgetManager.getAppWidgetIds(componentName)
 
-                appWidgetManager.partiallyUpdateAppWidget(appWidgetIds, views)
                 appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.task_list)
             }
         }
     }
 
-    private fun clickItem(views: RemoteViews, context: Context) {
+    private fun setPaddingIntent(views: RemoteViews, context: Context) {
         val clickIntent = Intent(context, WidgetTaskList::class.java)
-        clickIntent.action = Constants.ACTION_CLICKED
         val clickPendingIntent = PendingIntent.getBroadcast(
             context,
             0,
@@ -75,5 +60,10 @@ class WidgetTaskList : AppWidgetProvider() {
             PendingIntent.FLAG_UPDATE_CURRENT
         )
         views.setPendingIntentTemplate(R.id.task_list, clickPendingIntent)
+    }
+
+    private fun setList(views: RemoteViews, context: Context) {
+        val serviceIntent = Intent(context, WidgetTaskListRemoteViewsService::class.java)
+        views.setRemoteAdapter(R.id.task_list, serviceIntent)
     }
 }

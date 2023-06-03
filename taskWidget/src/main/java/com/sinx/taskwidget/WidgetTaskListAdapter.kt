@@ -18,20 +18,18 @@ class WidgetTaskListAdapter(private val context: Context) : RemoteViewsService.R
         taskList = getTaskList() as MutableList<TaskItem>
     }
 
-    override fun getLoadingView(): RemoteViews? {
-        return RemoteViews(context.packageName, R.layout.item_task_list)
-    }
+    override fun getLoadingView(): RemoteViews =
+        RemoteViews(context.packageName, R.layout.item_task_list)
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
+    override fun getItemId(position: Int): Long = position.toLong()
+
     /* Метод вызывается, когда данные изменились, и RemoteViewsFactory должен обновить свой список
        элементов пользовательского интерфейса.
        Это может произойти, например, если были добавлены или удалены элементы.
        В этом методе обычно происходит обновление данных. */
 
     override fun onDataSetChanged() {
-        // todo
+        taskList
     }
 
     override fun onDestroy() {
@@ -61,17 +59,11 @@ class WidgetTaskListAdapter(private val context: Context) : RemoteViewsService.R
         return remoteViews
     }
 
-    override fun getCount(): Int {
-        return taskList.size
-    }
+    override fun getCount(): Int = taskList.size
 
-    override fun getViewTypeCount(): Int {
-        return 1
-    }
+    override fun getViewTypeCount(): Int = 1
 
-    override fun hasStableIds(): Boolean {
-        return true
-    }
+    override fun hasStableIds(): Boolean = true
 
     @Suppress("MagicNumber")
     private fun getTaskList() = (0..20).map { i ->
