@@ -22,7 +22,6 @@ class BottomSheetRepeatFragment :
         savedInstanceState: Bundle?
     ): View {
         _binding = BottomSheetRepeatBinding.inflate(inflater, container, false)
-        binding.linearLayout.isInvisible = true
         return binding.root
     }
 

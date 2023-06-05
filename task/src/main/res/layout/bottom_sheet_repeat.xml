@@ -33,6 +33,7 @@
         android:layout_marginTop="17dp"
         android:layout_marginEnd="33dp"
         app:chipSpacingHorizontal="12dp"
+        app:chipSpacingVertical="13dp"
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
@@ -61,9 +62,9 @@
             android:layout_marginTop="0dp"
             android:text="@string/select_days"
             app:closeIcon="@drawable/icon_changing"
-            app:closeIconEndPadding="12dp"
+            app:closeIconEndPadding="20dp"
             app:closeIconSize="6dp"
-            app:closeIconTint="@color/enable_bottom_sheet_text_color"
+            app:closeIconTint="@color/checked_text_color"
             app:closeIconVisible="true"
             app:textEndPadding="5dp"/>
 
@@ -71,6 +72,8 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayout"
+        android:visibility="invisible"
+        tools:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="15dp"
         android:layout_marginStart="33dp"
@@ -82,6 +85,7 @@
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/monday"
             style="@style/CheckBox"
+            android:textColor="@color/black"
             android:text="@string/mon"
             app:layout_constraintEnd_toStartOf="@+id/tuesday"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -91,6 +95,7 @@
             android:id="@+id/tuesday"
             style="@style/CheckBox"
             android:text="@string/tue"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/wednesday"
             app:layout_constraintStart_toEndOf="@id/monday"/>
 
@@ -98,6 +103,7 @@
             android:id="@+id/wednesday"
             style="@style/CheckBox"
             android:text="@string/wed"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/thursday"
             app:layout_constraintStart_toEndOf="@+id/tuesday"/>
 
@@ -105,6 +111,7 @@
             android:id="@+id/thursday"
             style="@style/CheckBox"
             android:text="@string/thu"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/friday"
             app:layout_constraintStart_toEndOf="@+id/wednesday"/>
 
@@ -136,6 +143,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/bottom_sheet_repeat_ok_button"
+        android:layout_marginStart="258dp"
         style="@style/Okbtn"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
