@@ -88,6 +88,9 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
             viewModal.error.collect {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
+            viewModal.error.collect {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
