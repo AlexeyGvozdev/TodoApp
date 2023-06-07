@@ -10,5 +10,6 @@ data class TaskDbModel(
     val name: String,
     val date: String,
     val enabled: Boolean,
-    val priority: Int
+    val priority: Int,
+    var numberInList: Int
 )

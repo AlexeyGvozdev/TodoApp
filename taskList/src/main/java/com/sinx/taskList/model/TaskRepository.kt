@@ -8,4 +8,6 @@ interface TaskRepository {
     suspend fun taskReady(item: TaskItem)
 
     suspend fun listTasksFlow(): Flow<List<TaskItem>>
+
+    suspend fun updateList(itemList: List<TaskItem>)
 }

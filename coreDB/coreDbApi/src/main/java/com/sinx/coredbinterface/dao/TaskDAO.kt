@@ -1,9 +1,6 @@
 package com.sinx.coredbinterface.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.sinx.coredbinterface.entity.TaskDbModel
 import kotlinx.coroutines.flow.Flow
 
@@ -13,8 +10,11 @@ interface TaskDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addTask(taskDB: TaskDbModel)
 
-    @Query("SELECT * FROM task ORDER BY name")
+    @Query("SELECT * FROM task ORDER BY numberInList ASC")
     fun getTaskList(): Flow<List<TaskDbModel>>
+
+    @Update
+    fun updateTasks(taskList: List<TaskDbModel>)
 
 //    @Query("DELETE FROM task WHERE name")
 //    fun deleteTaskFromList (name: String)

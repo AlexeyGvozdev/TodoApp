@@ -8,10 +8,7 @@ import androidx.navigation.NavDeepLinkRequest
 import com.sinx.coredbinterface.dao.TaskDAO
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.data.TaskRepositoryImpl
-import com.sinx.taskList.model.GetTaskListUseCase
-import com.sinx.taskList.model.GetTaskListUseCaseImpl
-import com.sinx.taskList.model.TaskReadyUseCase
-import com.sinx.taskList.model.TaskReadyUseCaseImpl
+import com.sinx.taskList.model.*
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -21,7 +18,8 @@ import javax.inject.Inject
 
 class TaskViewModel(
     private val getTaskListUseCase: GetTaskListUseCase,
-    private val taskReadyUseCase: TaskReadyUseCase
+    private val taskReadyUseCase: TaskReadyUseCase,
+    private val changeIndexUseCase: ChangeIndexUseCase
 ) : ViewModel() {
 
     private var _taskList =
@@ -49,6 +47,22 @@ class TaskViewModel(
         }
     }
 
+    fun onRowMoved(fromPosition: Int, toPosition: Int) {
+        viewModelScope.launch {
+            try {
+                _taskList.emit(
+                    changeIndexUseCase(
+                        fromPosition,
+                        toPosition,
+                        taskList.replayCache.firstOrNull() ?: emptyList()
+                    )
+                )
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
     suspend fun taskIsDone(item: TaskItem) {
         taskReadyUseCase(item)
     }
@@ -71,10 +85,11 @@ class TaskViewModel(
 
         private val getTaskListUseCase = GetTaskListUseCaseImpl(repository)
         private val taskReadyUseCase = TaskReadyUseCaseImpl(repository)
+        private val changeIndexUseCase = ChangeIndexUseCaseImpl(repository)
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             require(modelClass == TaskViewModel::class.java)
-            return TaskViewModel(getTaskListUseCase, taskReadyUseCase) as T
+            return TaskViewModel(getTaskListUseCase, taskReadyUseCase, changeIndexUseCase) as T
         }
     }
 }

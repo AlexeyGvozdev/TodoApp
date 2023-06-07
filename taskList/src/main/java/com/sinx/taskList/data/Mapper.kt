@@ -9,13 +9,15 @@ class Mapper {
         name = taskDbModel.name,
         date = taskDbModel.date,
         enabled = taskDbModel.enabled,
-        priority = taskDbModel.priority
+        priority = taskDbModel.priority,
+        numberInList = taskDbModel.numberInList
     )
 
     fun mapTaskItemToTaskDb(taskItem: TaskItem) = TaskDbModel(
         name = taskItem.name,
         date = taskItem.date,
         enabled = taskItem.enabled,
-        priority = taskItem.priority
+        priority = taskItem.priority,
+        numberInList = taskItem.numberInList
     )
 }
