@@ -1,13 +1,18 @@
 package com.sinx.project.decoration
 
+import android.content.res.Resources
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
+import android.graphics.Color
+import android.graphics.Paint
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 
-class DividerItemDecoration(
-    private val mDivider: Drawable?
-) : RecyclerView.ItemDecoration() {
+class DividerItemDecoration : RecyclerView.ItemDecoration() {
+
+    val paint = Paint().apply {
+        color = Color.parseColor("#F0F0F0")
+        style = Paint.Style.FILL
+    }
 
     override fun onDraw(
         c: Canvas,
@@ -22,12 +27,18 @@ class DividerItemDecoration(
                 val dividerLeft = view.left + view.paddingLeft
                 val dividerRight: Int = view.right + view.paddingRight
                 val dividerTop: Int = view.bottom
-                val dividerBottom: Int =
-                    view.bottom + (mDivider?.intrinsicHeight ?: 0)
+                val dividerBottom: Int = view.bottom + 10.dp.toInt()
 
-                mDivider?.setBounds(dividerLeft, dividerTop, dividerRight, dividerBottom)
-                mDivider?.draw(c)
+                c.drawRect(
+                    dividerLeft.toFloat(),
+                    dividerTop.toFloat(),
+                    dividerRight.toFloat(),
+                    dividerBottom.toFloat(),
+                    paint
+                )
             }
         }
     }
+
+    val Int.dp get() = this / Resources.getSystem().displayMetrics.density
 }
