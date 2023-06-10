@@ -1,13 +1,18 @@
 package com.sinx.taskList.decoration
 
+import android.content.res.Resources
 import android.graphics.Canvas
-import android.graphics.drawable.Drawable
+import android.graphics.Color
+import android.graphics.Paint
 import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 
-class DividerItemDecorationTask(
-    private val mDivider: Drawable?
-) : RecyclerView.ItemDecoration() {
+class DividerItemDecorationTask : RecyclerView.ItemDecoration() {
+
+    val paint = Paint().apply {
+        color = Color.parseColor("#F0F0F0")
+        style = Paint.Style.FILL
+    }
 
     companion object {
         const val INDENT_LEFT_DP = 3.9
@@ -26,12 +31,18 @@ class DividerItemDecorationTask(
                 val dividerLeft = view.left + view.paddingLeft * INDENT_LEFT_DP
                 val dividerRight: Int = view.right - view.paddingRight
                 val dividerTop: Int = view.bottom
-                val dividerBottom: Int =
-                    view.bottom + (mDivider?.intrinsicHeight ?: 0)
+                val dividerBottom: Int = view.bottom + 10.dp.toInt()
 
-                mDivider?.setBounds(dividerLeft.toInt(), dividerTop, dividerRight, dividerBottom)
-                mDivider?.draw(c)
+                c.drawRect(
+                    dividerLeft.toFloat(),
+                    dividerTop.toFloat(),
+                    dividerRight.toFloat(),
+                    dividerBottom.toFloat(),
+                    paint
+                )
             }
         }
     }
+
+    val Int.dp get() = this / Resources.getSystem().displayMetrics.density
 }
