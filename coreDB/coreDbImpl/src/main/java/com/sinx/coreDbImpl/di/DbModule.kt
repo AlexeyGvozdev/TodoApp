@@ -1,4 +1,4 @@
-package com.sinx.coreDbImpl.di
+package com.sinx.coreDB.di
 
 import android.content.Context
 import com.sinx.core.AppScope
@@ -18,5 +18,11 @@ class DbModule {
     @AppScope
     fun provideTaskDao(appDatabase: ToDoAppDatabase): TaskDAO {
         return appDatabase.taskDao()
+    }
+
+    @Provides
+    @AppScope
+    fun provideProjectDao(appDatabase: ToDoAppDatabase): ProjectDAO {
+        return appDatabase.projectDao()
     }
 }

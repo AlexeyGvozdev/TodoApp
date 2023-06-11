@@ -1,6 +1,7 @@
 plugins {
     id(Config.Plugins.androidLibrary)
     id(Config.Plugins.androidKotlin)
+    id(Config.Plugins.kotlinKapt)
 
     id(Config.Plugins.conventionAppConfig)
     id(Config.Plugins.conventionBuildTypes)
@@ -22,4 +23,7 @@ dependencies {
     testImplementation(Dependency.Testing.junit)
     androidTestImplementation(Dependency.Testing.junitExt)
     androidTestImplementation(Dependency.Testing.espressoCore)
+
+    implementation(Dependency.DaggerDI.dagger)
+    kapt(Dependency.DaggerDI.daggerCompiler)
 }
