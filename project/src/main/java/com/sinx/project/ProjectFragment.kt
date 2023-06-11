@@ -12,27 +12,36 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sinx.core.databinding.AddButtonBinding
-import com.sinx.coredbinterface.DbProvider
+import com.sinx.core.di.findComponentDependencies
 import com.sinx.project.adapter.ProjectListAdapter
 import com.sinx.project.databinding.ProjectLayoutBinding
 import com.sinx.project.decoration.DividerItemDecoration
+import com.sinx.project.di.DaggerProjectComponent
 import com.sinx.project.domain.ProjectListModel
 import com.sinx.project.presentation.ProjectViewModel
 import com.sinx.project.presentation.ProjectViewModelFactory
+import dagger.Lazy
+import javax.inject.Inject
 import com.sinx.core.R as core_R
 
-internal class ProjectFragment : Fragment(R.layout.project_layout) {
+class ProjectFragment : Fragment(R.layout.project_layout) {
 
     private lateinit var binding: ProjectLayoutBinding
     private lateinit var addButtonBinding: AddButtonBinding
     private lateinit var projectListAdapter: ProjectListAdapter
 
+    @Inject
+    internal lateinit var projectViewModelFactory: Lazy<ProjectViewModelFactory>
+
     private val viewModel: ProjectViewModel by viewModels {
-        ProjectViewModelFactory((requireContext().applicationContext as DbProvider).getProjectDao())
+        projectViewModelFactory.get()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DaggerProjectComponent.builder().deps(findComponentDependencies())
+            .build()
+            .inject(this)
         if (savedInstanceState == null) {
             viewModel.initialize()
         }

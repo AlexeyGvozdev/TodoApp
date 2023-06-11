@@ -21,6 +21,8 @@ class DbModule {
         return appDatabase.taskDao()
     }
 
+    @Provides
+    @AppScope
     fun provideProjectDao(appDatabase: ToDoAppDatabase): ProjectDAO {
         return appDatabase.projectDao()
     }
