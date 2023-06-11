@@ -16,4 +16,11 @@
         <deepLink app:uri="app://task/addTaskFragment"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/choiceProjectForTaskBottomSheet"
+        android:name="com.sinx.task.BottomSheetChoiceProjectForTask"
+        android:label="BottomSheetChoiceProjectForTask">
+        <deepLink app:uri="app://task/choiceProjectForTaskBottomSheetFragment"/>
+    </fragment>
+
 </navigation>
