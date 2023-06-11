@@ -6,8 +6,12 @@ import com.sinx.coredbinterface.dao.ProjectDAO
 import com.sinx.project.data.ProjectRepositoryImpl
 import com.sinx.project.domain.AddNewProjectUseCaseImpl
 import com.sinx.project.domain.GetNewProjectUseCaseImpl
+import javax.inject.Inject
 
-class ProjectViewModelFactory(private val projectDAO: ProjectDAO) : ViewModelProvider.Factory {
+@Suppress("UNCHECKED_CAST")
+class ProjectViewModelFactory @Inject constructor(
+    projectDAO: ProjectDAO
+) : ViewModelProvider.Factory {
 
     private val repository = ProjectRepositoryImpl(projectDAO)
 
@@ -15,6 +19,7 @@ class ProjectViewModelFactory(private val projectDAO: ProjectDAO) : ViewModelPro
     private val getNewProjectUseCase = GetNewProjectUseCaseImpl(repository)
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        require(modelClass == ProjectViewModel::class.java)
         return ProjectViewModel(addNewProjectUseCase, getNewProjectUseCase) as T
     }
 }

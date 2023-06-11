@@ -85,10 +85,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                 binding.tvNoTasks.isVisible = empty
                 taskListAdapter.submitList(item)
             }
-            viewModal.error.collect {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            }
-            viewModal.error.collect {
+            viewModel.error.collect {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
         }
