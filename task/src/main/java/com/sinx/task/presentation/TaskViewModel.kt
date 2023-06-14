@@ -4,8 +4,8 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.sinx.coredbinterface.dao.TaskDAO
 import androidx.navigation.NavDeepLinkRequest
+import com.sinx.coredbinterface.dao.TaskDAO
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.data.TaskRepositoryImpl
 import com.sinx.taskList.model.GetTaskListUseCase
@@ -44,17 +44,17 @@ class TaskViewModel(
         }
     }
 
-    fun onClickListenerBottomSheet(){
-        val reuestBottomSheetAddTaskFragment = NavDeepLinkRequest.Builder
-            .fromUri("app://task.BottomSheetAddTaskFragment".toUri())
-            .build()
-        viewModelScope.launch {
-            _navDeepLinkRequest.emit(reuestBottomSheetAddTaskFragment)
-        }
-    }
-
     suspend fun taskIsDone(item: TaskItem) {
         taskReadyUseCase(item)
+    }
+
+    fun onClickListenerBottomSheet() {
+        val requestBottomSheetAddTaskFragment = NavDeepLinkRequest.Builder
+            .fromUri("app://task.addTaskFragment".toUri())
+            .build()
+        viewModelScope.launch {
+            _navDeepLinkRequest.emit(requestBottomSheetAddTaskFragment)
+        }
     }
 
     @Suppress("UNCHECKED_CAST")
