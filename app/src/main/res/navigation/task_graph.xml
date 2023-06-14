@@ -14,6 +14,10 @@
         android:name="com.sinx.task.AddTaskFragment"
         android:label="AddTaskFragment">
         <deepLink app:uri="app://task/addTaskFragment"/>
+        <action
+            android:id="@+id/action_addTaskFragment_to_task_set_priority_graph"
+            app:destination="@id/task_set_priority_graph" />
     </fragment>
+    <include app:graph="@navigation/task_set_priority_graph" />
 
 </navigation>

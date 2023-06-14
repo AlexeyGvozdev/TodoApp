@@ -42,7 +42,7 @@ class AddTaskFragment : Fragment() {
         initMockValues()
 
         val navController =
-            Navigation.findNavController(requireActivity(), core_R.id.buttonPriority)
+            Navigation.findNavController(requireActivity(), R.id.selectedPriority)
 
         lifecycleScope.launchWhenStarted {
             viewModel.navDeepLinkRequest.collect {
