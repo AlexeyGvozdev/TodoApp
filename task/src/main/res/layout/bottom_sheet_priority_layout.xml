@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        app:srcCompat="@drawable/drag_handle" />
+        app:srcCompat="@drawable/drag_handle"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/priority_text"
@@ -47,12 +48,12 @@
         style="@style/TextAppearance.AppCompat"/>
 
     <TextView
-        android:id="@+id/priority_withot_priority"
+        android:id="@+id/priority_without_priority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
         android:layout_marginTop="24dp"
-        android:text="@string/withot_priority"
+        android:text="@string/without_priority"
         android:textColor="@color/black"
         style="@style/TextAppearance.AppCompat"/>
 

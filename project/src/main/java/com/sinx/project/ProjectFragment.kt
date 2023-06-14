@@ -81,8 +81,8 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
             viewModel.onClickListenerBottomSheet()
         }
 
-        setFragmentResultListener(Constans.ADD_PROJECT_REQUEST_KEY) { requestKey, bundle ->
-            val result = bundle.getString(Constans.ADD_PROJECT_BUNDLE_KEY)
+        setFragmentResultListener(Constants.ADD_PROJECT_REQUEST_KEY) { requestKey, bundle ->
+            val result = bundle.getString(Constants.ADD_PROJECT_BUNDLE_KEY)
             val newProject = ProjectListModel(result.toString(), viewModel.dateCreateProject())
             viewModel.addNewProject(newProject)
         }

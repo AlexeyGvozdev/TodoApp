@@ -14,6 +14,6 @@
     <string name="priority_sheet_name">Priority</string>
     <string name="priority_red">Red</string>
     <string name="priority_green">Green</string>
-    <string name="withot_priority">Withot priority</string>
+    <string name="without_priority">Without priority</string>
     <string name="no_tasks">You have no tasks today</string>
 </resources>
