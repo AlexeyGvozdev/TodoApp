@@ -7,7 +7,7 @@
 
     <dialog
         android:id="@+id/bottomSheetPrioritySheetFragment"
-        android:name="com.sinx.task.navigation.BottomSheetPrioritySheetFragment"
+        android:name="com.sinx.task.BottomSheetPrioritySheetFragment"
         android:label="BottomSheetPrioritySheetFragment">
         <deepLink
             android:id="@+id/deepLink"

@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/project_add_new_graph"
+    android:label="BottomSheetAddProjectFragment"
     app:startDestination="@id/projectAddBottomSheet">
 
     <dialog
         android:id="@+id/projectAddBottomSheet"
-        android:name="com.sinx.task.navigation.BottomSheetPrioritySheetFragment"
+        android:name="com.sinx.project.BottomSheetAddProjectFragment"
         android:label="BottomSheetAddProjectFragment">
 
         <deepLink app:uri="app://project.BottomSheetAddProjectFragment" />

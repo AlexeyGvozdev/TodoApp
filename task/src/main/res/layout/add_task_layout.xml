@@ -110,7 +110,7 @@
             app:rippleColor="@null"
             app:strokeColor="@color/black"
             app:strokeWidth="1dp"
-            tools:backgroundTint="@color/light_grey"
+            app:backgroundTint="@color/light_grey"
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <TextView

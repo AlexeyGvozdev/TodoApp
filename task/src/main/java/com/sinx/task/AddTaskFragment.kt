@@ -1,12 +1,15 @@
 package com.sinx.task
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
@@ -66,6 +69,18 @@ class AddTaskFragment : Fragment() {
                     .build()
                 findNavController().navigate(request)
             }
+        }
+
+        setFragmentResultListener(Constants.SET_PRIORITY_REQUEST_KEY) { requestKey, bundle ->
+            val result = bundle.getString(Constants.SET_PRIORITY_BUNDLE_KEY)!!
+            val colorStateList = when(result){
+                "green" -> ColorStateList.valueOf(resources.getColor(core_R.color.green))
+                "red" -> ColorStateList.valueOf(resources.getColor(core_R.color.red))
+                "light-grey" -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
+
+                else -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
+            }
+            binding.selectedPriority.backgroundTintList = colorStateList
         }
     }
 

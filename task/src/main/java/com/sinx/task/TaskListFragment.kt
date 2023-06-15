@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDeepLinkRequest
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
+import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.core.di.findComponentDependencies
 import com.sinx.task.databinding.TaskListLayoutBinding
 import com.sinx.task.di.DaggerTaskComponent
@@ -40,6 +39,11 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private val binding: TaskListLayoutBinding
         get() = checkNotNull(_binding)
 
+
+    private var _addButtonBinding: AddButtonBinding? = null
+    private val addButtonBinding: AddButtonBinding
+        get() = checkNotNull(_addButtonBinding)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerTaskComponent.builder().deps(findComponentDependencies())
@@ -56,6 +60,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         savedInstanceState: Bundle?
     ): View {
         _binding = TaskListLayoutBinding.inflate(inflater, container, false)
+        _addButtonBinding = AddButtonBinding.bind(binding.root)
         return binding.root
     }
 
@@ -76,6 +81,16 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                 ContextCompat.getDrawable(requireContext(), core_R.drawable.divider)
             )
         )
+
+        val navController =
+            Navigation.findNavController(requireActivity(), core_R.id.buttonAddNew)
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.navDeepLinkRequest.collect {
+                navController.navigate(it)
+            }
+        }
+
         lifecycleScope.launchWhenStarted {
             viewModel.taskList.collect { item ->
                 val empty = item.isEmpty()
@@ -88,22 +103,14 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     }
 
     private fun setupListeners() {
-        with(binding) {
-            addTask.setOnClickListener {
-                val request = NavDeepLinkRequest.Builder
-                    .fromUri(ADD_TASK_URI.toUri())
-                    .build()
-                findNavController().navigate(request)
-            }
+        addButtonBinding.buttonAddNew.setOnClickListener {
+            viewModel.onClickListenerBottomSheet()
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        private const val ADD_TASK_URI = "app://task/addTaskFragment"
+        _addButtonBinding = null
     }
 }

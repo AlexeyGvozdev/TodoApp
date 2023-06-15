@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintlayoutCompat"
+    android:id="@+id/constraintLayoutCompat"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fitsSystemWindows="true"
+    android:paddingBottom="37dp"
     tools:theme="@style/Theme.Todo">
 
     <ImageView
@@ -46,20 +47,15 @@
         app:layout_constraintTop_toBottomOf="@+id/priority_text" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonRedPriority"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginTop="24dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
+        android:id="@+id/buttonGreenPriority"
+        style="@style/ButtonPriority"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priority_text"
         app:rippleColor="@null"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp"
-        tools:backgroundTint="@color/red"
+        app:backgroundTint="@color/green"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -77,19 +73,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonRedPriority"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginTop="24dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
+        style="@style/ButtonPriority"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priority_green"
         app:rippleColor="@null"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp"
-        tools:backgroundTint="@color/green"
+        app:backgroundTint="@color/red"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -107,12 +98,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonWithoutPriority"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginTop="24dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
+        style="@style/ButtonPriority"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priority_red"

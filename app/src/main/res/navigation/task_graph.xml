@@ -13,11 +13,27 @@
         android:id="@+id/addTaskFragment"
         android:name="com.sinx.task.AddTaskFragment"
         android:label="AddTaskFragment">
-        <deepLink app:uri="app://task/addTaskFragment"/>
         <action
-            android:id="@+id/action_addTaskFragment_to_task_set_priority_graph"
-            app:destination="@id/task_set_priority_graph" />
+            android:id="@+id/action_addTaskFragment_to_bottomSheetPrioritySheetFragment2"
+            app:destination="@id/bottomSheetPrioritySheetFragment2" />
+        <deepLink
+            android:id="@+id/deepLink2"
+            app:uri="app://task.addTaskFragment" />
     </fragment>
-    <include app:graph="@navigation/task_set_priority_graph" />
+    <dialog
+        android:id="@+id/bottomSheetPrioritySheetFragment2"
+        android:name="com.sinx.task.BottomSheetPrioritySheetFragment"
+        android:label="BottomSheetPrioritySheetFragment">
+        <action
+            android:id="@+id/action_bottomSheetPrioritySheetFragment2_to_bottomSheetAddProjectFragment"
+            app:destination="@id/bottomSheetAddProjectFragment" />
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:uri="app://task.BottomSheetPrioritySheetFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/bottomSheetAddProjectFragment"
+        android:name="com.sinx.project.BottomSheetAddProjectFragment"
+        android:label="BottomSheetAddProjectFragment" />
 
 </navigation>

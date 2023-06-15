@@ -1,9 +1,12 @@
 package com.sinx.task.presentation
 
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDeepLinkRequest
 import com.sinx.coredbinterface.dao.TaskDAO
+import com.sinx.task.TaskListFragment
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.data.TaskRepositoryImpl
 import com.sinx.taskList.model.GetTaskListUseCase
@@ -29,6 +32,9 @@ class TaskViewModel(
         )
     val taskList: SharedFlow<List<TaskItem>> = _taskList
 
+    private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
+    val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
+
     fun initialize() {
         viewModelScope.launch {
             try {
@@ -41,6 +47,15 @@ class TaskViewModel(
 
     suspend fun taskIsDone(item: TaskItem) {
         taskReadyUseCase(item)
+    }
+
+    fun onClickListenerBottomSheet() {
+        val requestBottomSheetAddTaskFragment = NavDeepLinkRequest.Builder
+            .fromUri("app://task.addTaskFragment".toUri())
+            .build()
+        viewModelScope.launch {
+            _navDeepLinkRequest.emit(requestBottomSheetAddTaskFragment)
+        }
     }
 
     @Suppress("UNCHECKED_CAST")
