@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDeepLinkRequest
 import com.sinx.coredbinterface.dao.TaskDAO
-import com.sinx.task.TaskListFragment
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.data.TaskRepositoryImpl
 import com.sinx.taskList.model.GetTaskListUseCase

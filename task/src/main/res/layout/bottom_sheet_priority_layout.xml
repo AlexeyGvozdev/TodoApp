@@ -49,13 +49,13 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonGreenPriority"
         style="@style/ButtonPriority"
+        app:backgroundTint="@color/green"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priority_text"
         app:rippleColor="@null"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp"
-        app:backgroundTint="@color/green"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView
@@ -74,13 +74,13 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonRedPriority"
         style="@style/ButtonPriority"
+        app:backgroundTint="@color/red"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priority_green"
         app:rippleColor="@null"
         app:strokeColor="@color/black"
         app:strokeWidth="1dp"
-        app:backgroundTint="@color/red"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <TextView

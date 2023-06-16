@@ -1,7 +1,5 @@
 package com.sinx.task
 
-import android.content.res.ColorStateList
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +9,6 @@ import androidx.fragment.app.setFragmentResult
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sinx.task.databinding.BottomSheetPriorityLayoutBinding
 import com.sinx.core.R as core_R
-
 
 class BottomSheetPrioritySheetFragment :
     BottomSheetDialogFragment(R.layout.bottom_sheet_priority_layout) {
@@ -32,9 +29,9 @@ class BottomSheetPrioritySheetFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.buttonWithoutPriority.setOnClickListener { setPriority("light-grey") }
         binding.buttonGreenPriority.setOnClickListener { setPriority("green") }
         binding.buttonRedPriority.setOnClickListener { setPriority("red") }
-        binding.buttonWithoutPriority.setOnClickListener { setPriority("light-grey") }
     }
 
     private fun setPriority(priority: String) {
@@ -54,5 +51,3 @@ class BottomSheetPrioritySheetFragment :
         _binding = null
     }
 }
-
-

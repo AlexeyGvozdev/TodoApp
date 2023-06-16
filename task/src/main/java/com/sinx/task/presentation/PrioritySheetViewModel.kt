@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
-class PrioritySheetViewModel: ViewModel() {
+class PrioritySheetViewModel : ViewModel() {
 
     private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
     val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest

@@ -39,7 +39,6 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private val binding: TaskListLayoutBinding
         get() = checkNotNull(_binding)
 
-
     private var _addButtonBinding: AddButtonBinding? = null
     private val addButtonBinding: AddButtonBinding
         get() = checkNotNull(_addButtonBinding)
