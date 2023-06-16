@@ -80,6 +80,7 @@ class AddTaskFragment : Fragment() {
                 }
             binding.selectedPriority.backgroundTintList = colorStateList
         }
+
     }
 
     private fun setupListeners() {
