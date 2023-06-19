@@ -13,7 +13,7 @@ object Config {
         object Versions {
             const val gradleVersion = "7.3.1"
             const val kotlinAndroidVersion = "1.7.20"
-            const val detektVersion = "1.22.0"
+            const val detektVersion = "1.23.0"
         }
 
         const val androidApplication = "com.android.application"

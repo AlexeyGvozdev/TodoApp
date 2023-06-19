@@ -26,4 +26,6 @@
     <string name="task_manager_example">Task Manager</string>
     <string name="_07_jan_23_project_example">07 Jan 23 / Project</string>
     <string name="no_tasks">You have no tasks today</string>
+    <string name="new_task_is_project">No project</string>
+    <string name="new_task_is_repeat">No</string>
 </resources>
