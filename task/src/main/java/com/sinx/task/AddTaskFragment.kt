@@ -19,7 +19,6 @@ import com.sinx.task.presentation.PrioritySheetViewModel
 import com.sinx.core.R as core_R
 
 class AddTaskFragment : Fragment() {
-
     private var _binding: AddTaskLayoutBinding? = null
     private val binding: AddTaskLayoutBinding
         get() = checkNotNull(_binding)
