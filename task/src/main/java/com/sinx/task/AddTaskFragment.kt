@@ -73,11 +73,11 @@ class AddTaskFragment : Fragment() {
         setFragmentResultListener(Constants.SET_PRIORITY_REQUEST_KEY) { _, bundle ->
             val colorStateList =
                 when (bundle.getString(Constants.SET_PRIORITY_BUNDLE_KEY)!!) {
-                "green" -> ColorStateList.valueOf(resources.getColor(core_R.color.green))
-                "red" -> ColorStateList.valueOf(resources.getColor(core_R.color.red))
-                "light-grey" -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
-                else -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
-            }
+                    "green" -> ColorStateList.valueOf(resources.getColor(core_R.color.green))
+                    "red" -> ColorStateList.valueOf(resources.getColor(core_R.color.red))
+                    "light-grey" -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
+                    else -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
+                }
             binding.selectedPriority.backgroundTintList = colorStateList
         }
     }
