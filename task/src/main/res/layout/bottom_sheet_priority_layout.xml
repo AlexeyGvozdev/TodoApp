@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/priority_green"
-        style="@style/TextAppearance.AppCompat"
+        style="@style/Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
@@ -60,7 +60,7 @@
 
     <TextView
         android:id="@+id/priority_red"
-        style="@style/TextAppearance.AppCompat"
+        style="@style/Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
@@ -85,7 +85,7 @@
 
     <TextView
         android:id="@+id/priority_without_priority"
-        style="@style/TextAppearance.AppCompat"
+        style="@style/Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"

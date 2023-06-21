@@ -78,7 +78,7 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
         )
 
         addButtonBinding.buttonAddNew.setOnClickListener {
-            viewModel.onClickListenerBottomSheet()
+            viewModel.onClickAddProject()
         }
 
         setFragmentResultListener(Constants.ADD_PROJECT_REQUEST_KEY) { requestKey, bundle ->

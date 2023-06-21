@@ -15,26 +15,19 @@
         android:label="AddTaskFragment">
         <action
             android:id="@+id/action_addTaskFragment_to_bottomSheetPrioritySheetFragment2"
-            app:destination="@id/bottomSheetPrioritySheetFragment2" />
+            app:destination="@id/PriorityFragment" />
         <deepLink
             android:id="@+id/deepLink2"
             app:uri="app://task.addTaskFragment" />
     </fragment>
     <dialog
-        android:id="@+id/bottomSheetPrioritySheetFragment2"
-        android:name="com.sinx.task.BottomSheetPrioritySheetFragment"
-        android:label="BottomSheetPrioritySheetFragment">
-        <action
-            android:id="@+id/action_bottomSheetPrioritySheetFragment2_to_bottomSheetAddProjectFragment"
-            app:destination="@id/bottomSheetAddProjectFragment" />
+        android:id="@+id/PriorityFragment"
+        android:name="com.sinx.task.BottomSheetPriorityFragment"
+        android:label="PriorityFragment">
         <deepLink
             android:id="@+id/deepLink3"
-            app:uri="app://task.BottomSheetPrioritySheetFragment" />
+            app:uri="app://task.BottomSheetPriorityFragment" />
     </dialog>
-    <dialog
-        android:id="@+id/bottomSheetAddProjectFragment"
-        android:name="com.sinx.project.BottomSheetAddProjectFragment"
-        android:label="BottomSheetAddProjectFragment" />
 
     <dialog
         android:id="@+id/repeatFragment"

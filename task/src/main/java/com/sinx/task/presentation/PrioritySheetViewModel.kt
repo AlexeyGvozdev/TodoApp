@@ -13,12 +13,12 @@ class PrioritySheetViewModel : ViewModel() {
     private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
     val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
 
-    fun onClickListenerBottomSheet() {
-        val requestBottomSheetAddProjectFragment = NavDeepLinkRequest.Builder
-            .fromUri("app://task.BottomSheetPrioritySheetFragment".toUri())
+    fun onClickAddTask() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri("app://task.BottomSheetPriorityFragment".toUri())
             .build()
         viewModelScope.launch {
-            _navDeepLinkRequest.emit(requestBottomSheetAddProjectFragment)
+            _navDeepLinkRequest.emit(request)
         }
     }
 }

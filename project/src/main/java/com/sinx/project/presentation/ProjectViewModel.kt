@@ -39,12 +39,12 @@ internal class ProjectViewModel(
         addNewProjectUseCaseImpl(newProject)
     }
 
-    fun onClickListenerBottomSheet() {
-        val requestBottomSheetAddProjectFragment = NavDeepLinkRequest.Builder
+    fun onClickAddProject() {
+        val request = NavDeepLinkRequest.Builder
             .fromUri("app://project.BottomSheetAddProjectFragment".toUri())
             .build()
         viewModelScope.launch {
-            _navDeepLinkRequest.emit(requestBottomSheetAddProjectFragment)
+            _navDeepLinkRequest.emit(request)
         }
     }
 

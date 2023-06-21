@@ -19,26 +19,22 @@ import com.sinx.task.presentation.PrioritySheetViewModel
 import com.sinx.core.R as core_R
 
 class AddTaskFragment : Fragment() {
-    private var _binding: AddTaskLayoutBinding? = null
-    private val binding: AddTaskLayoutBinding
-        get() = checkNotNull(_binding)
 
-    private var _viewModel: PrioritySheetViewModel? = null
-    private val viewModel: PrioritySheetViewModel
-        get() = checkNotNull(_viewModel)
+    private lateinit var binding: AddTaskLayoutBinding
+    private lateinit var viewModel: PrioritySheetViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = AddTaskLayoutBinding.inflate(inflater, container, false)
+        binding = AddTaskLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _viewModel = ViewModelProvider(this).get(PrioritySheetViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PrioritySheetViewModel::class.java)
         setupListeners()
         initMockValues()
 
@@ -53,7 +49,7 @@ class AddTaskFragment : Fragment() {
 
         with(binding) {
             selectedPriority.setOnClickListener {
-                viewModel.onClickListenerBottomSheet()
+                viewModel.onClickAddTask()
             }
             repeat.setOnClickListener {
                 val request = NavDeepLinkRequest.Builder
@@ -97,11 +93,5 @@ class AddTaskFragment : Fragment() {
             )
             selectedRepeat.text = "No"
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-        _viewModel = null
     }
 }

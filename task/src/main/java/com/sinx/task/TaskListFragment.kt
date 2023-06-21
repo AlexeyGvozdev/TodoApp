@@ -35,13 +35,8 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         taskViewModelFactory.get()
     }
 
-    private var _binding: TaskListLayoutBinding? = null
-    private val binding: TaskListLayoutBinding
-        get() = checkNotNull(_binding)
-
-    private var _addButtonBinding: AddButtonBinding? = null
-    private val addButtonBinding: AddButtonBinding
-        get() = checkNotNull(_addButtonBinding)
+    private lateinit var binding: TaskListLayoutBinding
+    private lateinit var addButtonBinding: AddButtonBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +53,8 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = TaskListLayoutBinding.inflate(inflater, container, false)
-        _addButtonBinding = AddButtonBinding.bind(binding.root)
+        binding = TaskListLayoutBinding.inflate(inflater, container, false)
+        addButtonBinding = AddButtonBinding.bind(binding.root)
         return binding.root
     }
 
@@ -105,11 +100,5 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         addButtonBinding.buttonAddNew.setOnClickListener {
             viewModel.onClickListenerBottomSheet()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-        _addButtonBinding = null
     }
 }

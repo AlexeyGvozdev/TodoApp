@@ -10,20 +10,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sinx.task.databinding.BottomSheetPriorityLayoutBinding
 import com.sinx.core.R as core_R
 
-class BottomSheetPrioritySheetFragment :
+class BottomSheetPriorityFragment :
     BottomSheetDialogFragment(R.layout.bottom_sheet_priority_layout) {
 
-    private var _binding: BottomSheetPriorityLayoutBinding? = null
-    private val binding: BottomSheetPriorityLayoutBinding
-        get() = checkNotNull(_binding)
+    private lateinit var binding: BottomSheetPriorityLayoutBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = BottomSheetPriorityLayoutBinding.inflate(inflater, container, false)
-
+        binding = BottomSheetPriorityLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,10 +41,5 @@ class BottomSheetPrioritySheetFragment :
 
     override fun getTheme(): Int {
         return core_R.style.BottomSheetDialogTheme
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
