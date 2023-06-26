@@ -1,4 +1,4 @@
-package com.sinx.coreDB
+package com.sinx.coreDbImpl
 
 import android.content.Context
 import androidx.room.Database
