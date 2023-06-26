@@ -13,6 +13,7 @@ object Config {
             const val gradleVersion = "7.3.1"
             const val kotlinAndroidVersion = "1.7.20"
             const val detektVersion = "1.22.0"
+            const val navigationVersion = "2.5.3"
         }
 
         const val androidApplication = "com.android.application"
@@ -20,6 +21,7 @@ object Config {
         const val androidKotlin = "org.jetbrains.kotlin.android"
         const val detektPlugin = "io.gitlab.arturbosch.detekt"
         const val kotlinKapt = "kotlin-kapt"
+        const val safeArgs = "androidx.navigation.safeargs.kotlin"
 
         /**
          * Про самописные плагины:

@@ -10,15 +10,4 @@ import kotlinx.coroutines.launch
 
 class AddTaskViewModel: ViewModel() {
 
-    private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
-    val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
-
-    fun onClickListenerBottomSheet() {
-        val requestBottomSheetChoiceProjectForTask = NavDeepLinkRequest.Builder
-            .fromUri("app://task/choiceProjectForTaskBottomSheetFragment".toUri())
-            .build()
-        viewModelScope.launch {
-            _navDeepLinkRequest.emit(requestBottomSheetChoiceProjectForTask)
-        }
-    }
 }

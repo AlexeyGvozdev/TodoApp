@@ -90,10 +90,12 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private fun setupListeners() {
         with(binding) {
             addTask.setOnClickListener {
-                val request = NavDeepLinkRequest.Builder
-                    .fromUri(ADD_TASK_URI.toUri())
-                    .build()
-                findNavController().navigate(request)
+//                val request = NavDeepLinkRequest.Builder
+//                    .fromUri(ADD_TASK_URI.toUri())
+//                    .build()
+//                findNavController().navigate(request)
+
+                findNavController().navigate(TaskListFragmentDirections.actionTaskListFragmentToAddTaskFragment())
             }
         }
     }

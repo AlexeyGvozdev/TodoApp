@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/task_graph"
+    app:startDestination="@id/taskListFragment">
+
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="com.sinx.task.TaskListFragment"
+        android:label="TaskListFragment" >
+        <action
+            android:id="@+id/action_taskListFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.sinx.task.AddTaskFragment"
+        android:label="AddTaskFragment" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_bottomSheetChoiceProjectForTask"
+            app:destination="@id/bottomSheetChoiceProjectForTask" />
+<!--        <argument-->
+<!--            android:name="project"-->
+<!--            app:argType="string" />-->
+    </fragment>
+
+    <dialog
+        android:id="@+id/bottomSheetChoiceProjectForTask"
+        android:name="com.sinx.task.BottomSheetChoiceProjectForTask"
+        android:label="BottomSheetChoiceProjectForTask" />
+
+</navigation>

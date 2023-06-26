@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sinx.task.databinding.AddTaskLayoutBinding
 
 class AddTaskFragment : Fragment() {
     private var _binding: AddTaskLayoutBinding? = null
     private val binding: AddTaskLayoutBinding
         get() = checkNotNull(_binding)
+
+//    private val args: AddTaskFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,6 +30,10 @@ class AddTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         initMockValues()
+
+        binding.selectedProject.setOnClickListener {
+            navigateToBottomSheetChoiceProjectForTask()
+        }
     }
 
     private fun setupListeners() {
@@ -49,5 +57,9 @@ class AddTaskFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun navigateToBottomSheetChoiceProjectForTask() {
+        findNavController().navigate(R.id.action_addTaskFragment_to_bottomSheetChoiceProjectForTask)
     }
 }
