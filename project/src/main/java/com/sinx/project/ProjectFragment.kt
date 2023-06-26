@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -72,9 +71,7 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
         }
 
         binding.rvProjectList.addItemDecoration(
-            DividerItemDecoration(
-                ContextCompat.getDrawable(requireContext(), core_R.drawable.divider)
-            )
+            DividerItemDecoration()
         )
 
         addButtonBinding.buttonAddNew.setOnClickListener {

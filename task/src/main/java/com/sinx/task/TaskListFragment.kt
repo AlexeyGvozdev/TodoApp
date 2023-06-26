@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -23,7 +22,6 @@ import com.sinx.taskList.decoration.DividerItemDecorationTask
 import dagger.Lazy
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.sinx.core.R as core_R
 
 class TaskListFragment : Fragment(R.layout.task_list_layout) {
 
@@ -72,9 +70,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         })
         binding.rvTaskList.adapter = taskListAdapter
         binding.rvTaskList.addItemDecoration(
-            DividerItemDecorationTask(
-                ContextCompat.getDrawable(requireContext(), core_R.drawable.divider)
-            )
+            DividerItemDecorationTask()
         )
         lifecycleScope.launchWhenStarted {
             viewModel.taskList.collect { item ->
