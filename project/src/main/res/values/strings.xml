@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Todo</string>
     <string name="title_core">core</string>
+    <string name="add_button">Add Button</string>
+    <string name="add_project">Add project</string>
     <string name="title_project">Projects</string>
+    <string name="name">Name</string>
+    <string name="name_add_new">Name</string>
 
 </resources>

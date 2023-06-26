@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
     <style name="Theme.Todo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -8,10 +9,75 @@
         <item name="android:statusBarColor">@color/white</item>
 
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
     </style>
+
     <style name="Headline1" parent="@android:style/TextAppearance">
-        <item name="android:textSize">@dimen/headline_text_size</item>
+        <item name="android:textSize">@dimen/h1_text_size</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:fontFamily">@font/font_inter_bold</item>
+    </style>
+
+    <style name="Headline2" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/h2_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_bold</item>
+    </style>
+
+    <style name="Headline3" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/h3_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_semibold</item>
+    </style>
+
+    <style name="Headline4" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/h4_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_bold</item>
+    </style>
+
+    <style name="Body1" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/b1_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_medium</item>
+    </style>
+
+    <style name="Body2" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/b2_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_medium</item>
+    </style>
+
+    <style name="ButtonBold" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_bold</item>
+    </style>
+
+    <style name="Subtitle1" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/s1_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_medium</item>
+    </style>
+
+    <style name="Subtitle2" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/s2_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_regular</item>
+    </style>
+
+    <style name="Subtitle3" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/s3_text_size</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/font_inter_regular</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
     </style>
 </resources>

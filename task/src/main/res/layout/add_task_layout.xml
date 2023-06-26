@@ -30,11 +30,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/new_task"
-            android:textSize="24sp"
-            style="@style/TextHeader"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/back"
-            app:layout_constraintBottom_toBottomOf="@id/back"/>
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            style="@style/Headline1"/>
 
         <TextView
             android:id="@+id/name"
@@ -42,9 +41,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/name"
-            style="@style/TextHeader"
             app:layout_constraintTop_toBottomOf="@id/back"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Headline4"/>
 
         <EditText
             android:id="@+id/inputName"
@@ -57,17 +56,15 @@
             android:textCursorDrawable="@drawable/rounded_input_cursor"
             android:hint="@string/oops"
             android:inputType="textPersonName"
-            android:textSize="14sp"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:fontFamily="@font/font_inter_medium"
-            android:includeFontPadding="false"
             android:imeOptions="actionDone"
             android:autofillHints=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/name"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            style="@style/Body2"/>
 
         <TextView
             android:id="@+id/project"
@@ -75,32 +72,29 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/project"
-            android:includeFontPadding="false"
-            style="@style/TextHeader"
             app:layout_constraintTop_toBottomOf="@id/inputName"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Headline4"/>
 
         <TextView
             android:id="@+id/selectedProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/font_inter_medium"
-            style="@style/TextValue"
             app:layout_constraintTop_toBottomOf="@id/inputName"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="No project" />
+            tools:text="No project"
+            style="@style/Body1"/>
 
         <TextView
             android:id="@+id/priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="27dp"
             android:text="@string/priority"
-            android:includeFontPadding="false"
-            style="@style/TextHeader"
             app:layout_constraintTop_toBottomOf="@id/project"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Headline4"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/selectedPriority"
@@ -123,22 +117,21 @@
             android:id="@+id/repeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="27dp"
             android:text="@string/repeat"
-            android:includeFontPadding="false"
-            style="@style/TextHeader"
             app:layout_constraintTop_toBottomOf="@id/priority"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/Headline4"/>
 
         <TextView
             android:id="@+id/selectedRepeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="26dp"
-            style="@style/TextValue"
             app:layout_constraintTop_toBottomOf="@id/priority"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="No"/>
+            tools:text="No"
+            style="@style/Body1"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addTask"
@@ -149,12 +142,9 @@
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/add_new_task"
-            android:textSize="16sp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:letterSpacing="0"
-            android:fontFamily="@font/font_inter_medium"
-            android:includeFontPadding="false"
             app:cornerRadius="20dp"
             app:backgroundTint="@color/black"
             app:rippleColor="@color/ripple_black"
@@ -162,7 +152,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            tools:ignore="TouchTargetSizeCheck"
+            style="@style/Body1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

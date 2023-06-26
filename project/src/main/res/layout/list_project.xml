@@ -14,25 +14,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:fontFamily="@font/font_inter_semibold"
             tools:text="Project Main"
-            android:textSize="16sp"
-            android:includeFontPadding="false"
             android:textColor="@color/black"
             app:layout_constraintLeft_toLeftOf="@+id/mainProject"
-            app:layout_constraintTop_toTopOf="@+id/mainProject" />
+            app:layout_constraintTop_toTopOf="@+id/mainProject"
+            style="@style/Headline3"/>
 
         <TextView
             android:id="@+id/dataProject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_inter_regular"
             tools:text="17.01.2023"
-            android:textSize="8sp"
-            android:includeFontPadding="false"
             android:textColor="@color/grey"
             app:layout_constraintLeft_toLeftOf="@+id/mainProject"
-            app:layout_constraintTop_toBottomOf="@+id/nameProject" />
+            app:layout_constraintTop_toBottomOf="@+id/nameProject"
+            style="@style/Subtitle3"/>
 
         <ImageView
             android:id="@+id/movingProject"

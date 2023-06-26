@@ -4,23 +4,51 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
-import com.sinx.task.adapter.TaskListAdapter
+import com.sinx.core.di.findComponentDependencies
 import com.sinx.task.databinding.TaskListLayoutBinding
-import com.sinx.task.model.TaskItem
+import com.sinx.task.di.DaggerTaskComponent
+import com.sinx.task.presentation.TaskViewModel
+import com.sinx.taskList.TaskItem
+import com.sinx.taskList.adapter.TaskListAdapter
+import com.sinx.taskList.decoration.DividerItemDecorationTask
+import dagger.Lazy
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+import com.sinx.core.R as core_R
 
 class TaskListFragment : Fragment(R.layout.task_list_layout) {
 
     private lateinit var taskListAdapter: TaskListAdapter
 
+    @Inject
+    internal lateinit var taskViewModelFactory: Lazy<TaskViewModel.Factory>
+
+    private val viewModel: TaskViewModel by viewModels {
+        taskViewModelFactory.get()
+    }
+
     private var _binding: TaskListLayoutBinding? = null
     private val binding: TaskListLayoutBinding
         get() = checkNotNull(_binding)
 
-    private val taskList = createTaskList(item_number)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        DaggerTaskComponent.builder().deps(findComponentDependencies())
+            .build()
+            .inject(this)
+        if (savedInstanceState == null) {
+            viewModel.initialize()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,16 +63,28 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
         taskListAdapter = TaskListAdapter(object : TaskListAdapter.OnTaskClickListener {
-            override fun onMoreItemClickListener(item: TaskItem) {
-//                TODO
-            }
 
             override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
-//                TODO
+                lifecycleScope.launch {
+                    viewModel.taskIsDone(item)
+                }
             }
         })
         binding.rvTaskList.adapter = taskListAdapter
-        taskListAdapter.submitList(taskList)
+        binding.rvTaskList.addItemDecoration(
+            DividerItemDecorationTask(
+                ContextCompat.getDrawable(requireContext(), core_R.drawable.divider)
+            )
+        )
+        lifecycleScope.launchWhenStarted {
+            viewModel.taskList.collect { item ->
+                val empty = item.isEmpty()
+                binding.rvTaskList.isGone = empty
+                binding.ivNoTasks.isVisible = empty
+                binding.tvNoTasks.isVisible = empty
+                taskListAdapter.submitList(item)
+            }
+        }
     }
 
     private fun setupListeners() {
@@ -58,23 +98,12 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         }
     }
 
-    private fun createTaskList(count: Int) = (0..count).map { i ->
-        TaskItem(
-            id = i,
-            name = "Task Manager $i",
-            date = "\"07 Jan 23 / Project\"",
-            enabled = true,
-            priority = 1
-        )
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     companion object {
-        const val item_number = 20
-        private const val ADD_TASK_URI = "app://task/taskListFragment/addTaskFragment"
+        private const val ADD_TASK_URI = "app://task/addTaskFragment"
     }
 }

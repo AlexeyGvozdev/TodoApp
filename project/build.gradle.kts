@@ -12,6 +12,9 @@ dependencies {
     implementation(Dependency.Compat.appCompat)
     implementation(project(Config.Modules.core))
 
+    implementation(Dependency.Navigation.fragment)
+    implementation(Dependency.Navigation.ui)
+
     implementation(Dependency.Ui.material)
     implementation(Dependency.Ui.recyclerView)
 

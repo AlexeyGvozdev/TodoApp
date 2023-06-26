@@ -3,6 +3,9 @@ object Config {
         const val core = ":core"
         const val project = ":project"
         const val task = ":task"
+        const val taskList = ":taskList"
+        const val coreDB = ":coreDB"
+        const val coreDbApi = ":coreDB:coreDbApi"
     }
 
     object Plugins {
@@ -16,6 +19,7 @@ object Config {
         const val androidLibrary = "com.android.library"
         const val androidKotlin = "org.jetbrains.kotlin.android"
         const val detektPlugin = "io.gitlab.arturbosch.detekt"
+        const val kotlinKapt = "kotlin-kapt"
 
         /**
          * Про самописные плагины:

@@ -17,6 +17,14 @@ object Dependency {
         const val appCompat = "androidx.appcompat:appcompat:$compatVersion"
     }
 
+    object Room {
+        private const val room_version = "2.5.0"
+
+        const val runtime = "androidx.room:room-runtime:$room_version"
+        const val compiler = "androidx.room:room-compiler:$room_version"
+        const val ktx = "androidx.room:room-ktx:$room_version"
+    }
+
     object Ui {
         private const val materialVersion = "1.7.0"
         private const val constraintLayoutVersion = "2.1.4"
@@ -32,9 +40,19 @@ object Dependency {
         private const val junitVersion = "4.13.2"
         private const val junitExtVersion = "1.1.5"
         private const val espressoCoreVersion = "3.5.1"
+        private const val coroutines_version = "1.6.4"
 
         const val junit = "junit:junit:$junitVersion"
         const val junitExt = "androidx.test.ext:junit:$junitExtVersion"
         const val espressoCore = "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+        const val coroutinesTest =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    }
+
+    object DaggerDI {
+        private const val daggerVersion = "2.45"
+
+        const val dagger = "com.google.dagger:dagger:$daggerVersion"
+        const val daggerCompiler = "com.google.dagger:dagger-compiler:$daggerVersion"
     }
 }

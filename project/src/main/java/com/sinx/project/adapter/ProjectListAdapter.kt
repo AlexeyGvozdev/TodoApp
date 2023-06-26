@@ -7,8 +7,9 @@ import com.sinx.project.data.ProjectListModel
 import com.sinx.project.databinding.ListProjectBinding
 import com.sinx.core.R as core_R
 
-internal class ProjectListAdapter(private val projectListModels: List<ProjectListModel>) :
+internal class ProjectListAdapter :
     RecyclerView.Adapter<ProjectListAdapter.ProjectListViewHolder>() {
+    private var projectListModels = listOf<ProjectListModel>()
 
     class ProjectListViewHolder(private val binding: ListProjectBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -28,5 +29,10 @@ internal class ProjectListAdapter(private val projectListModels: List<ProjectLis
 
     override fun onBindViewHolder(holder: ProjectListViewHolder, position: Int) {
         holder.bind(projectListModels[position])
+    }
+
+    fun setProjectList(list: List<ProjectListModel>) {
+        projectListModels = list
+        notifyDataSetChanged()
     }
 }

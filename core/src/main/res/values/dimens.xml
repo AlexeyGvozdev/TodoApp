@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="h1_text_size">24sp</dimen>
+    <dimen name="h2_text_size">18sp</dimen>
+    <dimen name="h3_text_size">16sp</dimen>
+    <dimen name="h4_text_size">16sp</dimen>
+    <dimen name="b1_text_size">16sp</dimen>
+    <dimen name="b2_text_size">14sp</dimen>
+    <dimen name="button_text_size">12sp</dimen>
+    <dimen name="s1_text_size">12sp</dimen>
+    <dimen name="s2_text_size">11sp</dimen>
+    <dimen name="s3_text_size">8sp</dimen>
     <dimen name="headline_text_size">24sp</dimen>
     <dimen name="top_margin_toolbar">26dp</dimen>
     <dimen name="start_margin_toolbar">32dp</dimen>
