@@ -30,4 +30,10 @@ class AddTaskViewModel : ViewModel() {
             _navDeepLinkRequest.emit(request)
         }
     }
+
+    fun stringToWords(s: String) =
+        s.trim().splitToSequence(' ')
+            .filter { it.isNotEmpty() }
+            .toList()
+            .toTypedArray()
 }
