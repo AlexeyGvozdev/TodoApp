@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDeepLinkRequest
 import com.sinx.project.domain.AddNewProjectUseCase
+import com.sinx.project.domain.GetNewProjectUseCaseImpl
 import com.sinx.project.domain.ProjectListModel
 import com.sinx.project.domain.GetNewProjectUseCase
 import kotlinx.coroutines.channels.BufferOverflow
@@ -13,7 +14,8 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 internal class ProjectViewModel(
     private val addNewProjectUseCase: AddNewProjectUseCase,

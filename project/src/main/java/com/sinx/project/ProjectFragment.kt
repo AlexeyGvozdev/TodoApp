@@ -37,7 +37,6 @@ class ProjectFragment : Fragment(R.layout.project_layout) {
     @Inject
     internal lateinit var projectViewModelFactory: Lazy<ProjectViewModelFactory>
 
-
     private val viewModel: ProjectViewModel by viewModels {
         projectViewModelFactory.get()
     }
