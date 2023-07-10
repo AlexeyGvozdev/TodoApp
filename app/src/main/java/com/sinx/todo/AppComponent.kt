@@ -2,7 +2,7 @@ package com.sinx.todo
 
 import android.content.Context
 import com.sinx.core.AppScope
-import com.sinx.coreDB.di.DbModule
+import com.sinx.coreDbImpl.di.DbModule
 import com.sinx.task.di.TaskDeps
 import dagger.BindsInstance
 import dagger.Component
