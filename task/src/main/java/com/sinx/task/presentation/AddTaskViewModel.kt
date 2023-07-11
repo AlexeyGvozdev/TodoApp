@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
-class PrioritySheetViewModel : ViewModel() {
+class AddTaskViewModel : ViewModel() {
 
     private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
     val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
 
-    fun onClickAddTask() {
+    fun onClickSelectPriority() {
         val request = NavDeepLinkRequest.Builder
             .fromUri("app://task.BottomSheetPriorityFragment".toUri())
             .build()

@@ -55,9 +55,7 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
             Navigation.findNavController(requireActivity(), core_R.id.buttonAddNew)
 
         lifecycleScope.launchWhenStarted {
-            viewModel.navDeepLinkRequest.collect {
-                navController.navigate(it)
-            }
+            viewModel.navDeepLinkRequest.collect(navController::navigate)
         }
 
         projectListAdapter = ProjectListAdapter()
@@ -66,9 +64,7 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
         binding.rvProjectList.adapter = projectListAdapter
 
         lifecycleScope.launchWhenStarted {
-            viewModel.projectList.collect {
-                projectListAdapter.setProjectList(it)
-            }
+            viewModel.projectList.collect(projectListAdapter::setProjectList)
         }
 
         binding.rvProjectList.addItemDecoration(

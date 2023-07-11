@@ -9,32 +9,38 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.sinx.task.Constants.GREEN_PRIORITY
+import com.sinx.task.Constants.LIGHT_GREY_PRIORITY
+import com.sinx.task.Constants.RED_PRIORITY
+import com.sinx.task.Constants.SET_PRIORITY_BUNDLE_KEY
+import com.sinx.task.Constants.SET_PRIORITY_REQUEST_KEY
 import com.sinx.task.databinding.AddTaskLayoutBinding
-import com.sinx.task.presentation.PrioritySheetViewModel
+import com.sinx.task.presentation.AddTaskViewModel
 import com.sinx.core.R as core_R
 
 class AddTaskFragment : Fragment() {
 
-    private lateinit var binding: AddTaskLayoutBinding
-    private lateinit var viewModel: PrioritySheetViewModel
+    private var _binding: AddTaskLayoutBinding? = null
+    private val binding get() = checkNotNull(_binding)
+
+    private val viewModel: AddTaskViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = AddTaskLayoutBinding.inflate(inflater, container, false)
+        _binding = AddTaskLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PrioritySheetViewModel::class.java)
         setupListeners()
         initMockValues()
 
@@ -42,14 +48,12 @@ class AddTaskFragment : Fragment() {
             Navigation.findNavController(requireActivity(), R.id.selectedPriority)
 
         lifecycleScope.launchWhenStarted {
-            viewModel.navDeepLinkRequest.collect {
-                navController.navigate(it)
-            }
+            viewModel.navDeepLinkRequest.collect(navController::navigate)
         }
 
         with(binding) {
             selectedPriority.setOnClickListener {
-                viewModel.onClickAddTask()
+                viewModel.onClickSelectPriority()
             }
             repeat.setOnClickListener {
                 val request = NavDeepLinkRequest.Builder
@@ -65,14 +69,19 @@ class AddTaskFragment : Fragment() {
             }
         }
 
-        setFragmentResultListener(Constants.SET_PRIORITY_REQUEST_KEY) { _, bundle ->
+        setFragmentResultListener(SET_PRIORITY_REQUEST_KEY) { _, bundle ->
             val colorStateList =
-                when (bundle.getString(Constants.SET_PRIORITY_BUNDLE_KEY)!!) {
-                    "green" -> ColorStateList.valueOf(resources.getColor(core_R.color.green))
-                    "red" -> ColorStateList.valueOf(resources.getColor(core_R.color.red))
-                    "light-grey" -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
-                    else -> ColorStateList.valueOf(resources.getColor(core_R.color.light_grey))
-                }
+                ColorStateList.valueOf(
+                    resources.getColor(
+                        when (bundle.getString(SET_PRIORITY_BUNDLE_KEY)) {
+                            GREEN_PRIORITY -> core_R.color.green
+                            RED_PRIORITY -> core_R.color.red
+                            LIGHT_GREY_PRIORITY -> core_R.color.light_grey
+                            else -> core_R.color.light_grey
+                        }
+                    )
+                )
+
             binding.selectedPriority.backgroundTintList = colorStateList
         }
     }
@@ -93,5 +102,10 @@ class AddTaskFragment : Fragment() {
             )
             selectedRepeat.text = "No"
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

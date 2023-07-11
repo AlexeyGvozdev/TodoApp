@@ -35,8 +35,11 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         taskViewModelFactory.get()
     }
 
-    private lateinit var binding: TaskListLayoutBinding
-    private lateinit var addButtonBinding: AddButtonBinding
+    private var _binding: TaskListLayoutBinding? = null
+    private val binding get() = checkNotNull(_binding)
+
+    private var _addButtonBinding: AddButtonBinding? = null
+    private val addButtonBinding get() = checkNotNull(_addButtonBinding)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +56,8 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = TaskListLayoutBinding.inflate(inflater, container, false)
-        addButtonBinding = AddButtonBinding.bind(binding.root)
+        _binding = TaskListLayoutBinding.inflate(inflater, container, false)
+        _addButtonBinding = AddButtonBinding.bind(binding.root)
         return binding.root
     }
 
@@ -80,9 +83,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
             Navigation.findNavController(requireActivity(), core_R.id.buttonAddNew)
 
         lifecycleScope.launchWhenStarted {
-            viewModel.navDeepLinkRequest.collect {
-                navController.navigate(it)
-            }
+            viewModel.navDeepLinkRequest.collect(navController::navigate)
         }
 
         lifecycleScope.launchWhenStarted {
@@ -100,5 +101,11 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         addButtonBinding.buttonAddNew.setOnClickListener {
             viewModel.onClickListenerBottomSheet()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        _addButtonBinding = null
     }
 }
