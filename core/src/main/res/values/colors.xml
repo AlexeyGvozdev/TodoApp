@@ -8,4 +8,6 @@
     <color name="white">#FFFFFF</color>
     <color name="ripple_black">#2B2B2B</color>
     <color name="full_black">#00000000</color>
+    <color name="green">#27AE60</color>
+    <color name="red">#EB5757</color>
 </resources>

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.project.adapter.ProjectListAdapter
@@ -55,19 +55,18 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.navDeepLinkRequest.collect {
-                findNavController().navigate(it)
-            }
+        val navController =
+            Navigation.findNavController(requireActivity(), core_R.id.buttonAddNew)
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.navDeepLinkRequest.collect(navController::navigate)
         }
 
         binding.rvProjectList.layoutManager = LinearLayoutManager(context)
         binding.rvProjectList.adapter = projectListAdapter
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.projectList.collect {
-                projectListAdapter.setProjectList(it)
-            }
+        lifecycleScope.launchWhenStarted {
+            viewModel.projectList.collect(projectListAdapter::setProjectList)
         }
 
         binding.rvProjectList.addItemDecoration(

@@ -52,19 +52,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addTask"
+    <include
+        layout="@layout/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="41dp"
-        app:backgroundTint="@color/black"
-        app:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/ripple_black"
-        app:srcCompat="@drawable/add"
-        app:tint="@color/white"
-        tools:ignore="ContentDescription,SpeakableTextPresentCheck"/>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
