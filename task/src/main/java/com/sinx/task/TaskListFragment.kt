@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.core.di.findComponentDependencies
-import com.sinx.core.extensions.navigateTo
 import com.sinx.task.databinding.TaskListLayoutBinding
 import com.sinx.task.di.DaggerTaskComponent
 import com.sinx.task.presentation.TaskViewModel

@@ -21,4 +21,13 @@ class AddTaskViewModel : ViewModel() {
             _navDeepLinkRequest.emit(request)
         }
     }
+
+    fun onClickSelectRepeat() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri("app://task/BottomSheetRepeatFragment".toUri())
+            .build()
+        viewModelScope.launch {
+            _navDeepLinkRequest.emit(request)
+        }
+    }
 }

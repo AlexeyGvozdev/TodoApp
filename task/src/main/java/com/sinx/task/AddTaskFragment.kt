@@ -9,9 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import com.sinx.task.Constants.GREEN_PRIORITY
 import com.sinx.task.Constants.LIGHT_GREY_PRIORITY
 import com.sinx.task.Constants.RED_PRIORITY
@@ -38,8 +36,6 @@ class AddTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupListeners()
-        initMockValues()
 
         val navController =
             Navigation.findNavController(requireActivity(), R.id.selectedPriority)
@@ -53,10 +49,10 @@ class AddTaskFragment : Fragment() {
                 viewModel.onClickSelectPriority()
             }
             repeat.setOnClickListener {
-                findNavController().navigateTo("app://task/BottomSheetRepeatFragment")
+                viewModel.onClickSelectRepeat()
             }
             selectedRepeat.setOnClickListener {
-                findNavController().navigateTo("app://task/BottomSheetRepeatFragment")
+                viewModel.onClickSelectRepeat()
             }
         }
 
