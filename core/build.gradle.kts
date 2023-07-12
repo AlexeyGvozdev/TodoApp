@@ -13,6 +13,9 @@ dependencies {
     implementation(Dependency.Ui.material)
     implementation(Dependency.Ui.constraintLayout)
 
+    implementation(Dependency.Navigation.fragment)
+    implementation(Dependency.Navigation.ui)
+
     implementation(Dependency.DaggerDI.dagger)
     kapt(Dependency.DaggerDI.daggerCompiler)
 }

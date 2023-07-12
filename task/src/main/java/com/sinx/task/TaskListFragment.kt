@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
 import com.sinx.core.di.findComponentDependencies
+import com.sinx.core.extensions.navigateTo
 import com.sinx.task.databinding.TaskListLayoutBinding
 import com.sinx.task.di.DaggerTaskComponent
 import com.sinx.task.presentation.TaskViewModel
@@ -36,9 +35,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         taskViewModelFactory.get()
     }
 
-    private var _binding: TaskListLayoutBinding? = null
-    private val binding: TaskListLayoutBinding
-        get() = checkNotNull(_binding)
+    private lateinit var binding: TaskListLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +52,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = TaskListLayoutBinding.inflate(inflater, container, false)
+        binding = TaskListLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -65,7 +62,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         taskListAdapter = TaskListAdapter(object : TaskListAdapter.OnTaskClickListener {
 
             override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
-                lifecycleScope.launch {
+                viewLifecycleOwner.lifecycleScope.launch {
                     viewModel.taskIsDone(item)
                 }
             }
@@ -76,7 +73,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                 ContextCompat.getDrawable(requireContext(), core_R.drawable.divider)
             )
         )
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.taskList.collect { item ->
                 val empty = item.isEmpty()
                 binding.rvTaskList.isGone = empty
@@ -90,17 +87,9 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private fun setupListeners() {
         with(binding) {
             addTask.setOnClickListener {
-                val request = NavDeepLinkRequest.Builder
-                    .fromUri(ADD_TASK_URI.toUri())
-                    .build()
-                findNavController().navigate(request)
+                findNavController().navigateTo(ADD_TASK_URI)
             }
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

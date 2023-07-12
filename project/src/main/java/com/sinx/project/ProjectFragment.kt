@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.project.adapter.ProjectListAdapter
@@ -22,9 +22,13 @@ import com.sinx.core.R as core_R
 
 internal class ProjectFragment : Fragment(R.layout.project_layout) {
 
-    private lateinit var binding: ProjectLayoutBinding
-    private lateinit var addButtonBinding: AddButtonBinding
-    private lateinit var projectListAdapter: ProjectListAdapter
+    private var _binding: ProjectLayoutBinding? = null
+    private val binding get() = checkNotNull(_binding)
+
+    private var _addButtonBinding: AddButtonBinding? = null
+    private val addButtonBinding get() = checkNotNull(_addButtonBinding)
+
+    private var projectListAdapter: ProjectListAdapter = ProjectListAdapter()
 
     private val viewModel: ProjectViewModel by viewModels {
         ProjectViewModelFactory()
@@ -42,8 +46,8 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = ProjectLayoutBinding.inflate(layoutInflater, container, false)
-        addButtonBinding = AddButtonBinding.bind(binding.root)
+        _binding = ProjectLayoutBinding.inflate(layoutInflater, container, false)
+        _addButtonBinding = AddButtonBinding.bind(binding.root)
 
         return binding.root
     }
@@ -51,21 +55,16 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController =
-            Navigation.findNavController(requireActivity(), core_R.id.buttonAddNew)
-
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.navDeepLinkRequest.collect {
-                navController.navigate(it)
+                findNavController().navigate(it)
             }
         }
-
-        projectListAdapter = ProjectListAdapter()
 
         binding.rvProjectList.layoutManager = LinearLayoutManager(context)
         binding.rvProjectList.adapter = projectListAdapter
 
-        lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.projectList.collect {
                 projectListAdapter.setProjectList(it)
             }
@@ -78,13 +77,19 @@ internal class ProjectFragment : Fragment(R.layout.project_layout) {
         )
 
         addButtonBinding.buttonAddNew.setOnClickListener {
-            viewModel.onClickListenerBottomSheet()
+            viewModel.onClickAddProject()
         }
 
-        setFragmentResultListener(Constans.ADD_PROJECT_REQUEST_KEY) { requestKey, bundle ->
-            val result = bundle.getString(Constans.ADD_PROJECT_BUNDLE_KEY)
+        setFragmentResultListener(Constants.ADD_PROJECT_REQUEST_KEY) { _, bundle ->
+            val result = bundle.getString(Constants.ADD_PROJECT_BUNDLE_KEY)
             val newProject = ProjectListModel(result.toString(), viewModel.dateCreateProject())
             viewModel.addNewProject(newProject)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        _addButtonBinding = null
     }
 }
