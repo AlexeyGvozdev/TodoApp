@@ -30,4 +30,6 @@
     <string name="priority_green">Green</string>
     <string name="without_priority">Without priority</string>
     <string name="no_tasks">You have no tasks today</string>
+    <string name="new_task_is_project">No project</string>
+    <string name="new_task_is_repeat">No</string>
 </resources>

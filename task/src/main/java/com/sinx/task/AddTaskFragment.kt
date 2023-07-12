@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getColor
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -27,7 +25,6 @@ class AddTaskFragment : Fragment() {
 
     private var _binding: AddTaskLayoutBinding? = null
     private val binding get() = checkNotNull(_binding)
-
     private val viewModel: AddTaskViewModel by viewModels()
 
     override fun onCreateView(
@@ -56,16 +53,10 @@ class AddTaskFragment : Fragment() {
                 viewModel.onClickSelectPriority()
             }
             repeat.setOnClickListener {
-                val request = NavDeepLinkRequest.Builder
-                    .fromUri("app://task/BottomSheetRepeatFragment".toUri())
-                    .build()
-                findNavController().navigate(request)
+                findNavController().navigateTo("app://task/BottomSheetRepeatFragment")
             }
             selectedRepeat.setOnClickListener {
-                val request = NavDeepLinkRequest.Builder
-                    .fromUri("app://task/BottomSheetRepeatFragment".toUri())
-                    .build()
-                findNavController().navigate(request)
+                findNavController().navigateTo("app://task/BottomSheetRepeatFragment")
             }
         }
 
@@ -83,24 +74,6 @@ class AddTaskFragment : Fragment() {
                 )
 
             binding.selectedPriority.backgroundTintList = colorStateList
-        }
-    }
-
-    private fun setupListeners() {
-        with(binding) {
-            back.setOnClickListener {
-                activity?.supportFragmentManager?.popBackStack()
-            }
-        }
-    }
-
-    private fun initMockValues() {
-        with(binding) {
-            selectedProject.text = "No project"
-            selectedPriority.setBackgroundColor(
-                getColor(requireContext(), com.sinx.core.R.color.light_grey)
-            )
-            selectedRepeat.text = "No"
         }
     }
 

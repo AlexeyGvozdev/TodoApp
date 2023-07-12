@@ -14,8 +14,7 @@ class BottomSheetAddProjectFragment :
     BottomSheetDialogFragment(R.layout.bottom_sheet_add_new_project) {
 
     private var _binding: BottomSheetAddNewProjectBinding? = null
-    private val binding: BottomSheetAddNewProjectBinding
-        get() = checkNotNull(_binding)
+    private val binding get() = checkNotNull(_binding)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,7 +22,6 @@ class BottomSheetAddProjectFragment :
         savedInstanceState: Bundle?
     ): View {
         _binding = BottomSheetAddNewProjectBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
@@ -41,5 +39,10 @@ class BottomSheetAddProjectFragment :
 
     override fun getTheme(): Int {
         return core_R.style.BottomSheetDialogTheme
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

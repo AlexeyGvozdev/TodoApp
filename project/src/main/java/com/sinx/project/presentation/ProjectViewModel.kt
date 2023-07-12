@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDeepLinkRequest
 import com.sinx.project.data.ProjectListModel
-import com.sinx.project.domain.AddNewProjectUseCaseImpl
-import com.sinx.project.domain.GetNewProjectUseCaseImpl
+import com.sinx.project.domain.AddNewProjectUseCase
+import com.sinx.project.domain.GetNewProjectUseCase
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -16,8 +16,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 internal class ProjectViewModel(
-    private val addNewProjectUseCaseImpl: AddNewProjectUseCaseImpl,
-    private val getNewProjectUseCase: GetNewProjectUseCaseImpl
+    private val addNewProjectUseCaseImpl: AddNewProjectUseCase,
+    private val getNewProjectUseCase: GetNewProjectUseCase
 ) : ViewModel() {
 
     private val _projectList = MutableSharedFlow<List<ProjectListModel>>(

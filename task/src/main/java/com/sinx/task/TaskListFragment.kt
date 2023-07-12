@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.core.di.findComponentDependencies
+import com.sinx.core.extensions.navigateTo
 import com.sinx.task.databinding.TaskListLayoutBinding
 import com.sinx.task.di.DaggerTaskComponent
 import com.sinx.task.presentation.TaskViewModel
@@ -34,7 +35,6 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private val viewModel: TaskViewModel by viewModels {
         taskViewModelFactory.get()
     }
-
     private var _binding: TaskListLayoutBinding? = null
     private val binding get() = checkNotNull(_binding)
 
@@ -67,7 +67,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         taskListAdapter = TaskListAdapter(object : TaskListAdapter.OnTaskClickListener {
 
             override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
-                lifecycleScope.launch {
+                viewLifecycleOwner.lifecycleScope.launch {
                     viewModel.taskIsDone(item)
                 }
             }

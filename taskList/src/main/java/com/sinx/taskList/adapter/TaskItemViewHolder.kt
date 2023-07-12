@@ -20,7 +20,7 @@ class TaskItemViewHolder(
         checkBoxTaskPriority.setOnCheckedChangeListener { _, _ -> }
         checkBoxTaskPriority.isChecked = !task.enabled
         if (task.enabled) {
-            checkBoxTaskPriority.setOnCheckedChangeListener { button, b ->
+            checkBoxTaskPriority.setOnCheckedChangeListener { _, _ ->
                 listener.onCheckBoxItemClickListener(task, binding.checkBoxTaskPriority.isChecked)
             }
         }

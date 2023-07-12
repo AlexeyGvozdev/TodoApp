@@ -37,4 +37,9 @@ class BottomSheetRepeatFragment :
     override fun getTheme(): Int {
         return core_R.style.BottomSheetDialogTheme
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
