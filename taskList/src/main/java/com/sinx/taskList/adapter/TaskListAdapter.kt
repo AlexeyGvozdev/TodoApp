@@ -10,9 +10,9 @@ import com.sinx.taskList.itemtouchhelper.ItemMoveCallback
 
 class TaskListAdapter(
     private val clickListener: OnTaskClickListener,
-                      private val dragListener: StartDragListener,
-                      private val moveListener: OnMoveListener
-                      ) :
+    private val dragListener: StartDragListener,
+    private val moveListener: OnMoveListener
+    ) :
     ListAdapter<TaskItem, TaskItemViewHolder>(TaskItemDiffCallback()),
     ItemMoveCallback.ItemTouchHelperContract {
 
@@ -53,5 +53,4 @@ class TaskListAdapter(
     override fun onRowClear(myViewHolder: TaskItemViewHolder) {
         myViewHolder.itemView.setBackgroundColor(Color.WHITE)
     }
-
 }

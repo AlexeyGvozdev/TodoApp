@@ -1,27 +1,27 @@
 package com.sinx.taskList.model
 
 import com.sinx.taskList.TaskItem
+import java.util.*
 
 class ChangeIndexUseCaseImpl(private val repository: TaskRepository) : ChangeIndexUseCase {
 
-    override suspend fun invoke(fromPosition: Int, toPosition: Int, taskList: List<TaskItem>): List<TaskItem> {
-        val list = taskList.toMutableList()
-        val element = list[fromPosition]
-        list.removeAt(fromPosition)
-        if (toPosition < fromPosition) {
-            list.add(toPosition + 1, element)
+    override suspend fun invoke(fromPosition: Int, toPosition: Int, taskList: List<TaskItem>) {
+        if (fromPosition < toPosition) {
+            for (i in fromPosition until toPosition) {
+                Collections.swap(taskList, i, i + 1)
+            }
         } else {
-            list.add(toPosition - 1, element)
+            for (i in fromPosition downTo toPosition + 1) {
+                Collections.swap(taskList, i, i - 1)
+            }
         }
-        val updatedList = list.mapIndexed { index, taskItem ->
+        val updatedList = taskList.mapIndexed { index, taskItem ->
             taskItem.copy(numberInList = index)
         }
         repository.updateList(updatedList)
-        return updatedList
     }
-
 }
 
 interface ChangeIndexUseCase {
-    suspend operator fun invoke(fromPosition: Int, toPosition: Int, taskList: List<TaskItem>): List<TaskItem>
+    suspend operator fun invoke(fromPosition: Int, toPosition: Int, taskList: List<TaskItem>)
 }

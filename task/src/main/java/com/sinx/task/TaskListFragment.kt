@@ -90,7 +90,8 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                 override fun onRowMoved(fromPosition: Int, toPosition: Int) {
                     viewModel.onRowMoved(fromPosition, toPosition)
                 }
-            })
+            }
+        )
         val callback = ItemMoveCallback(taskListAdapter)
         touchHelper = ItemTouchHelper(callback)
         touchHelper.attachToRecyclerView(binding.rvTaskList)

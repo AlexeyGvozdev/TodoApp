@@ -49,17 +49,11 @@ class TaskViewModel(
 
     fun onRowMoved(fromPosition: Int, toPosition: Int) {
         viewModelScope.launch {
-            try {
-                _taskList.emit(
-                    changeIndexUseCase(
-                        fromPosition,
-                        toPosition,
-                        taskList.replayCache.firstOrNull() ?: emptyList()
-                    )
-                )
-            } catch (e: IllegalStateException) {
-                e.printStackTrace()
-            }
+            changeIndexUseCase(
+                fromPosition,
+                toPosition,
+                taskList.replayCache.firstOrNull() ?: emptyList()
+            )
         }
     }
 

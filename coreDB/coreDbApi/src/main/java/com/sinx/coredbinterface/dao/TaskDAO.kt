@@ -14,7 +14,7 @@ interface TaskDAO {
     fun getTaskList(): Flow<List<TaskDbModel>>
 
     @Update
-    fun updateTasks(taskList: List<TaskDbModel>)
+    suspend fun updateTasks(taskList: List<TaskDbModel>)
 
 //    @Query("DELETE FROM task WHERE name")
 //    fun deleteTaskFromList (name: String)
