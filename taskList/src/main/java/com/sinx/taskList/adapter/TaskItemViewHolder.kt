@@ -28,7 +28,7 @@ class TaskItemViewHolder(
                 clickListener.onCheckBoxItemClickListener(task, binding.checkBoxTaskPriority.isChecked)
             }
             imageViewChangePosition.setOnTouchListener { _, event ->
-                if (event.action == MotionEvent.ACTION_DOWN) {
+                if (event.actionMasked == MotionEvent.ACTION_DOWN) {
                     dragListener.requestDrag(this@TaskItemViewHolder)
                 }
                 false
