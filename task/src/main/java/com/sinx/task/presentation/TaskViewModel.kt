@@ -8,7 +8,12 @@ import androidx.navigation.NavDeepLinkRequest
 import com.sinx.coredbinterface.dao.TaskDAO
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.data.TaskRepositoryImpl
-import com.sinx.taskList.model.*
+import com.sinx.taskList.model.ChangeIndexUseCase
+import com.sinx.taskList.model.ChangeIndexUseCaseImpl
+import com.sinx.taskList.model.GetTaskListUseCase
+import com.sinx.taskList.model.GetTaskListUseCaseImpl
+import com.sinx.taskList.model.TaskReadyUseCase
+import com.sinx.taskList.model.TaskReadyUseCaseImpl
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow

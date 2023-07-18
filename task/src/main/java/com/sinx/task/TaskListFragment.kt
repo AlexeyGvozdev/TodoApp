@@ -11,8 +11,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.core.di.findComponentDependencies
 import com.sinx.task.databinding.TaskListLayoutBinding
@@ -72,12 +72,13 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         taskListAdapter = TaskListAdapter(
             object : TaskListAdapter.OnTaskClickListener {
 
-            override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    viewModel.taskIsDone(item)
+                override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewModel.taskIsDone(item)
+                    }
                 }
-            }
-        }, object: TaskListAdapter.StartDragListener {
+            },
+            object : TaskListAdapter.StartDragListener {
 
                 override fun requestDrag(viewHolder: TaskItemViewHolder) {
                     lifecycleScope.launch {

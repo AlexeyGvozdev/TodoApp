@@ -12,7 +12,7 @@ class TaskListAdapter(
     private val clickListener: OnTaskClickListener,
     private val dragListener: StartDragListener,
     private val moveListener: OnMoveListener
-    ) :
+) :
     ListAdapter<TaskItem, TaskItemViewHolder>(TaskItemDiffCallback()),
     ItemMoveCallback.ItemTouchHelperContract {
 

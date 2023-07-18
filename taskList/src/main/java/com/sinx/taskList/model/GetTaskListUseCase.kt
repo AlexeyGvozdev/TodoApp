@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 class GetTaskListUseCaseImpl(private val repository: TaskRepository) : GetTaskListUseCase {
 
     override suspend operator fun invoke(): Flow<List<TaskItem>> = repository.listTasksFlow()
-
 }
 
 interface GetTaskListUseCase {
