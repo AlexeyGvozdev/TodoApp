@@ -1,6 +1,7 @@
 package com.sinx.task.presentation
 
 import com.sinx.taskList.TaskItem
+import com.sinx.taskList.model.ChangeIndexUseCaseImpl
 import com.sinx.taskList.model.GetTaskListUseCaseImpl
 import com.sinx.taskList.model.TaskReadyUseCaseImpl
 import com.sinx.taskList.model.TaskRepository
@@ -44,10 +45,15 @@ class TaskViewModelTest {
                     emit(listItems)
                 }
             }
+
+            override suspend fun updateList(itemList: List<TaskItem>) {
+                TODO("Not yet implemented")
+            }
         }
         val getTaskListUseCase = GetTaskListUseCaseImpl(repo)
         val taskReadyUseCase = TaskReadyUseCaseImpl(repo)
-        val viewModel = TaskViewModel(getTaskListUseCase, taskReadyUseCase)
+        val changeIndexUseCase = ChangeIndexUseCaseImpl(repo)
+        val viewModel = TaskViewModel(getTaskListUseCase, taskReadyUseCase, changeIndexUseCase)
         // when
         viewModel.initialize()
         val actual = viewModel.taskList.replayCache
@@ -83,10 +89,15 @@ class TaskViewModelTest {
                 }
                 return taskFlow
             }
+
+            override suspend fun updateList(itemList: List<TaskItem>) {
+                TODO("Not yet implemented")
+            }
         }
         val getTaskListUseCase = GetTaskListUseCaseImpl(repo)
         val taskReadyUseCase = TaskReadyUseCaseImpl(repo)
-        val viewModel = TaskViewModel(getTaskListUseCase, taskReadyUseCase)
+        val changeIndexUseCase = ChangeIndexUseCaseImpl(repo)
+        val viewModel = TaskViewModel(getTaskListUseCase, taskReadyUseCase, changeIndexUseCase)
         // when
         viewModel.initialize()
         scope.launch {
@@ -117,10 +128,15 @@ class TaskViewModelTest {
                     throw IllegalStateException("some text")
                 }
             }
+
+            override suspend fun updateList(itemList: List<TaskItem>) {
+                TODO("Not yet implemented")
+            }
         }
         val getTaskListUseCase = GetTaskListUseCaseImpl(repo)
         val taskReadyUseCase = TaskReadyUseCaseImpl(repo)
-        val viewModel = TaskViewModel(getTaskListUseCase, taskReadyUseCase)
+        val changeIndexUseCase = ChangeIndexUseCaseImpl(repo)
+        val viewModel = TaskViewModel(getTaskListUseCase, taskReadyUseCase, changeIndexUseCase)
         // when
         viewModel.initialize()
     }
