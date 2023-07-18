@@ -1,6 +1,6 @@
 package com.sinx.task
 
-object Constants {
+internal object Constants {
     const val SET_REPEAT_REQUEST_KEY = "setRepeatRequestKey"
     const val SET_REPEAT_BUNDLE_KEY = "setRepeatBundleKey"
     const val GET_REPEAT_REQUEST_KEY = "getRepeatRequestKey"
@@ -13,6 +13,7 @@ object Constants {
     const val SET_REPEAT_ONCE = "Once"
     const val SET_REPEAT_ONWEEKDAYS = "OnWeekdays"
     const val SET_REPEAT_ONWEEKENDS = "OnWeekends"
+    const val SELECT_DAYS = "SelectDays"
     const val GREEN_PRIORITY = "green"
     const val RED_PRIORITY = "red"
     const val LIGHT_GREY_PRIORITY = "light-grey"

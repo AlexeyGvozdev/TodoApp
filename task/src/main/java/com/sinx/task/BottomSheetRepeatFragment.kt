@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.isInvisible
-import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.setFragmentResultListener
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sinx.task.Constants.DAY_FRI
 import com.sinx.task.Constants.DAY_MON
@@ -17,6 +15,7 @@ import com.sinx.task.Constants.DAY_SUN
 import com.sinx.task.Constants.DAY_THU
 import com.sinx.task.Constants.DAY_TUE
 import com.sinx.task.Constants.DAY_WED
+import com.sinx.task.Constants.SELECT_DAYS
 import com.sinx.task.Constants.SET_REPEAT_EVERYDAY
 import com.sinx.task.Constants.SET_REPEAT_NO
 import com.sinx.task.Constants.SET_REPEAT_ONCE
@@ -27,13 +26,13 @@ import com.sinx.task.presentation.SheetRepeatViewModel
 import com.sinx.core.R as core_R
 
 class BottomSheetRepeatFragment :
-    BottomSheetDialogFragment(R.layout.bottom_sheet_repeat) {
+    BottomSheetDialogFragment() {
 
     private var _binding: BottomSheetRepeatBinding? = null
     private val binding: BottomSheetRepeatBinding
         get() = checkNotNull(_binding)
 
-    private val viewModel: SheetRepeatViewModel by viewModels()
+    private val viewModel: SheetRepeatViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,111 +45,48 @@ class BottomSheetRepeatFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentResultListener(Constants.SET_REPEAT_REQUEST_KEY) { _, bundle ->
-            var resultRepeat = bundle.getStringArray(Constants.SET_REPEAT_BUNDLE_KEY)?.toList()
-            viewModel.checkRepeat.clear()
-            viewModel.checkRepeat = resultRepeat?.toMutableSet() ?: mutableSetOf()
-            if (resultRepeat != null) setCheckedRepeat(resultRepeat)
+        lifecycleScope.launchWhenStarted {
+            viewModel.checkRepeatBinding.collect() {
+                binding.monday.isChecked = it.isDayMon
+                binding.tuesday.isChecked = it.isDayTue
+                binding.wednesday.isChecked = it.isDayWed
+                binding.thursday.isChecked = it.isDayThu
+                binding.friday.isChecked = it.isDayFri
+                binding.saturday.isChecked = it.isDaySat
+                binding.sunday.isChecked = it.isDaySun
+                binding.chipNo.isChecked = it.isNo
+                binding.chipOnce.isChecked = it.isOnce
+                binding.chipEveryDay.isChecked = it.isEveryDay
+                binding.chipOnWeekdays.isChecked = it.isOnWeekdays
+                binding.chipOnWeekends.isChecked = it.isOnWeekends
+                binding.selectDays.isChecked = it.isSelectDay
+                binding.linearLayout.isInvisible = !binding.selectDays.isChecked
+            }
         }
-        chipDayOnClickListener()
-        chipOnClickListener()
-    }
-
-    private fun setCheckedRepeat(resultRepeat: List<String>) {
-        when {
-            SET_REPEAT_NO in resultRepeat -> binding.chipNo.isChecked = true
-            SET_REPEAT_EVERYDAY in resultRepeat -> binding.chipEveryDay.isChecked = true
-            SET_REPEAT_ONCE in resultRepeat -> binding.chipOnce.isChecked = true
-            SET_REPEAT_ONWEEKDAYS in resultRepeat -> binding.chipOnWeekdays.isChecked = true
-            SET_REPEAT_ONWEEKENDS in resultRepeat -> binding.chipOnWeekends.isChecked = true
-        }
-        if (viewModel.days.any { it in resultRepeat }) {
-            binding.linearLayout.isInvisible = false
-            binding.selectDays.isChecked = true
-        }
-        if (DAY_MON in resultRepeat) binding.monday.isChecked = true
-        if (DAY_TUE in resultRepeat) binding.tuesday.isChecked = true
-        if (DAY_WED in resultRepeat) binding.wednesday.isChecked = true
-        if (DAY_THU in resultRepeat) binding.thursday.isChecked = true
-        if (DAY_FRI in resultRepeat) binding.friday.isChecked = true
-        if (DAY_SAT in resultRepeat) binding.saturday.isChecked = true
-        if (DAY_SUN in resultRepeat) binding.sunday.isChecked = true
-    }
-
-    fun clearDays() {
-        binding.monday.isChecked = false
-        binding.tuesday.isChecked = false
-        binding.wednesday.isChecked = false
-        binding.thursday.isChecked = false
-        binding.friday.isChecked = false
-        binding.saturday.isChecked = false
-        binding.sunday.isChecked = false
-        binding.linearLayout.isInvisible = true
-        binding.selectDays.isChecked = false
-    }
-
-    fun chipDayOnClickListener() {
+        binding.chipNo.setOnClickListener { viewModel.onClickRepeat(SET_REPEAT_NO) }
+        binding.chipOnce.setOnClickListener { viewModel.onClickRepeat(SET_REPEAT_ONCE) }
+        binding.chipEveryDay.setOnClickListener { viewModel.onClickRepeat(SET_REPEAT_EVERYDAY) }
+        binding.chipOnWeekdays.setOnClickListener { viewModel.onClickRepeat(SET_REPEAT_ONWEEKDAYS) }
+        binding.chipOnWeekends.setOnClickListener { viewModel.onClickRepeat(SET_REPEAT_ONWEEKENDS) }
         binding.selectDays.setOnClickListener {
+            viewModel.onClickRepeat(SELECT_DAYS)
             binding.linearLayout.isInvisible = !binding.selectDays.isChecked
         }
-        binding.monday.setOnClickListener {
-            viewModel.setDays(DAY_MON)
-            binding.monday.isChecked = !binding.monday.isChecked
-        }
-        binding.tuesday.setOnClickListener {
-            viewModel.setDays(DAY_TUE)
-            binding.tuesday.isChecked = !binding.tuesday.isChecked
-        }
-        binding.wednesday.setOnClickListener {
-            viewModel.setDays(DAY_WED)
-            binding.wednesday.isChecked = !binding.wednesday.isChecked
-        }
-        binding.thursday.setOnClickListener {
-            viewModel.setDays(DAY_THU)
-            binding.thursday.isChecked = !binding.thursday.isChecked
-        }
-        binding.friday.setOnClickListener {
-            viewModel.setDays(DAY_FRI)
-            binding.friday.isChecked = !binding.friday.isChecked
-        }
-        binding.saturday.setOnClickListener {
-            viewModel.setDays(DAY_SAT)
-            binding.saturday.isChecked = !binding.saturday.isChecked
-        }
-        binding.sunday.setOnClickListener {
-            viewModel.setDays(DAY_SUN)
-            binding.sunday.isChecked = !binding.sunday.isChecked
+        binding.monday.setOnClickListener { onClickDay(DAY_MON) }
+        binding.tuesday.setOnClickListener { onClickDay(DAY_TUE) }
+        binding.wednesday.setOnClickListener { onClickDay(DAY_WED) }
+        binding.thursday.setOnClickListener { onClickDay(DAY_THU) }
+        binding.friday.setOnClickListener { onClickDay(DAY_FRI) }
+        binding.saturday.setOnClickListener { onClickDay(DAY_SAT) }
+        binding.sunday.setOnClickListener { onClickDay(DAY_SUN) }
+        binding.bottomSheetRepeatOkButton.setOnClickListener {
+            viewModel.checkRepeatString()
+            dismiss()
         }
     }
 
-    fun chipOnClickListener() {
-        binding.chipNo.setOnClickListener {
-            viewModel.setDays(SET_REPEAT_NO)
-            clearDays()
-        }
-        binding.chipEveryDay.setOnClickListener {
-            viewModel.setDays(SET_REPEAT_EVERYDAY)
-            clearDays()
-        }
-        binding.chipOnce.setOnClickListener {
-            viewModel.setDays(SET_REPEAT_ONCE)
-            clearDays()
-        }
-        binding.chipOnWeekdays.setOnClickListener {
-            viewModel.setDays(SET_REPEAT_ONWEEKDAYS)
-            clearDays()
-        }
-        binding.chipOnWeekends.setOnClickListener {
-            viewModel.setDays(SET_REPEAT_ONWEEKENDS)
-            clearDays()
-        }
-        binding.bottomSheetRepeatOkButton.setOnClickListener {
-            setFragmentResult(
-                Constants.GET_REPEAT_REQUEST_KEY,
-                bundleOf(Constants.GET_REPEAT_BUNDLE_KEY to viewModel.checkRepeat.toTypedArray())
-            )
-            dismiss()
-        }
+    private fun onClickDay(day: String) {
+        viewModel.onClickRepeat(day)
     }
 
     override fun getTheme(): Int {

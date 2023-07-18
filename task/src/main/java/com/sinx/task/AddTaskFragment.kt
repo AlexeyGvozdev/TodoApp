@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.sinx.task.databinding.AddTaskLayoutBinding
 import com.sinx.task.presentation.AddTaskViewModel
+import com.sinx.task.presentation.SheetRepeatViewModel
 import com.sinx.core.R as core_R
 
 class AddTaskFragment : Fragment() {
@@ -21,6 +22,7 @@ class AddTaskFragment : Fragment() {
     private var _binding: AddTaskLayoutBinding? = null
     private val binding get() = checkNotNull(_binding)
     private val viewModel: AddTaskViewModel by viewModels()
+    private val viewModelRepeat: SheetRepeatViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,13 +55,11 @@ class AddTaskFragment : Fragment() {
                         }
                     )
                 )
-
             binding.selectedPriority.backgroundTintList = colorStateList
         }
 
-        setFragmentResultListener(Constants.GET_REPEAT_REQUEST_KEY) { _, bundle ->
-            val selectRepeat = bundle.getStringArray(Constants.GET_REPEAT_BUNDLE_KEY)?.toList()
-            binding.selectedRepeat.text = selectRepeat?.joinToString(" ")
+        lifecycleScope.launchWhenStarted {
+            viewModelRepeat.checkRepeat.collect(binding.selectedRepeat::setTextWithList)
         }
 
         with(binding) {
@@ -67,12 +67,6 @@ class AddTaskFragment : Fragment() {
                 viewModel.onClickSelectPriority()
             }
             selectedRepeat.setOnClickListener {
-                val repeat = viewModel.stringToWords(selectedRepeat.text.toString())
-                setFragmentResult(
-                    Constants.SET_REPEAT_REQUEST_KEY,
-                    bundleOf(Constants.SET_REPEAT_BUNDLE_KEY to repeat)
-
-                )
                 viewModel.onClickSelectRepeat()
             }
         }
@@ -82,4 +76,8 @@ class AddTaskFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+}
+
+fun TextView.setTextWithList(list: List<String>) {
+    this.text = list.joinToString(" ")
 }
