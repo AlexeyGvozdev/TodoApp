@@ -8,7 +8,7 @@ internal class AddNewProjectUseCaseImpl(
     private val projectRepository: ProjectRepository,
     private val dispatchers: CoroutineDispatcher = Dispatchers.IO
 ) : AddNewProjectUseCase {
-    override suspend fun invoke(newProject: ProjectListModel) = withContext(dispatchers){
+    override suspend fun invoke(newProject: ProjectListModel) = withContext(dispatchers) {
         projectRepository.addNewProject(newProject.toDb())
     }
 }
