@@ -6,7 +6,6 @@ plugins {
     id(Config.Plugins.conventionAppConfig)
     id(Config.Plugins.conventionBuildTypes)
     id(Config.Plugins.conventionKotlin)
-    id(Config.Plugins.safeArgs)
 }
 
 dependencies {

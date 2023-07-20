@@ -9,18 +9,18 @@
         android:name="com.sinx.task.TaskListFragment"
         android:label="TaskListFragment" />
 
-<!--    <fragment-->
-<!--        android:id="@+id/addTaskFragment"-->
-<!--        android:name="com.sinx.task.AddTaskFragment"-->
-<!--        android:label="AddTaskFragment">-->
-<!--        <deepLink app:uri="app://task/addTaskFragment"/>-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.sinx.task.AddTaskFragment"
+        android:label="AddTaskFragment">
+        <deepLink app:uri="app://task/addTaskFragment"/>
+    </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/choiceProjectForTaskBottomSheet"-->
-<!--        android:name="com.sinx.task.BottomSheetChoiceProjectForTask"-->
-<!--        android:label="BottomSheetChoiceProjectForTask">-->
-<!--        <deepLink app:uri="app://task/choiceProjectForTaskBottomSheetFragment"/>-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/choiceProjectForTaskBottomSheet"
+        android:name="com.sinx.task.BottomSheetChoiceProjectForTask"
+        android:label="BottomSheetChoiceProjectForTask">
+        <deepLink app:uri="app://task/choiceProjectForTaskBottomSheetFragment"/>
+    </fragment>
 
 </navigation>

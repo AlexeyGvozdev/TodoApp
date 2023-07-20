@@ -5,17 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getColor
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.sinx.task.databinding.AddTaskLayoutBinding
+import com.sinx.task.presentation.AddTaskViewModel
+import kotlinx.coroutines.launch
 
 class AddTaskFragment : Fragment() {
     private var _binding: AddTaskLayoutBinding? = null
     private val binding: AddTaskLayoutBinding
         get() = checkNotNull(_binding)
 
-//    private val args: AddTaskFragmentArgs by navArgs()
+    private val viewModel: AddTaskViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,9 +36,24 @@ class AddTaskFragment : Fragment() {
         setupListeners()
         initMockValues()
 
+        navigateToBottomSheetAddProjectFragment()
+    }
+
+    private fun navigateToBottomSheetAddProjectFragment() {
         binding.selectedProject.setOnClickListener {
-            navigateToBottomSheetChoiceProjectForTask()
+            viewModel.onClickListenerBottomSheet()
+//            val request = NavDeepLinkRequest.Builder
+//                .fromUri("app://task/choiceProjectForTaskBottomSheetFragment".toUri())
+//                .build()
+//            findNavController().navigate(request)
         }
+        lifecycleScope.launch {
+            viewModel.navDeepLinkRequest.collect {
+                findNavController().navigate(it)
+            }
+        }
+
+
     }
 
     private fun setupListeners() {
@@ -57,9 +77,5 @@ class AddTaskFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun navigateToBottomSheetChoiceProjectForTask() {
-        findNavController().navigate(R.id.action_addTaskFragment_to_bottomSheetChoiceProjectForTask)
     }
 }
