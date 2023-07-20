@@ -10,10 +10,10 @@ internal class ProjectRepositoryImpl(
 ) : ProjectRepository {
 
     override suspend fun addNewProject(projectDB: ProjectDbModel) {
-        projectDao.addTask(projectDB)
+        projectDao.addProject(projectDB)
     }
 
     override suspend fun listTasksFlow(): Flow<List<ProjectDbModel>> {
-        return projectDao.getTaskList()
+        return projectDao.getProjectList()
     }
 }

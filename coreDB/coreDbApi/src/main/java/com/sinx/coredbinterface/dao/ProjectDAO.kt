@@ -11,8 +11,8 @@ import kotlinx.coroutines.flow.Flow
 interface ProjectDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addTask(projectDB: ProjectDbModel)
+    suspend fun addProject(projectDB: ProjectDbModel)
 
     @Query("SELECT * FROM project ORDER BY nameProject")
-    fun getTaskList(): Flow<List<ProjectDbModel>>
+    fun getProjectList(): Flow<List<ProjectDbModel>>
 }
