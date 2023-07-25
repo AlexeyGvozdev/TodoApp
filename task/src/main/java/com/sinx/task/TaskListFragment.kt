@@ -5,12 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.core.di.findComponentDependencies
 import com.sinx.task.databinding.TaskListLayoutBinding
@@ -100,6 +103,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         addButtonBinding.buttonAddNew.setOnClickListener {
             viewModel.onClickListenerBottomSheet()
         }
+
     }
 
     override fun onDestroyView() {
@@ -107,4 +111,5 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         _binding = null
         _addButtonBinding = null
     }
+
 }
