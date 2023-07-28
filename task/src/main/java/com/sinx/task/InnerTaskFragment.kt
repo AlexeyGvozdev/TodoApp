@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.setFragmentResultListener
+import com.sinx.task.Constants.TASK_BUNDLE_KEY
+import com.sinx.task.Constants.TASK_DATE_BUNDLE_KEY
+import com.sinx.task.Constants.TASK_PRIORITY_BUNDLE_KEY
 import com.sinx.task.databinding.InnerTaskLayoutBinding
 
 
@@ -27,10 +29,13 @@ class InnerTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            setFragmentResultListener(Constants.TASK_REQUEST_KEY) { _, bundle ->
-            val result = bundle.getString(Constants.TASK_BUNDLE_KEY)
-            binding.title.setText(result.toString())
-        }
+
+            val title = arguments?.getString(TASK_BUNDLE_KEY)
+            val date = arguments?.getString(TASK_DATE_BUNDLE_KEY)
+            val priority = arguments?.getString(TASK_PRIORITY_BUNDLE_KEY)
+            binding.title.setText(title.toString())
+            binding.selectedDate.setText(date.toString())
+
 
 
     }

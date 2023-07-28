@@ -8,15 +8,15 @@ class GetTaskListUseCaseImpl(private val repository: TaskRepository) : GetTaskLi
 
     override suspend operator fun invoke(): Flow<List<TaskItem>>{
         return repository.listTasksFlow().map{
-            it.ifEmpty{
-                listOf(
 
-                    TaskItem("aaab", "June1", false, 0)
+                listOf(
+                    TaskItem("rrr", "09", true, 0),
+                    TaskItem("aaab", "June1", true, 0)
                 )
             }
         }
     }
-}
+
 
 interface GetTaskListUseCase {
     suspend operator fun invoke(): Flow<List<TaskItem>>

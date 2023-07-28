@@ -35,8 +35,11 @@
         android:name="com.sinx.task.InnerTaskFragment"
         android:label="InnerTaskFragment">
         <deepLink
-            android:id="@+id/deepLink3"
-            app:uri="app://task.innerTaskFragment" />
+        android:id="@+id/deepLink3"
+            app:uri="app://task.innerTaskFragment?taskBundleKey={taskBundleKey}?taskDateBundleKey={taskDateBundleKey}" />
+        <argument android:name="taskBundleKey" app:argType="string"/>
+        <argument android:name = "taskDateBundleKey" app:argType="string"/>
     </fragment>
+
 
 </navigation>
