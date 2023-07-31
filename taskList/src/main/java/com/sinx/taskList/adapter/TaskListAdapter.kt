@@ -23,5 +23,8 @@ class TaskListAdapter(private var listener: OnTaskClickListener) :
 
     interface OnTaskClickListener {
         fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean)
+        fun onTaskTitleClickListener(task: TaskItem){
+
+        }
     }
 }

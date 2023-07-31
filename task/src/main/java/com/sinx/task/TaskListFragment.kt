@@ -5,14 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.sinx.core.databinding.AddButtonBinding
 import com.sinx.core.di.findComponentDependencies
+import com.sinx.task.Constants.TASK_BUNDLE_KEY
+import com.sinx.task.Constants.TASK_DATE_BUNDLE_KEY
 import com.sinx.task.databinding.TaskListLayoutBinding
 import com.sinx.task.di.DaggerTaskComponent
 import com.sinx.task.presentation.TaskViewModel
@@ -70,6 +75,13 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                     viewModel.taskIsDone(item)
                 }
             }
+
+            override fun onTaskTitleClickListener(task: TaskItem) {
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri(("${INNER_TASK_URI}?${TASK_BUNDLE_KEY}=${task.name}&${TASK_DATE_BUNDLE_KEY}=${task.date}").toUri())
+                    .build()
+                findNavController().navigate(request)
+            }
         })
         binding.rvTaskList.adapter = taskListAdapter
         binding.rvTaskList.addItemDecoration(
@@ -107,4 +119,10 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         _binding = null
         _addButtonBinding = null
     }
+
+    companion object {
+        private const val INNER_TASK_URI = "app://task.innerTaskFragment"
+    }
+
+
 }

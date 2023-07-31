@@ -11,6 +11,9 @@ class TaskItemViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(task: TaskItem) = with(binding) {
+        root.setOnClickListener{
+            listener.onTaskTitleClickListener(task)
+        }
         textViewTask.isEnabled = task.enabled
         textViewTask.text = task.name
         textViewTaskDate.text = task.date
