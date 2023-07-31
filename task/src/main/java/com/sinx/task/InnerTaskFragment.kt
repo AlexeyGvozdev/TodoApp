@@ -16,8 +16,6 @@ class InnerTaskFragment : Fragment() {
     private val binding: InnerTaskLayoutBinding
         get() = checkNotNull(_binding)
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +23,6 @@ class InnerTaskFragment : Fragment() {
         _binding = InnerTaskLayoutBinding.inflate(inflater, container, false)
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
