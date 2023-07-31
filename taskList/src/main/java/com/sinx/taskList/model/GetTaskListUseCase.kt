@@ -11,7 +11,7 @@ class GetTaskListUseCaseImpl(private val repository: TaskRepository) : GetTaskLi
 
                 listOf(
                     TaskItem("rrr", "09", true, 0),
-                    TaskItem("aaab", "June1", true, 0)
+                    TaskItem("aaab", "June1", true, 1)
                 )
             }
         }

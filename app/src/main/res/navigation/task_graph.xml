@@ -36,9 +36,10 @@
         android:label="InnerTaskFragment">
         <deepLink
         android:id="@+id/deepLink3"
-            app:uri="app://task.innerTaskFragment?taskBundleKey={taskBundleKey}?taskDateBundleKey={taskDateBundleKey}" />
+            app:uri="app://task.innerTaskFragment?taskBundleKey={taskBundleKey}&amp;taskDateBundleKey={taskDateBundleKey}" />
         <argument android:name="taskBundleKey" app:argType="string"/>
         <argument android:name = "taskDateBundleKey" app:argType="string"/>
+
     </fragment>
 
 

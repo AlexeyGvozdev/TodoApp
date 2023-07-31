@@ -32,7 +32,6 @@ class InnerTaskFragment : Fragment() {
 
             val title = arguments?.getString(TASK_BUNDLE_KEY)
             val date = arguments?.getString(TASK_DATE_BUNDLE_KEY)
-            val priority = arguments?.getString(TASK_PRIORITY_BUNDLE_KEY)
             binding.title.setText(title.toString())
             binding.selectedDate.setText(date.toString())
 
