@@ -17,7 +17,6 @@ plugins {
     id(Config.Plugins.androidLibrary) apply false
     id(Config.Plugins.androidKotlin) apply false
     id(Config.Plugins.detektPlugin).version(Config.Plugins.Versions.detektVersion)
-
 }
 
 tasks.register<Detekt>("detektAll") {
