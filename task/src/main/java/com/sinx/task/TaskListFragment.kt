@@ -1,5 +1,4 @@
 package com.sinx.task
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +30,7 @@ import com.sinx.core.R as core_R
 
 class TaskListFragment : Fragment(R.layout.task_list_layout) {
     private lateinit var taskListAdapter: TaskListAdapter
+
     @Inject
     internal lateinit var taskViewModelFactory: Lazy<TaskViewModel.Factory>
 

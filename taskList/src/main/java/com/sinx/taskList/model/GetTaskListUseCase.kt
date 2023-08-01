@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.map
 class GetTaskListUseCaseImpl(private val repository: TaskRepository) : GetTaskListUseCase {
 
     override suspend operator fun invoke(): Flow<List<TaskItem>>{
-        return repository.listTasksFlow().map{
 
+        return repository.listTasksFlow().map{
             listOf(
                 TaskItem("rrr", "09", true, 0),
                 TaskItem("aииоо", "June1", true, 1)
@@ -16,7 +16,6 @@ class GetTaskListUseCaseImpl(private val repository: TaskRepository) : GetTaskLi
         }
     }
 }
-
 
 interface GetTaskListUseCase {
     suspend operator fun invoke(): Flow<List<TaskItem>>
