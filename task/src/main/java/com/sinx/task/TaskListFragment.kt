@@ -69,15 +69,15 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         taskListAdapter = TaskListAdapter(object : TaskListAdapter.OnTaskClickListener {
 
             override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
-                viewLifecycleOwner.lifecycleScope.launch {
-                    viewModel.taskIsDone(item)
-                }
+                viewLifecycleOwner.lifecycleScope.launch { viewModel.taskIsDone(item) }
             }
 
             override fun onTaskTitleClickListener(task: TaskItem) {
-                val request = NavDeepLinkRequest.Builder.fromUri(
+                val request = NavDeepLinkRequest.Builder
+                    .fromUri(
                     "${INNER_TASK_URI}?${TASK_BUNDLE_KEY}=${task.name}&${TASK_DATE_BUNDLE_KEY}=${task.date}"
-                        .toUri())
+                        .toUri()
+                    )
                     .build()
                 findNavController().navigate(request)
             }
