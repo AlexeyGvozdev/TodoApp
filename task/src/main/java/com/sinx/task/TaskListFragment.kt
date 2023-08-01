@@ -30,9 +30,7 @@ import javax.inject.Inject
 import com.sinx.core.R as core_R
 
 class TaskListFragment : Fragment(R.layout.task_list_layout) {
-
     private lateinit var taskListAdapter: TaskListAdapter
-
     @Inject
     internal lateinit var taskViewModelFactory: Lazy<TaskViewModel.Factory>
 
@@ -78,9 +76,12 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
 
             override fun onTaskTitleClickListener(task: TaskItem) {
                 val request = NavDeepLinkRequest.Builder
-                    .fromUri(("${INNER_TASK_URI}?${TASK_BUNDLE_KEY}=${task.name}&${TASK_DATE_BUNDLE_KEY}=${task.date}"
-                            )
-                        .toUri())
+                    .fromUri(
+                        (
+                                "${INNER_TASK_URI}?${TASK_BUNDLE_KEY}=${task.name}&${TASK_DATE_BUNDLE_KEY}=${task.date}"
+                                )
+                            .toUri()
+                    )
                     .build()
                 findNavController().navigate(request)
             }
@@ -125,6 +126,4 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     companion object {
         private const val INNER_TASK_URI = "app://task.innerTaskFragment"
     }
-
-
 }

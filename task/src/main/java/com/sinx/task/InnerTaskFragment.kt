@@ -30,14 +30,9 @@ class InnerTaskFragment : Fragment() {
             val date = arguments?.getString(TASK_DATE_BUNDLE_KEY)
             binding.title.setText(title.toString())
             binding.selectedDate.setText(date.toString())
-
-
-
-
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }
