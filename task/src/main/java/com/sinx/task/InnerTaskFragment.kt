@@ -1,10 +1,10 @@
 package com.sinx.task
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.sinx.task.Constants.TASK_BUNDLE_KEY
 import com.sinx.task.Constants.TASK_DATE_BUNDLE_KEY
 import com.sinx.task.databinding.InnerTaskLayoutBinding
