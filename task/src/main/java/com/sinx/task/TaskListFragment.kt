@@ -73,8 +73,8 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
             }
 
             override fun onTaskTitleClickListener(task: TaskItem) {
-                    val request = NavDeepLinkRequest.Builder.fromUri(
-                "$INNER_TASK_URI?$TASK_BUNDLE_KEY=${task.name}&$TASK_DATE_BUNDLE_KEY=${task.date}".toUri()
+                        val request = NavDeepLinkRequest.Builder.fromUri(
+           "$INNER_TASK_URI?$TASK_BUNDLE_KEY=${task.name}&$TASK_DATE_BUNDLE_KEY=${task.date}".toUri()
                     )
                     .build()
                 findNavController().navigate(request)
