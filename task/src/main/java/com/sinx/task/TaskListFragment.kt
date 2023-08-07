@@ -68,7 +68,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
             }
 
             override fun onTaskTitleClickListener(task: TaskItem) {
-                 viewModel.onTaskClickListener(task)
+                viewModel.onTaskClickListener(task)
             }
         })
         binding.rvTaskList.adapter = taskListAdapter
