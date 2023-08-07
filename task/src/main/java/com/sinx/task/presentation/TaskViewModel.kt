@@ -60,14 +60,14 @@ class TaskViewModel(
     }
 
     fun onTaskClickListener(task: TaskItem) {
-            val request = NavDeepLinkRequest.Builder
+        val request = NavDeepLinkRequest.Builder
             .fromUri(
-            (
-                        "${TaskListFragment.INNER_TASK_URI}?${Constants.TASK_BUNDLE_KEY}" +
+                (
+                "${TaskListFragment.INNER_TASK_URI}?${Constants.TASK_BUNDLE_KEY}" +
                     "=${task.name}&${Constants.TASK_DATE_BUNDLE_KEY}=${task.date}"
-                    )
-                        .toUri()
-        )
+                        )
+                    .toUri()
+            )
             .build()
         viewModelScope.launch {
             _navDeepLinkRequest.emit(request)
