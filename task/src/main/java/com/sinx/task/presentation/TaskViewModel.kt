@@ -27,7 +27,8 @@ class TaskViewModel(
 ) : ViewModel() {
 
     private var _taskList = MutableSharedFlow<List<TaskItem>>(
-        replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_LATEST
     )
     val taskList: SharedFlow<List<TaskItem>> = _taskList
 
@@ -60,7 +61,7 @@ class TaskViewModel(
         val request = NavDeepLinkRequest.Builder.fromUri(
             (
                 "${TaskListFragment.INNER_TASK_URI}?${Constants.TASK_BUNDLE_KEY}=${task.name}" +
-                "&${Constants.TASK_DATE_BUNDLE_KEY}=${task.date}"
+                    "&${Constants.TASK_DATE_BUNDLE_KEY}=${task.date}"
                 )
                 .toUri()
         ).build()
