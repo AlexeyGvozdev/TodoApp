@@ -26,11 +26,9 @@ class TaskViewModel(
     private val taskReadyUseCase: TaskReadyUseCase
 ) : ViewModel() {
 
-    private var _taskList =
-        MutableSharedFlow<List<TaskItem>>(
-            replay = 1,
-            onBufferOverflow = BufferOverflow.DROP_LATEST
-        )
+    private var _taskList = MutableSharedFlow<List<TaskItem>>(
+        replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST
+    )
     val taskList: SharedFlow<List<TaskItem>> = _taskList
 
     private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
@@ -51,24 +49,21 @@ class TaskViewModel(
     }
 
     fun onClickListenerBottomSheet() {
-        val requestBottomSheetAddTaskFragment = NavDeepLinkRequest.Builder
-            .fromUri("app://task.addTaskFragment".toUri())
-            .build()
+        val requestBottomSheetAddTaskFragment =
+            NavDeepLinkRequest.Builder.fromUri("app://task.addTaskFragment".toUri()).build()
         viewModelScope.launch {
             _navDeepLinkRequest.emit(requestBottomSheetAddTaskFragment)
         }
     }
 
     fun onTaskClickListener(task: TaskItem) {
-        val request = NavDeepLinkRequest.Builder
-            .fromUri(
+        val request = NavDeepLinkRequest.Builder.fromUri(
                 (
-                        "${TaskListFragment.INNER_TASK_URI}?${Constants.TASK_BUNDLE_KEY}" +
-                                "=${task.name}&${Constants.TASK_DATE_BUNDLE_KEY}=${task.date}"
+                        "${TaskListFragment.INNER_TASK_URI}?${Constants.TASK_BUNDLE_KEY}=${task.name}" +
+                                "&${Constants.TASK_DATE_BUNDLE_KEY}=${task.date}"
                         )
                     .toUri()
-            )
-            .build()
+            ).build()
         viewModelScope.launch {
             _navDeepLinkRequest.emit(request)
         }
