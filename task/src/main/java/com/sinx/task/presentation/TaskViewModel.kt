@@ -31,6 +31,10 @@ class TaskViewModel(
         )
     val taskList: SharedFlow<List<TaskItem>> = _taskList
 
+    private var _error =
+        MutableSharedFlow<String>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+    val error: SharedFlow<String> = _error
+
     private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
     val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
 
@@ -40,6 +44,7 @@ class TaskViewModel(
                 _taskList.emitAll(getTaskListUseCase())
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
+                e.message?.let { _error.emit(it) }
             }
         }
     }

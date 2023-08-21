@@ -3,8 +3,8 @@ package com.sinx.project.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sinx.project.data.ProjectListModel
 import com.sinx.project.databinding.ListProjectBinding
+import com.sinx.project.domain.ProjectListModel
 import com.sinx.core.R as core_R
 
 internal class ProjectListAdapter :

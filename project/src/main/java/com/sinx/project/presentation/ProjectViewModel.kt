@@ -4,19 +4,20 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDeepLinkRequest
-import com.sinx.project.data.ProjectListModel
 import com.sinx.project.domain.AddNewProjectUseCase
 import com.sinx.project.domain.GetNewProjectUseCase
+import com.sinx.project.domain.ProjectListModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 internal class ProjectViewModel(
-    private val addNewProjectUseCaseImpl: AddNewProjectUseCase,
+    private val addNewProjectUseCase: AddNewProjectUseCase,
     private val getNewProjectUseCase: GetNewProjectUseCase
 ) : ViewModel() {
 
@@ -31,12 +32,18 @@ internal class ProjectViewModel(
 
     fun initialize() {
         viewModelScope.launch {
-            _projectList.emitAll(getNewProjectUseCase())
+            try {
+                _projectList.emitAll(getNewProjectUseCase())
+            } catch (e: IllegalStateException) {
+                e.printStackTrace()
+            }
         }
     }
 
     fun addNewProject(newProject: ProjectListModel) {
-        addNewProjectUseCaseImpl(newProject)
+        viewModelScope.launch {
+            addNewProjectUseCase(newProject)
+        }
     }
 
     fun onClickAddProject() {

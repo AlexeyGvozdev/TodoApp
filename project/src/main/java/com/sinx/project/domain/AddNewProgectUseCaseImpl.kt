@@ -1,12 +1,18 @@
 package com.sinx.project.domain
 
-import com.sinx.project.data.ProjectListModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-internal class AddNewProjectUseCaseImpl(private val projectRepository: ProjectRepository) :
-    AddNewProjectUseCase {
-    override fun invoke(newProject: ProjectListModel) = projectRepository.addNewProject(newProject)
+internal class AddNewProjectUseCaseImpl(
+    private val projectRepository: ProjectRepository,
+    private val dispatchers: CoroutineDispatcher = Dispatchers.IO
+) : AddNewProjectUseCase {
+    override suspend fun invoke(newProject: ProjectListModel) = withContext(dispatchers) {
+        projectRepository.addNewProject(newProject.toDb())
+    }
 }
 
 internal interface AddNewProjectUseCase {
-    operator fun invoke(newProject: ProjectListModel)
+    suspend operator fun invoke(newProject: ProjectListModel)
 }

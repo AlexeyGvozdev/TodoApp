@@ -3,6 +3,7 @@ package com.sinx.coreDbImpl.di
 import android.content.Context
 import com.sinx.core.AppScope
 import com.sinx.coreDbImpl.ToDoAppDatabase
+import com.sinx.coredbinterface.dao.ProjectDAO
 import com.sinx.coredbinterface.dao.TaskDAO
 import dagger.Module
 import dagger.Provides
@@ -18,5 +19,11 @@ class DbModule {
     @AppScope
     fun provideTaskDao(appDatabase: ToDoAppDatabase): TaskDAO {
         return appDatabase.taskDao()
+    }
+
+    @Provides
+    @AppScope
+    fun provideProjectDao(appDatabase: ToDoAppDatabase): ProjectDAO {
+        return appDatabase.projectDao()
     }
 }
