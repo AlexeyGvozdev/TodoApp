@@ -28,8 +28,8 @@ class TaskViewModelTest {
     val mainDispatcherRule = MainDispatcherRule()
 
     val listItems = listOf(
-        TaskItem("Task Manager 0", "\"07 Jan 23 / Project\"", true, 1),
-        TaskItem("Task Manager 1", "\"07 Jan 23 / Project\"", true, 1)
+        TaskItem(0, "Task Manager 0", "\"07 Jan 23 / Project\"", true, 1),
+        TaskItem(1, "Task Manager 1", "\"07 Jan 23 / Project\"", true, 1)
     )
 
     @Test
@@ -73,8 +73,8 @@ class TaskViewModelTest {
                 scope.launch {
                     taskFlow.emit(
                         listOf(
-                            TaskItem("Task Manager 1", "\"07 Jan 23 / Project\"", true, 1),
-                            TaskItem("Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
+                            TaskItem(0, "Task Manager 1", "\"07 Jan 23 / Project\"", true, 1),
+                            TaskItem(1, "Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
                         )
                     )
                 }
@@ -106,10 +106,10 @@ class TaskViewModelTest {
 
         val actualList = viewModel.taskList.replayCache.first()
         val expectedList = listOf(
-            TaskItem("Task Manager 1", "\"07 Jan 23 / Project\"", true, 1),
-            TaskItem("Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
+            TaskItem(0, "Task Manager 1", "\"07 Jan 23 / Project\"", true, 1),
+            TaskItem(1, "Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
         )
-        val expectedItem = TaskItem("Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
+        val expectedItem = TaskItem(0, "Task Manager 0", "\"07 Jan 23 / Project\"", false, 1)
         // then
         Assert.assertEquals(expectedItem, actualItem)
         Assert.assertEquals(expectedList, actualList)

@@ -118,6 +118,9 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                 binding.tvNoTasks.isVisible = empty
                 taskListAdapter.submitList(item)
             }
+        }
+
+        lifecycleScope.launchWhenStarted {
             viewModel.error.collect {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
             }
