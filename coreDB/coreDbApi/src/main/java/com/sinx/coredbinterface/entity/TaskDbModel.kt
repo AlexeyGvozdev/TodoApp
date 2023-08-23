@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "task")
 data class TaskDbModel(
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val name: String,
     val date: String,
     val enabled: Boolean,

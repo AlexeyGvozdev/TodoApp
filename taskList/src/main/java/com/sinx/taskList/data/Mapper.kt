@@ -6,6 +6,7 @@ import com.sinx.taskList.TaskItem
 class Mapper {
 
     fun mapTaskDbToTaskItem(taskDbModel: TaskDbModel) = TaskItem(
+        id = taskDbModel.id,
         name = taskDbModel.name,
         date = taskDbModel.date,
         enabled = taskDbModel.enabled,
@@ -14,6 +15,7 @@ class Mapper {
     )
 
     fun mapTaskItemToTaskDb(taskItem: TaskItem) = TaskDbModel(
+        id = taskItem.id,
         name = taskItem.name,
         date = taskItem.date,
         enabled = taskItem.enabled,

@@ -1,8 +1,8 @@
 package com.sinx.taskList.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.databinding.ItemTaskManagerBinding
@@ -47,10 +47,18 @@ class TaskListAdapter(
     }
 
     override fun onRowSelected(myViewHolder: TaskItemViewHolder) {
-        myViewHolder.itemView.setBackgroundColor(Color.WHITE)
+        myViewHolder
+            .itemView
+            .setBackgroundColor(
+                ContextCompat.getColor(myViewHolder.itemView.context, com.sinx.core.R.color.white)
+            )
     }
 
     override fun onRowClear(myViewHolder: TaskItemViewHolder) {
-        myViewHolder.itemView.setBackgroundColor(Color.WHITE)
+        myViewHolder
+            .itemView
+            .setBackgroundColor(
+                ContextCompat.getColor(myViewHolder.itemView.context, com.sinx.core.R.color.white)
+            )
     }
 }
