@@ -54,6 +54,9 @@ class AddTaskFragment : Fragment() {
             selectedRepeat.setOnClickListener {
                 viewModel.onClickSelectRepeat()
             }
+            selectedProject.setOnClickListener {
+                viewModel.onClickSelectProject()
+            }
         }
 
         setFragmentResultListener(SET_PRIORITY_REQUEST_KEY) { _, bundle ->

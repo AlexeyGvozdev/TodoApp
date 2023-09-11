@@ -6,4 +6,6 @@ object Constants {
     const val GREEN_PRIORITY = "green"
     const val RED_PRIORITY = "red"
     const val LIGHT_GREY_PRIORITY = "light-grey"
+    const val SELECT_PROJECT_REQUEST_KEY = "selectProjectRequestKey"
+    const val SELECT_PROJECT_BUNDLE_KEY = "selectProjectBundleKey"
 }

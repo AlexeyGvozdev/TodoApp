@@ -30,4 +30,13 @@ class AddTaskViewModel : ViewModel() {
             _navDeepLinkRequest.emit(request)
         }
     }
+
+    fun onClickSelectProject() {
+        val request = NavDeepLinkRequest.Builder
+            .fromUri("app://task/BottomSheetChoiceProjectForTask".toUri())
+            .build()
+        viewModelScope.launch {
+            _navDeepLinkRequest.emit(request)
+        }
+    }
 }
