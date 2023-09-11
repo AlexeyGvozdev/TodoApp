@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -59,7 +60,8 @@ class AddTaskFragment : Fragment() {
         setFragmentResultListener(SET_PRIORITY_REQUEST_KEY) { _, bundle ->
             val colorStateList =
                 ColorStateList.valueOf(
-                    resources.getColor(
+                    ContextCompat.getColor(
+                        requireContext(),
                         when (bundle.getString(SET_PRIORITY_BUNDLE_KEY)) {
                             GREEN_PRIORITY -> core_R.color.green
                             RED_PRIORITY -> core_R.color.red
