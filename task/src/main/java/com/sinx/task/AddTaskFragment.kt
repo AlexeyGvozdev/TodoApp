@@ -5,18 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import com.sinx.task.Constants.GREEN_PRIORITY
-import com.sinx.task.Constants.LIGHT_GREY_PRIORITY
-import com.sinx.task.Constants.RED_PRIORITY
-import com.sinx.task.Constants.SET_PRIORITY_BUNDLE_KEY
-import com.sinx.task.Constants.SET_PRIORITY_REQUEST_KEY
 import com.sinx.task.databinding.AddTaskLayoutBinding
 import com.sinx.task.presentation.AddTaskViewModel
+import com.sinx.task.presentation.SheetRepeatViewModel
 import com.sinx.core.R as core_R
 
 class AddTaskFragment : Fragment() {
@@ -24,6 +22,7 @@ class AddTaskFragment : Fragment() {
     private var _binding: AddTaskLayoutBinding? = null
     private val binding get() = checkNotNull(_binding)
     private val viewModel: AddTaskViewModel by viewModels()
+    private val viewModelRepeat: SheetRepeatViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,32 +43,32 @@ class AddTaskFragment : Fragment() {
             viewModel.navDeepLinkRequest.collect(navController::navigate)
         }
 
-        with(binding) {
-            selectedPriority.setOnClickListener {
-                viewModel.onClickSelectPriority()
-            }
-            repeat.setOnClickListener {
-                viewModel.onClickSelectRepeat()
-            }
-            selectedRepeat.setOnClickListener {
-                viewModel.onClickSelectRepeat()
-            }
-        }
-
-        setFragmentResultListener(SET_PRIORITY_REQUEST_KEY) { _, bundle ->
+        setFragmentResultListener(Constants.SET_PRIORITY_REQUEST_KEY) { _, bundle ->
             val colorStateList =
                 ColorStateList.valueOf(
                     resources.getColor(
-                        when (bundle.getString(SET_PRIORITY_BUNDLE_KEY)) {
-                            GREEN_PRIORITY -> core_R.color.green
-                            RED_PRIORITY -> core_R.color.red
-                            LIGHT_GREY_PRIORITY -> core_R.color.light_grey
+                        when (bundle.getString(Constants.SET_PRIORITY_BUNDLE_KEY)) {
+                            Constants.GREEN_PRIORITY -> core_R.color.green
+                            Constants.RED_PRIORITY -> core_R.color.red
+                            Constants.LIGHT_GREY_PRIORITY -> core_R.color.light_grey
                             else -> core_R.color.light_grey
                         }
                     )
                 )
-
             binding.selectedPriority.backgroundTintList = colorStateList
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModelRepeat.checkRepeat.collect(binding.selectedRepeat::setTextWithList)
+        }
+
+        with(binding) {
+            selectedPriority.setOnClickListener {
+                viewModel.onClickSelectPriority()
+            }
+            selectedRepeat.setOnClickListener {
+                viewModel.onClickSelectRepeat()
+            }
         }
     }
 
@@ -77,4 +76,8 @@ class AddTaskFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+}
+
+fun TextView.setTextWithList(list: List<String>) {
+    this.text = list.joinToString(" ")
 }

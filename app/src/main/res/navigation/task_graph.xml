@@ -28,7 +28,7 @@
         android:id="@+id/repeatFragment"
         android:name="com.sinx.task.BottomSheetRepeatFragment"
         android:label="TaskListFragment">
-        <deepLink app:uri="app://task/BottomSheetRepeatFragment"/>
+        <deepLink app:uri="app://task.BottomSheetRepeatFragment"/>
     </dialog>
 
 </navigation>

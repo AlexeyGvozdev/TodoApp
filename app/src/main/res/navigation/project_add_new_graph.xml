@@ -10,7 +10,6 @@
         android:name="com.sinx.project.BottomSheetAddProjectFragment"
         android:label="BottomSheetAddProjectFragment">
 
-        <deepLink
-            app:uri="app://project.BottomSheetAddProjectFragment" />
+        <deepLink app:uri="app://project.BottomSheetAddProjectFragment" />
     </dialog>
 </navigation>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_background"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:theme="@style/Theme.Todo">
@@ -37,27 +36,33 @@
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipNo"
             style="@style/Chips"
+
             android:text="@string/no"/>
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipEveryDay"
             style="@style/Chips"
             android:text="@string/every_day"/>
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipOnce"
             style="@style/Chips"
             android:text="@string/once"/>
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipOnWeekdays"
             style="@style/Chips"
             android:text="@string/on_weekdays"/>
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/chipOnWeekends"
             style="@style/Chips"
             android:text="@string/on_weekends"/>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/selectdays"
+            android:id="@+id/selectDays"
             style="@style/Chips"
             android:layout_marginTop="0dp"
             android:text="@string/select_days"
@@ -82,60 +87,54 @@
         android:layout_marginBottom="42dp"
         android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/monday"
             style="@style/CheckBox"
-            android:textColor="@color/black"
             android:text="@string/mon"
             app:layout_constraintEnd_toStartOf="@+id/tuesday"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"/>
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:clickable="true"
             android:id="@+id/tuesday"
             style="@style/CheckBox"
             android:text="@string/tue"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/wednesday"
             app:layout_constraintStart_toEndOf="@id/monday"/>
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/wednesday"
             style="@style/CheckBox"
             android:text="@string/wed"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/thursday"
             app:layout_constraintStart_toEndOf="@+id/tuesday"/>
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/thursday"
             style="@style/CheckBox"
             android:text="@string/thu"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/friday"
             app:layout_constraintStart_toEndOf="@+id/wednesday"/>
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/friday"
             style="@style/CheckBox"
             android:text="@string/fri"
-            android:textColor="@color/grey"
             app:layout_constraintEnd_toStartOf="@+id/saturday"
             app:layout_constraintStart_toEndOf="@+id/thursday"/>
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/saturday"
             style="@style/CheckBox"
             android:text="@string/sat"
-            android:textColor="@color/grey"
             app:layout_constraintEnd_toStartOf="@+id/sunday"
             app:layout_constraintStart_toEndOf="@+id/friday"/>
 
-        <androidx.appcompat.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckedTextView
             android:id="@+id/sunday"
             style="@style/CheckBox"
             android:text="@string/sun"
-            android:textColor="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/saturday"/>
 

@@ -14,17 +14,16 @@ class AddTaskViewModel : ViewModel() {
     val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
 
     fun onClickSelectPriority() {
-        val request = NavDeepLinkRequest.Builder
-            .fromUri("app://task.BottomSheetPriorityFragment".toUri())
-            .build()
-        viewModelScope.launch {
-            _navDeepLinkRequest.emit(request)
-        }
+        onClickSelect("app://task.BottomSheetPriorityFragment")
     }
 
     fun onClickSelectRepeat() {
+        onClickSelect("app://task.BottomSheetRepeatFragment")
+    }
+
+    private fun onClickSelect(uri: String) {
         val request = NavDeepLinkRequest.Builder
-            .fromUri("app://task/BottomSheetRepeatFragment".toUri())
+            .fromUri(uri.toUri())
             .build()
         viewModelScope.launch {
             _navDeepLinkRequest.emit(request)
