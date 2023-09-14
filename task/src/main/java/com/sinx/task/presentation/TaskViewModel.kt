@@ -10,6 +10,8 @@ import com.sinx.task.Constants
 import com.sinx.task.TaskListFragment
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.data.TaskRepositoryImpl
+import com.sinx.taskList.model.ChangeIndexUseCase
+import com.sinx.taskList.model.ChangeIndexUseCaseImpl
 import com.sinx.taskList.model.GetTaskListUseCase
 import com.sinx.taskList.model.GetTaskListUseCaseImpl
 import com.sinx.taskList.model.TaskReadyUseCase
@@ -23,7 +25,8 @@ import javax.inject.Inject
 
 class TaskViewModel(
     private val getTaskListUseCase: GetTaskListUseCase,
-    private val taskReadyUseCase: TaskReadyUseCase
+    private val taskReadyUseCase: TaskReadyUseCase,
+    private val changeIndexUseCase: ChangeIndexUseCase
 ) : ViewModel() {
 
     private var _taskList = MutableSharedFlow<List<TaskItem>>(
@@ -31,6 +34,10 @@ class TaskViewModel(
         onBufferOverflow = BufferOverflow.DROP_LATEST
     )
     val taskList: SharedFlow<List<TaskItem>> = _taskList
+
+    private var _error =
+        MutableSharedFlow<String>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+    val error: SharedFlow<String> = _error
 
     private val _navDeepLinkRequest = MutableSharedFlow<NavDeepLinkRequest>()
     val navDeepLinkRequest: SharedFlow<NavDeepLinkRequest> = _navDeepLinkRequest
@@ -41,7 +48,18 @@ class TaskViewModel(
                 _taskList.emitAll(getTaskListUseCase())
             } catch (e: IllegalStateException) {
                 e.printStackTrace()
+                e.message?.let { _error.emit(it) }
             }
+        }
+    }
+
+    fun onRowMoved(fromPosition: Int, toPosition: Int) {
+        viewModelScope.launch {
+            changeIndexUseCase(
+                fromPosition,
+                toPosition,
+                taskList.replayCache.firstOrNull() ?: emptyList()
+            )
         }
     }
 
@@ -79,10 +97,11 @@ class TaskViewModel(
 
         private val getTaskListUseCase = GetTaskListUseCaseImpl(repository)
         private val taskReadyUseCase = TaskReadyUseCaseImpl(repository)
+        private val changeIndexUseCase = ChangeIndexUseCaseImpl(repository)
 
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             require(modelClass == TaskViewModel::class.java)
-            return TaskViewModel(getTaskListUseCase, taskReadyUseCase) as T
+            return TaskViewModel(getTaskListUseCase, taskReadyUseCase, changeIndexUseCase) as T
         }
     }
 }

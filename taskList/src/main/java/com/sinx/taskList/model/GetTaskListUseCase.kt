@@ -12,6 +12,7 @@ class GetTaskListUseCaseImpl(private val repository: TaskRepository) : GetTaskLi
             )
         }
     }
+
 }
 
 interface GetTaskListUseCase {
