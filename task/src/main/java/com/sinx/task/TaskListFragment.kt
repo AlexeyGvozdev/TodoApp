@@ -1,4 +1,5 @@
 package com.sinx.task
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,9 @@ import javax.inject.Inject
 import com.sinx.core.R as core_R
 
 class TaskListFragment : Fragment(R.layout.task_list_layout) {
+
     private lateinit var touchHelper: ItemTouchHelper
+
     private lateinit var taskListAdapter: TaskListAdapter
 
     @Inject
@@ -74,6 +77,10 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                         viewModel.taskIsDone(item)
                     }
                 }
+
+                override fun onTaskTitleClickListener(task: TaskItem) {
+                    TODO("Not yet implemented")
+                }
             },
             object : TaskListAdapter.StartDragListener {
 
@@ -85,12 +92,6 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
             },
             object : TaskListAdapter.OnMoveListener {
 
-            override fun onCheckBoxItemClickListener(item: TaskItem, isChecked: Boolean) {
-                viewLifecycleOwner.lifecycleScope.launch { viewModel.taskIsDone(item) }
-            }
-
-            override fun onTaskTitleClickListener(task: TaskItem) {
-                viewModel.onTaskClickListener(task)
                 override fun onRowMoved(fromPosition: Int, toPosition: Int) {
                     viewModel.onRowMoved(fromPosition, toPosition)
                 }
@@ -140,9 +141,5 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         super.onDestroyView()
         _binding = null
         _addButtonBinding = null
-    }
-
-    companion object {
-        const val INNER_TASK_URI = "app://task.innerTaskFragment"
     }
 }
