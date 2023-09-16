@@ -35,6 +35,7 @@
 * Coroutines and Flow
 * Room
 * Retrofit
+* Dagger 2
 ## CI
 Сейчас на проекте подключён простой workflow для проверки пулреквестов
 * Detekt - линтер котлин кода;
