@@ -143,7 +143,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         _addButtonBinding = null
     }
 
-    companion object{
+    companion object {
         const val INNER_TASK_URI = "app://task.innerTaskFragment"
     }
 }
