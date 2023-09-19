@@ -14,6 +14,8 @@ import androidx.navigation.Navigation
 import com.sinx.task.Constants.GREEN_PRIORITY
 import com.sinx.task.Constants.LIGHT_GREY_PRIORITY
 import com.sinx.task.Constants.RED_PRIORITY
+import com.sinx.task.Constants.SELECT_PROJECT_BUNDLE_KEY
+import com.sinx.task.Constants.SELECT_PROJECT_REQUEST_KEY
 import com.sinx.task.Constants.SET_PRIORITY_BUNDLE_KEY
 import com.sinx.task.Constants.SET_PRIORITY_REQUEST_KEY
 import com.sinx.task.databinding.AddTaskLayoutBinding
@@ -55,6 +57,9 @@ class AddTaskFragment : Fragment() {
             selectedRepeat.setOnClickListener {
                 viewModel.onClickSelectRepeat()
             }
+            selectedProject.setOnClickListener {
+                viewModel.onClickSelectProject()
+            }
         }
 
         setFragmentResultListener(SET_PRIORITY_REQUEST_KEY) { _, bundle ->
@@ -72,6 +77,11 @@ class AddTaskFragment : Fragment() {
                 )
 
             binding.selectedPriority.backgroundTintList = colorStateList
+        }
+
+        setFragmentResultListener(SELECT_PROJECT_REQUEST_KEY) { _, bundle ->
+            val projectName = bundle.getString(SELECT_PROJECT_BUNDLE_KEY)
+            binding.selectedProject.text = projectName
         }
     }
 

@@ -15,4 +15,7 @@ interface ProjectDAO {
 
     @Query("SELECT * FROM project ORDER BY nameProject")
     fun getProjectList(): Flow<List<ProjectDbModel>>
+
+    @Query("SELECT * FROM project WHERE :text = '' OR nameProject LIKE '%' || :text || '%'")
+    fun getProjectListBySearchString(text: String): Flow<List<ProjectDbModel>>
 }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:paddingBottom="37dp"
+    tools:theme="@style/Theme.Todo">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/drag_handle" />
+
+    <TextView
+        style="@style/Headline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/project_select"
+        android:textColor="@color/black" />
+
+    <SearchView
+        android:id="@+id/editSearchString"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="32dp">
+
+</SearchView>
+
+
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        android:id="@+id/outlinedTextField"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="32dp"-->
+    <!--        android:layout_marginTop="34dp"-->
+    <!--        android:layout_marginEnd="32dp"-->
+    <!--        android:backgroundTint="@color/white"-->
+    <!--        app:endIconDrawable="@drawable/icon_clear_text"-->
+    <!--        app:endIconMode="clear_text"-->
+    <!--        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.None">-->
+
+    <!--        <com.google.android.material.textfield.TextInputEditText-->
+    <!--            android:id="@+id/editTextInput"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:backgroundTint="@color/white"-->
+    <!--            android:inputType="text"-->
+    <!--            android:maxLines="1"-->
+    <!--            android:textCursorDrawable="@drawable/rounded_input_cursor"-->
+    <!--            android:textSize="16sp" />-->
+
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<androidx.recyclerview.widget.RecyclerView
+android:id="@+id/rvChoiceProjectList"
+android:layout_height="match_parent"
+android:layout_marginTop="12dp"
+android:layout_width="match_parent"
+android:visibility="visible"
+app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintTop_toBottomOf="@id/buttonAddProject"
+tools:itemCount="3"
+tools:listitem="@layout/item_choice_project" />
+
+<androidx.appcompat.widget.AppCompatButton
+style="@style/Body1"
+android:background="@drawable/bottom_background"
+android:id="@+id/buttonAddProject"
+android:layout_height="40dp"
+android:layout_marginEnd="32dp"
+android:layout_marginStart="258dp"
+android:layout_marginTop="40dp"
+android:layout_width="wrap_content"
+android:text="@string/ok"
+android:textAllCaps="false"
+android:textColor="@color/white" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>

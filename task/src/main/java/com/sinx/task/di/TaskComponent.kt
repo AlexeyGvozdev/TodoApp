@@ -1,6 +1,7 @@
 package com.sinx.task.di
 
 import com.sinx.core.Feature
+import com.sinx.task.BottomSheetChoiceProjectForTask
 import com.sinx.task.TaskListFragment
 import dagger.Component
 
@@ -9,6 +10,7 @@ import dagger.Component
 interface TaskComponent {
 
     fun inject(fragment: TaskListFragment)
+    fun inject(fragment: BottomSheetChoiceProjectForTask)
 
     @Component.Builder
     interface Builder {

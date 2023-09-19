@@ -30,5 +30,10 @@
         android:label="TaskListFragment">
         <deepLink app:uri="app://task/BottomSheetRepeatFragment"/>
     </dialog>
-
+    <dialog
+        android:id="@+id/bottomSheetChoiceProjectForTask"
+        android:name="com.sinx.task.BottomSheetChoiceProjectForTask"
+        android:label="BottomSheetChoiceProjectForTask" >
+        <deepLink app:uri="app://task/BottomSheetChoiceProjectForTask"/>
+    </dialog>
 </navigation>
