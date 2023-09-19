@@ -6,8 +6,8 @@ import com.sinx.task.domain.ProjectModel
 
 class SelectProjectViewHolder(
     private val binding: ItemChoiceProjectBinding,
-    private val onClick: (ProjectModel)-> Unit
-): RecyclerView.ViewHolder(binding.root) {
+    private val onClick: (ProjectModel) -> Unit
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: ProjectModel) {
         binding.root.setOnClickListener {

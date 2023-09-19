@@ -20,9 +20,10 @@ import com.sinx.task.domain.ProjectModel
 import com.sinx.task.presentation.SelectProjectViewModel
 import com.sinx.task.presentation.SelectProjectViewModelFactory
 import dagger.Lazy
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class BottomSheetChoiceProjectForTask:
+class BottomSheetChoiceProjectForTask :
     BottomSheetDialogFragment(R.layout.bottom_sheet_choice_project_for_task) {
 
     private var _binding: BottomSheetChoiceProjectForTaskBinding? = null
@@ -63,6 +64,7 @@ class BottomSheetChoiceProjectForTask:
 
         initUi()
     }
+
     override fun getTheme(): Int {
         return com.sinx.core.R.style.BottomSheetDialogTheme
     }
@@ -75,20 +77,23 @@ class BottomSheetChoiceProjectForTask:
             viewModel.projectList.collect(adapter::setList)
         }
 
-        val search = binding.editTextInput as SearchView
 
-        lifecycleScope.launchWhenStarted {
-            search.setOnQueryTextListener(object : OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
+        binding.editSearchString.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                lifecycleScope.launch {
                     viewModel.searchString.emit(query ?: "")
-                    return true
                 }
+                return true
+            }
 
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return true
+            override fun onQueryTextChange(newText: String?): Boolean {
+                lifecycleScope.launch {
+                    viewModel.searchString.emit(newText ?: "")
                 }
-            })
-        }
+                return true
+            }
+        })
+
     }
 
     private fun onProjectClick(): (ProjectModel) -> Unit = {

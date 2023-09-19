@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 
 class TaskRepositoryModuleImpl(
     private var projectDao: ProjectDAO
-): TaskRepository {
+) : TaskRepository {
 
-    override suspend fun listTasksFlow(): Flow<List<ProjectDbModel>> {
-        return projectDao.getProjectList()
+    override suspend fun listTasksFlow(text: String): Flow<List<ProjectDbModel>> {
+        return projectDao.getProjectListBySearchString(text)
     }
 }

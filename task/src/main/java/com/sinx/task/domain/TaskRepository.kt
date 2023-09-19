@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface TaskRepository {
 
-    suspend fun listTasksFlow(): Flow<List<ProjectDbModel>>
+    suspend fun listTasksFlow(text: String): Flow<List<ProjectDbModel>>
 }

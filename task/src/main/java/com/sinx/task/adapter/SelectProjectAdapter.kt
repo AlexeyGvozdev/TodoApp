@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.sinx.task.databinding.ItemChoiceProjectBinding
 import com.sinx.task.domain.ProjectModel
 
-class SelectProjectAdapter (
-    private val onClick: (ProjectModel)-> Unit )
-    : RecyclerView.Adapter<SelectProjectViewHolder>() {
+class SelectProjectAdapter(
+    private val onClick: (ProjectModel) -> Unit
+) : RecyclerView.Adapter<SelectProjectViewHolder>() {
 
     private var projectList = listOf<ProjectModel>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectProjectViewHolder {

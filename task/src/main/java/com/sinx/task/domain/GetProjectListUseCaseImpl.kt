@@ -6,12 +6,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
-class GetProjectListUseCaseImpl (private val projectRepository: TaskRepository,
-private val dispatchers: CoroutineDispatcher = Dispatchers.IO
+class GetProjectListUseCaseImpl(
+    private val projectRepository: TaskRepository,
+    private val dispatchers: CoroutineDispatcher = Dispatchers.IO
 ) : GetProjectListUseCase {
 
-    override suspend fun invoke(): Flow<List<ProjectModel>> = withContext(dispatchers) {
-        projectRepository.listTasksFlow().map { list ->
+    override suspend fun invoke(text: String): Flow<List<ProjectModel>> = withContext(dispatchers) {
+        projectRepository.listTasksFlow(text).map { list ->
             list.map { item ->
                 item.toDomain()
             }
@@ -19,7 +20,7 @@ private val dispatchers: CoroutineDispatcher = Dispatchers.IO
     }
 }
 
- interface GetProjectListUseCase {
+interface GetProjectListUseCase {
 
-    suspend operator fun invoke(): Flow<List<ProjectModel>>
+    suspend operator fun invoke(text: String): Flow<List<ProjectModel>>
 }
