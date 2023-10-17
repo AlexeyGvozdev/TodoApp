@@ -79,7 +79,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                 }
 
                 override fun onTaskTitleClickListener(task: TaskItem) {
-                    TODO("Not yet implemented")
+                        viewModel.onTaskClickListener(task)
                 }
             },
             object : TaskListAdapter.StartDragListener {
@@ -135,6 +135,7 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         addButtonBinding.buttonAddNew.setOnClickListener {
             viewModel.onClickListenerBottomSheet()
         }
+
     }
 
     override fun onDestroyView() {
