@@ -31,11 +31,11 @@
         <deepLink app:uri="app://task/BottomSheetRepeatFragment"/>
     </dialog>
     <fragment
-        android:id="@+id/innerTaskFragment"
-        android:name="com.sinx.task.InnerTaskFragment"
-        android:label="InnerTaskFragment">
+        android:id="@+id/TaskInfoFragment"
+        android:name="com.sinx.task.TaskInfoFragment"
+        android:label="TaskInfoFragment">
         <deepLink
-            app:uri="app://task.innerTaskFragment?taskBundleKey={taskBundleKey}&amp;taskDateBundleKey={taskDateBundleKey}" />
+            app:uri="app://task.TaskInfoFragment?taskBundleKey={taskBundleKey}&amp;taskDateBundleKey={taskDateBundleKey}" />
         <argument android:name="taskBundleKey" app:argType="string"/>
         <argument android:name = "taskDateBundleKey" app:argType="string"/>
 

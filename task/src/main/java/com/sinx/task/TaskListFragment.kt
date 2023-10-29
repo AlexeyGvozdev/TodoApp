@@ -146,6 +146,6 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
     }
 
     companion object {
-        const val INNER_TASK_URI = "app://task.innerTaskFragment"
+        const val INNER_TASK_URI = "app://task.TaskInfoFragment"
     }
 }

@@ -9,7 +9,7 @@ import com.sinx.task.Constants.TASK_BUNDLE_KEY
 import com.sinx.task.Constants.TASK_DATE_BUNDLE_KEY
 import com.sinx.task.databinding.InnerTaskLayoutBinding
 
-class InnerTaskFragment : Fragment() {
+class TaskInfoFragment : Fragment() {
     private var _binding: InnerTaskLayoutBinding? = null
     private val binding: InnerTaskLayoutBinding
         get() = checkNotNull(_binding)
