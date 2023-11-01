@@ -15,6 +15,9 @@ class TaskItemViewHolder(
 
     @SuppressLint("ClickableViewAccessibility")
     fun bind(task: TaskItem) = with(binding) {
+        root.setOnClickListener {
+            clickListener.onTaskTitleClickListener(task)
+        }
         textViewTask.isEnabled = task.enabled
         textViewTask.text = task.name
         textViewTaskDate.text = task.date

@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDeepLinkRequest
 import com.sinx.coredbinterface.dao.TaskDAO
+import com.sinx.task.Constants
+import com.sinx.task.TaskListFragment
 import com.sinx.taskList.TaskItem
 import com.sinx.taskList.data.TaskRepositoryImpl
 import com.sinx.taskList.model.ChangeIndexUseCase
@@ -27,11 +29,10 @@ class TaskViewModel(
     private val changeIndexUseCase: ChangeIndexUseCase
 ) : ViewModel() {
 
-    private var _taskList =
-        MutableSharedFlow<List<TaskItem>>(
-            replay = 1,
-            onBufferOverflow = BufferOverflow.DROP_LATEST
-        )
+    private var _taskList = MutableSharedFlow<List<TaskItem>>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_LATEST
+    )
     val taskList: SharedFlow<List<TaskItem>> = _taskList
 
     private var _error =
@@ -67,11 +68,23 @@ class TaskViewModel(
     }
 
     fun onClickListenerBottomSheet() {
-        val requestBottomSheetAddTaskFragment = NavDeepLinkRequest.Builder
-            .fromUri("app://task.addTaskFragment".toUri())
-            .build()
+        val requestBottomSheetAddTaskFragment =
+            NavDeepLinkRequest.Builder.fromUri("app://task.addTaskFragment".toUri()).build()
         viewModelScope.launch {
             _navDeepLinkRequest.emit(requestBottomSheetAddTaskFragment)
+        }
+    }
+
+    fun onTaskClickListener(task: TaskItem) {
+        val request = NavDeepLinkRequest.Builder.fromUri(
+            (
+                "${TaskListFragment.INNER_TASK_URI}?${Constants.TASK_BUNDLE_KEY}=${task.name}" +
+                    "&${Constants.TASK_DATE_BUNDLE_KEY}=${task.date}"
+                )
+                .toUri()
+        ).build()
+        viewModelScope.launch {
+            _navDeepLinkRequest.emit(request)
         }
     }
 

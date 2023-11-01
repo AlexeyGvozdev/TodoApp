@@ -77,6 +77,12 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
                         viewModel.taskIsDone(item)
                     }
                 }
+
+                override fun onTaskTitleClickListener(task: TaskItem) {
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        viewModel.onTaskClickListener(task)
+                    }
+                }
             },
             object : TaskListAdapter.StartDragListener {
 
@@ -137,5 +143,9 @@ class TaskListFragment : Fragment(R.layout.task_list_layout) {
         super.onDestroyView()
         _binding = null
         _addButtonBinding = null
+    }
+
+    companion object {
+        const val INNER_TASK_URI = "app://task.TaskInfoFragment"
     }
 }
